@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kmarket Inc. 상상하는 모든 것</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="./css/company.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="module">
+        $(function(){
+
+            const swiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            direction: 'vertical',
+            loop: true,
+            mousewheel : {
+                invert : true
+            },
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <header style="background: transparent;">
+            <div>
+                <a href="./index.html">
+                    <img src="./kcy_img/company_header_logo1.png" width="200" alt="로고">
+                </a>
+                <ul>
+                    <li><a href="./introduce.html">회사소개</a></li>
+                    <li><a href="#">전자공시</a></li>
+                    <li><a href="#">홍보채널</a></li>
+                    <li><a href="#">투명경영</a></li>
+                </ul>
+
+            </div>
+        </header>
+        <div class="swiper-container">
+            <div class="item_list swiper-wrapper">
+                <div class="item swiper-slide"><img src="./kcy_img/movie.mp4" alt=""></div>
+                <div class="item swiper-slide">item2</div>
+                <div class="item swiper-slide">item3</div>
+            </div>
+        </div>
+
+
+
+
+    
+</body>
+</html>
