@@ -17,8 +17,24 @@
           $('.slider').bxSlider({
             easing:'linear'
           });
-        
         });
+
+        $(function () {
+        var best = $("aside > .best");
+
+        $(window).scroll(function () {
+          var t = $(this).scrollTop();
+
+          if (t > 620) {
+            best.css({
+              position: "fixed",
+              top: "0",
+            });
+          } else {
+            best.css({ position: "static" });
+          }
+        });
+      });
     </script>
 </head>
 <body>
@@ -721,7 +737,7 @@
         </main>
         <footer>
             <ul>
-                <li><a href="#">회사소개</a></li>
+                <li><a href="./kcy_company/index.html">회사소개</a></li>
                 <li><a href="#">서비스이용약관</a></li>
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">전자금융거래약관</a></li>

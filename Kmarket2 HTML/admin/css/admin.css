@@ -396,3 +396,32 @@ p.info{
     border-color: #8497bf;
     background: #a8b2c5 url(../img/admin_ico_info.png) no-repeat scroll 15px 16px;
 }
+
+
+/* admin-product-register */
+#admin-product-register {}
+#admin-product-register > article {overflow: hidden;}
+#admin-product-register > article section {
+}
+#admin-product-register > article section > p {
+    background: #eaeaea;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+#admin-product-register > article section > table {margin-bottom: 16px;}
+#admin-product-register > article section > table tr {}
+#admin-product-register > article section > table tr > td {}
+#admin-product-register > article section > table tr > td:nth-child(1) {}
+#admin-product-register > article section > table tr > td > span {}
+#admin-product-register > article section > table tr > td > input {}
+
+#admin-product-register input[type=submit] {
+    float: right;
+    width: 100px;
+}
+
+p.alert {
+    background: #fff6bf url(../img/admin_ico_alert.png) no-repeat scroll 15px;
+    border-color: #FDD845;
+}
