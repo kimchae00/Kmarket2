@@ -285,6 +285,8 @@
     width: 100%;
     height: auto;
     margin-bottom: 26px;
+    padding: 26px;
+    box-sizing: border-box;
 }
 
 #cs > .notice > .list > article > nav > h1 {
@@ -411,6 +413,8 @@
     width: 100%;
     height: auto;
     margin-bottom: 26px;
+    padding: 26px;
+    box-sizing: border-box;
 }
 
 #cs > .notice> .view > article > .top > h1 {
@@ -423,7 +427,7 @@
     font-size: 20px;
 }
 
-#cs > .notice > section > article > nav {
+#cs > .notice > .view > article > nav {
     width: 100%;
     margin-bottom: 26px;
     border-top: 2px solid#111;
