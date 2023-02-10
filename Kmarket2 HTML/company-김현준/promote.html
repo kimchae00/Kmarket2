@@ -3,106 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Kmarket Inc. 상상하는 모든것</title>
-    <style>
-        /* 초기화 */
-/*--------------------------------------------------------------------*/
-        * {
-            margin: 0;
-            padding: 0;
-            font: normal 12px "맑은 고딕";
-        }
-        ul,ol { list-style: none;}
-        a { text-decoration: none; color: #111;}
-        input,textarea {outline: none;}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $(window).scroll(function(){
+                
+                let top = $(this).scrollTop();
+                if(top > 10){
+                    $('#wrapper > header').css('background', 'white');
+                    $('#wrapper > header a').css('color', '#222');
+                    $('#wrapper > header img').attr('src', './img/company_header_logo1.png');
+                }else{
+                    $('#wrapper > header').css('background', 'transparent');
+                    $('#wrapper > header a').css('color', '#fff');
+                    $('#wrapper > header img').attr('src', './img/company_header_logo2.png');
+                }
 
-        #wrapper {
-            width: 100%;
-        }
-
-        header {
-            width: 100%;
-            height: 80px;
-            z-index: 100;
-            background-color: #D3726C;
-            border-bottom: 1px solid rgba(223, 165, 165, 0.1);
-        }
-
-        header > div {
-            width: 1280px;
-            height: 100%;
-            margin: 0 auto;
-            padding-top: 16px;
-            box-sizing: border-box;
-        }
-
-        header > div > ul {
-            float: right;
-            margin-top: 16px;
-            overflow: hidden;
-        }
-
-        header > div > ul > li {
-            float: left;
-            width: 120px;
-            text-align: center;
-        }
-
-        header > div > ul > li > a {
-            font-size: 18px;
-            color: white;
-        }
-
-        #promote > div {
-            width: 100%;
-            height: 100%;
-            margin: 0 auto;
-            position: relative;
-            
-        }
-
-        main > .cover {
-            background-image: url(./img/bg_company_promote.jpg);
-        }
-
-        main > .cover > div {
-            position: relative;
-            width: 1280px;
-            height: 100%;
-            margin: 0 auto;
-        }
-
-        #promote > .cover {
-            width: 100%;
-            height: 670px;
-            box-sizing: border-box;
-            background-size: cover;
-            background-position: 50% 50%;
-            
-        }
-
-
-
-        #promote > .cover > div > h1 {
-            position: relative;
-            left: 10px;
-            top: 280px;
-            font-size: 52px;
-            font-weight: bold;
-            color: white;
-        }
-
-        #promote > .cover > div > p {
-            position: relative;
-            left: 10px;
-            top: 380px;
-            font-size: 22px;
-            color: white;
-        }
-    </style>
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="./css/promote.css">
 </head>
 <body>
     <div id="wrapper">
-        <header>
+        <header style="background: transparent;">
             <div>
                 <a href="#"><img src="./img/company_header_logo2.png" alt="로고2" width="180px"></a>
                 <ul>
@@ -119,7 +43,7 @@
                 <div>
                     <h1>홍보채널</h1>
                     <br>
-                    <p>미디어 속 KMARKET의 영상을 소개해드립니다.</p>
+                    <p>미디어 속 KMARKET의 영상을<br>소개해드립니다.</p>
                 </div>
             </div>
             <section class="content">
