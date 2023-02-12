@@ -46,6 +46,19 @@
                     $('footer').slideUp(1000);
                 }                
             })
+
+            $(window).scroll(function(){
+                let top = $(this).scrollTop();
+                if(top > 0){
+                    $('#wrapper > header').css('background', 'white');
+                    $('#wrapper > header a').css('color', '#222');
+                    $('#wrapper > header img').attr('src', './kcy_img/company_header_logo1.png');
+                }else{
+                    $('#wrapper > header').css('background', 'transparent');
+                    $('#wrapper > header a').css('color', '#fff');
+                    $('#wrapper > header img').attr('src', './kcy_img/company_header_logo2.png');
+                }
+            });
         });
         
     </script>
@@ -55,7 +68,7 @@
         <header>
             <div>
                 <a href="./index.html">
-                    <img src="./kcy_img/company_header_logo1.png" width="200" alt="로고">
+                    <img src="./img/company_header_logo1.png" width="200" alt="로고">
                 </a>
                 <ul>
                     <li><a href="./introduce.html">회사소개</a></li>
@@ -68,7 +81,7 @@
         
         <div class="swiper-wrapper">
             <div class="swiper-slide slide1">
-                <video src="./kcy_img/movie.mp4" loop autoplay muted></video>
+                <video src="./img/movie.mp4" loop autoplay muted></video>
                 <div class="scroll-icon">
                     <span></span>
                     <span></span>
