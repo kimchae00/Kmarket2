@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <th:block th:include="@{member/_header.html}"/>
 <main id="member">
    <div class="login">
@@ -28,3 +29,51 @@
     </div>
 </main> 
 <th:block th:include="@{member/_footer.html}"/>
+=======
+<th:block th:include="@{_header.html}"/>
+
+        <main class="login">
+            <nav>
+                <p>로그인</p>
+            </nav>
+            <div class="loginForm">
+                <div>
+                    <form action="#">
+                        <div class="login_user">   
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>아이디</td>
+                                        <td> <input type="text" name="uid" placeholder="아이디 입력"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>비밀번호</td>
+                                        <td> <input type="text" name="uid" placeholder="비밀번호 입력"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="submit" value="로그인"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <span>
+                                <label>
+                                    <input type="checkbox"> 자동 로그인 |
+                                    <a href="#">아이디 찾기 |</a>
+                                    <a href="#">아이디 찾기 |</a>
+                                    <a href="#">회원가입</a>
+                                </label>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <img src="/Kmarket2 HTML/member/img/member_login_banner.jpg" alt="1만원 할인쿠폰 받기">
+                </div>
+            </div>
+            <div class="certifi">
+                <img src="/Kmarket2 HTML/member/img/member_certifi_logo.gif" alt="인증배너">
+            </div>
+        </main>
+
+<th:block th:include="@{_footer.html}"/>
+>>>>>>> 42a6f5f162bd11d37f69b7c3b87ca76b73e4731c
