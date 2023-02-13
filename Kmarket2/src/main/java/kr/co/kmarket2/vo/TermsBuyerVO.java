@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-public class TermsByuerVO {
+public class TermsBuyerVO {
 	
 	private String one;
 	private String two;
