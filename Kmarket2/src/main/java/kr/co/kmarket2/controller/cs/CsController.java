@@ -1,10 +1,18 @@
 package kr.co.kmarket2.controller.cs;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import kr.co.kmarket2.service.CsService;
+import kr.co.kmarket2.vo.ArticleVO;
 
 @Controller
 public class CsController {
+	
+	@Autowired
+	public CsService service;
 	
 	@GetMapping(value= {"/cs", "/cs/index"})
 	public String index() {
@@ -17,7 +25,9 @@ public class CsController {
 	}
 	
 	@GetMapping("/cs/faq/view")
-	public String faqview() {
+	public String faqview(Model model, int no, String group, String cate) {
+		
+		ArticleVO article = service.selectArticle(no);
 		return "cs/faq/view";
 	}
 	

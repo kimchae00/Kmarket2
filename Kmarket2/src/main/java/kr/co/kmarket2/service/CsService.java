@@ -17,8 +17,8 @@ public class CsService {
 		
 	}
 	*/
-	public void selectArticle() {
-		
+	public ArticleVO selectArticle(int no) {
+		return dao.selectArticle();
 	}
 	
 	public ArticleVO selectArticles(String cate1, String cate2) {
