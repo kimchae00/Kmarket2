@@ -17,42 +17,43 @@ a {
 input, textarea {outline:none}
 
 
-/* admin-notice-list */
-#admin-notice-list > section > div {
+/* admin-faq-list */
+#admin-faq-list > section > div {
     margin-bottom: 10px;
 }
 
-#admin-notice-list > section > table {
+#admin-faq-list > section > table {
     border-top: 2px solid #8798a3;
     margin-bottom: 10px;
 }
 
-#admin-notice-list > section > table  tr > th {
+#admin-faq-list > section > table  tr > th {
     padding: 10px 0;
     background: #f6f6f6;
 }
 
-#admin-notice-list > section > table  tr > td {
+#admin-faq-list > section > table  tr > td {
     background: #fff;
     text-align: center;
     box-sizing: border-box;
 }
-#admin-notice-list > section > table  tr > td:nth-child(1) {width: 20px;}
-#admin-notice-list > section > table  tr > td:nth-child(2) {width: 90px;}
-#admin-notice-list > section > table  tr > td:nth-child(3) {width: 110px;}
-#admin-notice-list > section > table  tr > td:nth-child(4) {width: auto; text-align: left;}
-#admin-notice-list > section > table  tr > td:nth-child(5) {width: 100px;}
-#admin-notice-list > section > table  tr > td:nth-child(6) {width: 110px;}
-#admin-notice-list > section > table  tr > td:nth-child(7) {width: 70px;}
+#admin-faq-list > section > table  tr > td:nth-child(1) {width: 20px;}
+#admin-faq-list > section > table  tr > td:nth-child(2) {width: 90px;}
+#admin-faq-list > section > table  tr > td:nth-child(3) {width: 110px;}
+#admin-faq-list > section > table  tr > td:nth-child(4) {width: 100px;}
+#admin-faq-list > section > table  tr > td:nth-child(5) {width: auto; text-align: left;}
+#admin-faq-list > section > table  tr > td:nth-child(6) {width: 110px;}
+#admin-faq-list > section > table  tr > td:nth-child(7) {width: 110px;}
+#admin-faq-list > section > table  tr > td:nth-child(8) {width: 70px;}
 
-#admin-notice-list > section > table img.thumb {width: 60px;}
+#admin-faq-list > section > table img.thumb {width: 60px;}
 
-#admin-notice-list > section input[type=button] {
+#admin-faq-list > section input[type=button] {
     float: left;
     width: 100px;
     margin-top: 10px;
 }
-#admin-notice-list > section > a {
+#admin-faq-list > section > a {
     float: right;
     width: 100px;
     padding: 7px;
@@ -65,24 +66,24 @@ input, textarea {outline:none}
     box-sizing: border-box;
 }
 
-#admin-notice-list .paging {
+#admin-faq-list .paging {
     width: 100%;
     padding: 30px 0;
     text-align: center;
 }
 
-#admin-notice-list .paging > span > a {
+#admin-faq-list .paging > span > a {
     color: #777;
     font-family: "ë‹ì›€", Dotum, Tahoma, sans-serif;
     font-size: 11px;
     letter-spacing: -1px;
 }
 
-#admin-notice-list .paging > span > a:hover {
+#admin-faq-list .paging > span > a:hover {
     text-decoration: underline;
 }
 
-#admin-notice-list .paging > .num > a {
+#admin-faq-list .paging > .num > a {
     display: inline-block;
     min-width: 14px;
     margin: 0 2px;
@@ -95,11 +96,11 @@ input, textarea {outline:none}
     text-align: center;
     text-decoration: none;
 }
-#admin-notice-list .paging > .num > a:hover {
+#admin-faq-list .paging > .num > a:hover {
     border: 1px solid #454c5f;
     text-decoration: none;
 }
-#admin-notice-list .paging > .num > a.on {
+#admin-faq-list .paging > .num > a.on {
     color: #fe434c;
     font-weight: bold;
 }
@@ -125,8 +126,8 @@ p.info {
 }
 
 
-/* admin-notice-modify */
-#admin-notice-modify > section > a {
+/* admin-faq-modify */
+#admin-faq-modify > section > a {
     float: right;
     width: 100px;
     padding: 7px;
@@ -137,38 +138,38 @@ p.info {
     color: #333;
     box-sizing: border-box;
 }
-#admin-notice-modify > section > table {
+#admin-faq-modify > section > table {
     border-top: 2px solid black;
     box-sizing: border-box;
     margin: 50px 0 40px 0;
 }
 
-#admin-notice-modify > section > table tr > td:nth-of-type(1) {
+#admin-faq-modify > section > table tr > td:nth-of-type(1) {
     width: 110px;
     font-weight: bold;
 }
 
-#admin-notice-modify > section > table tr > td > input {
+#admin-faq-modify > section > table tr > td > input {
     width: 650px;
     height: 100%;
 }
-#admin-notice-modify > section > table tr > td > input:nth-child(2) {
+#admin-faq-modify > section > table tr > td > input:nth-child(2) {
 }
 
-#admin-notice-modify > section > table tr:nth-child(3) > td:nth-of-type(2) {
+#admin-faq-modify > section > table tr:nth-child(3) > td:nth-of-type(2) {
     height: 200px;
 }
 
-#admin-notice-modify > section > a:nth-child(2) {
+#admin-faq-modify > section > a:nth-child(2) {
     margin-left: 7px;
 }
-#admin-notice-modify > section > a:nth-child(3) {
+#admin-faq-modify > section > a:nth-child(3) {
     margin-left: 7px;
 }
 
 
-/* admin-notice-view */
-#admin-notice-view > section > a {
+/* admin-faq-view */
+#admin-faq-view > section > a {
     float: right;
     width: 100px;
     padding: 7px;
@@ -179,31 +180,31 @@ p.info {
     color: #333;
     box-sizing: border-box;
 }
-#admin-notice-view > section > table {
+#admin-faq-view > section > table {
     border-top: 2px solid black;
     box-sizing: border-box;
     margin: 50px 0 40px 0;
 }
 
-#admin-notice-view > section > table tr > td:nth-of-type(1) {
+#admin-faq-view > section > table tr > td:nth-of-type(1) {
     width: 110px;
     font-weight: bold;
 }
 
-#admin-notice-view > section > table tr:nth-child(3) > td:nth-of-type(2) {
+#admin-faq-view > section > table tr:nth-child(3) > td:nth-of-type(2) {
     height: 200px;
 }
 
-#admin-notice-view > section > a:nth-child(2) {
+#admin-faq-view > section > a:nth-child(2) {
     margin-left: 7px;
 }
-#admin-notice-view > section > a:nth-child(3) {
+#admin-faq-view > section > a:nth-child(3) {
     margin-left: 7px;
 }
 
 
-/* admin-notice-write */
-#admin-notice-write > section > div > a {
+/* admin-faq-write */
+#admin-faq-write > section > div > a {
     float: right;
     width: 100px;
     padding: 7px;
@@ -214,35 +215,35 @@ p.info {
     color: #333;
     box-sizing: border-box;
 }
-#admin-notice-write > section > table {
+#admin-faq-write > section > table {
     border-top: 2px solid black;
     box-sizing: border-box;
     margin: 50px 0 40px 0;
 }
 
-#admin-notice-write > section > table tr > td:nth-of-type(1) {
+#admin-faq-write > section > table tr > td:nth-of-type(1) {
     width: 110px;
     font-weight: bold;
 }
 
-#admin-notice-write > section > table tr:nth-child(3) > td:nth-of-type(2) {
+#admin-faq-write > section > table tr:nth-child(3) > td:nth-of-type(2) {
     height: 200px;
 }
 
-#admin-notice-write > section > table tr > td > input {
+#admin-faq-write > section > table tr > td > input {
     width: 650px;
     height: 100%;
 }
 
-#admin-notice-write > section > div {
+#admin-faq-write > section > div {
     width: 60%;
 }
-#admin-notice-write > section > div > input {
+#admin-faq-write > section > div > input {
     float: right;
     width: 100px;
 
 }
 
-#admin-notice-write > section > div > input:nth-child(1) {
+#admin-faq-write > section > div > input:nth-child(1) {
     margin-left: 7px;
 }

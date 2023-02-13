@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>자주묻는질문 목록</title>
+    <title>문의하기 목록</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/faq.css">
+    <link rel="stylesheet" href="/css/qna.css">
     <script src="/js/gnb.js"></script>
-    <!-- 2023/02/10 자주묻는질문 목록 화면구현 - 길은섭 -->
+    <!-- 2023/02/10 문의하기 목록 화면구현 - 길은섭 -->
 </head>
 <body>
     <div id="admin-wrapper">
@@ -136,12 +136,12 @@
                 </ul>
             </aside>
             <!-- list -->
-            <section id="admin-faq-list">
+            <section id="admin-qna-list">
                 <nav>
-                    <h3>자주묻는질문 목록</h3>
+                    <h3>문의하기 목록</h3>
                     <p>
                         HOME > 고객센터 > 
-                        <strong>자주묻는질문</strong>
+                        <strong>문의하기</strong>
                     </p>
                 </nav>
                 <section>
@@ -203,9 +203,9 @@
                             <th>1차 유형</th>
                             <th>2차 유형</th>
                             <th>제목</th>
-                            <th>조회</th>
-                            <th>날짜</th>
-                            <th>관리</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>상태</th>
                         </tr>
                         <tr>
                             <td>
@@ -213,17 +213,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>10</td>
+                            <td>120</td>
                             <td>회원</td>
                             <td>가입</td>
                             <td>
                                 <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
+                            <td style="color: black;">
+                                검토중
                             </td>
                         </tr>
                         <tr>
@@ -232,17 +231,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>9</td>
+                            <td>119</td>
                             <td>회원</td>
                             <td>가입</td>
                             <td>
                                 <a href="./view.html">본인인증 시 이미 가입되어 있는 정보라고 나옵니다.</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
+                            <td style="color: black;">
+                                검토중
                             </td>
                         </tr>
                         <tr>
@@ -251,17 +249,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>8</td>
+                            <td>118</td>
                             <td>회원</td>
                             <td>가입</td>
                             <td>
                                 <a href="./view.html">아이디를 여러 개 사용할 수 있나요?</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                         <tr>
@@ -270,17 +267,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>7</td>
+                            <td>117</td>
                             <td>회원</td>
                             <td>가입</td>
                             <td>
                                 <a href="./view.html">회원 종류 및 혜택 안내</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                         <tr>
@@ -289,17 +285,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>6</td>
+                            <td>116</td>
                             <td>회원</td>
                             <td>가입</td>
                             <td>
                                 <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                         <tr>
@@ -308,17 +303,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>5</td>
+                            <td>115</td>
                             <td>회원</td>
                             <td>가입</td>
                             <td>
                                 <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                         <tr>
@@ -327,17 +321,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>4</td>
+                            <td>114</td>
                             <td>회원</td>
                             <td>탈퇴</td>
                             <td>
                                 <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                         <tr>
@@ -346,17 +339,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>3</td>
+                            <td>113</td>
                             <td>회원</td>
                             <td>탈퇴</td>
                             <td>
                                 <a href="./view.html">회원탈퇴 후 재가입이 가능한가요?</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                         <tr>
@@ -365,17 +357,16 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>2</td>
+                            <td>112</td>
                             <td>회원</td>
                             <td>탈퇴</td>
                             <td>
                                 <a href="./view.html">회원탈퇴는 어떻게 하나요? </a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                         <tr>
@@ -384,22 +375,35 @@
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>1</td>
+                            <td>111</td>
                             <td>회원</td>
                             <td>탈퇴</td>
                             <td>
                                 <a href="./view.html">탈퇴하면 개인정보는 모두 삭제되나요?</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>chh**</td>
+                            <td>23.02.10</td>
                             <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                답변완료
                             </td>
                         </tr>
                     </table>
                     <input type="button" value="선택삭제">
-                    <a href="./write.html">작성하기</a>
+                    <div class="paging">
+                        <span class="prev">
+                            <a href="#"><&nbsp;이전</a>
+                        </span>
+                        <span class="num">
+                            <a href="#" class="on">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                        </span>
+                        <span class="next">
+                            <a href="#">다음&nbsp;></a>
+                        </span>
+                    </div>
                 </section>
             </section>
         </main>
