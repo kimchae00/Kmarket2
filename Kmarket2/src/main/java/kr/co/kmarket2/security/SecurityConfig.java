@@ -1,9 +1,13 @@
 package kr.co.kmarket2.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
@@ -14,32 +18,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// 인가(접근권한) 설정
 		http.authorizeRequests().antMatchers("/").permitAll();
-		http.authorizeRequests().antMatchers("/list").hasAnyRole("2", "3", "4", "5");
-		http.authorizeRequests().antMatchers("/write").hasAnyRole("3", "4", "5");
-		http.authorizeRequests().antMatchers("/view").hasAnyRole("3", "4", "5");
-		http.authorizeRequests().antMatchers("/modify").hasAnyRole("3", "4", "5");
+		//http.authorizeRequests().antMatchers("/admin/*").hasAnyRole("2", "7");
 		
 		// 사이트 위조 방지 설정
 		http.csrf().disable();
 		
-		/*
+		
 		// 로그인 설정
 		http.formLogin()
-		.loginPage("/user/login")
-		.defaultSuccessUrl("/list")
-		.failureUrl("/user/login?success=100")
+		.loginPage("/member/login")
+		.defaultSuccessUrl("/index")
+		.failureUrl("/member/login?success=100")
 		.usernameParameter("uid")
 		.passwordParameter("pass");
 		
 		// 로그아웃 설정
 		http.logout()
 		.invalidateHttpSession(true)
-		.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-		.logoutSuccessUrl("/user/login?success=200");
-		*/
+		.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+		.logoutSuccessUrl("/index");
+		
 	}
 	
-	/*
+	
 	@Autowired
 	private SecurityUserService userService;
 	
@@ -54,8 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Bean
-	public PasswordEncoder encoder() {
+	PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
-	*/
+	
 }
