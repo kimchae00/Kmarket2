@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kmarket2.dao.CsDAO">
+
+	<insert id=""></insert>
+	<select id=""></select>
+	<update id=""></update>
+	<delete id=""></delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 페이징을 위해 그룹의 게시물 총 갯수 -->
+	<select id="selectCountTotal" resultType="int">
+		select count(`no`) from `km_article` 
+		where `group`=#{group};
+	</select>
+	
+	<!-- 세부 카테고리별 게시물 총 갯수 -->
+	<select id="selectCountCateTotal" resultType="int">
+    	select count(`no`) from `km_article` 
+    	where `group`=#{group} and `cate`=#{cate};
+    </select>
+    
+    <!-- 그룹 전체 출력 -->
+    <select id="selectArticles" resultType="kr.co.kmarket2.vo.ArticleVO">
+		select * FROM `km_article` 
+		WHERE `group`=#{group} ORDER BY `no` DESC 
+		LIMIT #{start},10;
+	</select>
+	
+	<!-- 세부 카테고리별 출력 -->
+	<select id="selectCateArticles" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT * FROM `km_article` 
+		WHERE `group`= #{group} and `cate`=#{cate} ORDER BY `no` DESC 
+		LIMIT #{start},10;
+	</select>
+
+</mapper>

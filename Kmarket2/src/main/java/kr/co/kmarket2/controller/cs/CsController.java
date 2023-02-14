@@ -1,5 +1,7 @@
 package kr.co.kmarket2.controller.cs;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +34,39 @@ public class CsController {
 	}
 	
 	@GetMapping("/cs/notice/list")
-	public String noticelist() {
+ public String noticeList(Model model,String group, String cate, String pg) {
+    	
+    	//페이징 
+    	int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호
+		int total = 0;
+		
+		if(cate == null) {
+				total = service.selectCountTotal(group); // 그룹 전체 게시물 갯수
+		}else {
+				total = service.selectCountCateTotal(group, cate); // 카테고리별 게시물 갯수
+			}
+		
+		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호
+		int[] result = service.getPageGroup(currentPage, lastPageNum); // 페이지 그룹 번호
+		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작 번호
+		int start = service.getLimitStart(currentPage); // 시작 인덱스
+		
+		model.addAttribute("lastPageNum", lastPageNum);		
+		model.addAttribute("currentPage", currentPage);		
+		model.addAttribute("pageGroupStart", result[0]);
+		model.addAttribute("pageGroupEnd", result[1]);
+		model.addAttribute("pageStartNum", pageStartNum+1);
+    			
+		// 그룹 전체 글 가져오기
+		List<ArticleVO> articles = service.selectArticles(group, start);
+		
+    	//카테고리별 글 가져오기
+    	List<ArticleVO> article = service.selectCates(group ,cate ,start);
+    	
+    	model.addAttribute("cate",cate);
+    	model.addAttribute("articles", articles);
+    	model.addAttribute("article", article);
+    	
 		return "cs/notice/list";
 	}
 	

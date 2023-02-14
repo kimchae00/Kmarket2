@@ -12,7 +12,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
 public class ArticleVO {
 
 	public int no;
