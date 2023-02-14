@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.termsPolicyDAO;
-import kr.co.kmarket2.vo.TermsByuerVO;
+import kr.co.kmarket2.vo.TermsBuyerVO;
 import kr.co.kmarket2.vo.TermsFinanceVO;
 import kr.co.kmarket2.vo.TermsLocationVO;
 import kr.co.kmarket2.vo.TermsPrivacyVO;
@@ -17,7 +17,7 @@ public class termsPolicyService {
 	@Autowired
 	private termsPolicyDAO dao;
 	
-	public TermsByuerVO selectTermsBuyer() {
+	public TermsBuyerVO selectTermsBuyer() {
 		return dao.selectTermsBuyer();
 	}
 	

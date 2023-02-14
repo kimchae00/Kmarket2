@@ -1,9 +1,16 @@
-package kr.co.kmarket2.vo;
+package kr.co.kmarket2.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
-public class MemberVO {
+@Entity
+@Table(name = "km_member")
+public class MemberEntity {
+	@Id
 	public String uid;
 	public String pass;
 	public String pass1;

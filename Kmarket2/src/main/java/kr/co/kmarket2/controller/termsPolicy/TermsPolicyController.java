@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.co.kmarket2.service.termsPolicyService;
-import kr.co.kmarket2.vo.TermsByuerVO;
+import kr.co.kmarket2.vo.TermsBuyerVO;
 import kr.co.kmarket2.vo.TermsFinanceVO;
 import kr.co.kmarket2.vo.TermsLocationVO;
 import kr.co.kmarket2.vo.TermsPrivacyVO;
@@ -21,7 +21,7 @@ public class TermsPolicyController {
 	
 	@GetMapping("termsPolicy/buyer")
 	private String buyer(Model model) {
-		TermsByuerVO vo = service.selectTermsBuyer();
+		TermsBuyerVO vo = service.selectTermsBuyer();
 		model.addAttribute("vo", vo);
 		return "/termsPolicy/buyer";
 		
