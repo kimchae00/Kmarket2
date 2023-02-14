@@ -7,6 +7,7 @@
     		var type = urlParams.get('type');
     		console.log(type);
     		
+    		// 필수사항 동의 체크
     		$('.agree').click(function(){
 
     			let chk1 = $('input[name=agree1]').is(':checked');
@@ -15,17 +16,26 @@
         		let chk4 = $('input[name=agree4]').is(':checked');
         		
         		if(chk1 && chk2 && chk3){
-        			location.href="/Kmarket2/member/register";
+        			if(chk4){
+        				if(type == 'normal'){
+        					location.href="/Kmarket2/member/register?locationTerms=1";
+        				}else{
+        					location.href="/Kmarket2/member/registerSeller";
+        				}
+        			}else{
+        				if(type == 'normal'){
+        					location.href="/Kmarket2/member/register?locationTerms=0";
+        				}else{
+        					location.href="/Kmarket2/member/registerSeller";
+        				}
+        			}
         			
         		}else{
         			alert('동의 체크를 하십시오.')
         			return false;
         		}
     		});
-    		
-    		
     	});
-    
 </script>
    <main id="member">
 	<div class="signup">
@@ -51,12 +61,13 @@
 			<label><input type="checkbox" name="agree3" />동의합니다.</label>
 		</section>
 		
+		<th:block th:if="${type == 'normal'}">
 		<section>
 			<h3><span class="optional">(선택)</span>위치정보 이용약관</h3>
 			<textarea class="location" readonly>[[${vo.location}]]</textarea>
 			<label><input type="checkbox" name="agree4" />동의합니다.</label>
 		</section>
-		
+		</th:block>
 		<div>
 			<input type="button" class="agree" value="동의하기"/>
 		</div>
