@@ -20,40 +20,29 @@ public class TermsPolicyController {
 	private termsPolicyService service;
 	
 	@GetMapping("termsPolicy/buyer")
-	private String buyer(Model model) {
-		TermsBuyerVO vo = service.selectTermsBuyer();
-		model.addAttribute("vo", vo);
+	private String buyer() {
 		return "/termsPolicy/buyer";
 		
 	}
 	
 	@GetMapping("termsPolicy/finance")
-	private String finance(Model model) {
-		TermsFinanceVO vo = service.selectTermsFinance();
-		model.addAttribute("vo", vo);
+	private String finance() {
 		return "termsPolicy/finance";
 	}
 	
 	@GetMapping("termsPolicy/location")
-	private String location(Model model) {
-		TermsLocationVO vo = service.selectTermsLocation();
-		model.addAttribute("vo", vo);
+	private String location() {
 		return "termsPolicy/location";
 	}
 	
 	
 	@GetMapping("termsPolicy/privacy")
-	private String privacy(Model model) {
-		TermsPrivacyVO vo = service.selectTermsPrivacy();
-		model.addAttribute("vo", vo);
+	private String privacy() {
 		return "termsPolicy/privacy";
 	}
 	
 	@GetMapping("termsPolicy/seller")
-	private String seller(Model model) {
-		TermsSellerVO vo = service.selectTermsSeller();
-		model.addAttribute("vo", vo);
-		
+	private String seller() {
 		return "/termsPolicy/seller";
 	}
 	
