@@ -50,5 +50,8 @@
             `rdate`=NOW();
 	</insert>
 
+	<select id="findId" parameterType="kr.co.kmarket2.vo.MemberVO" resultType="kr.co.kmarket2.vo.MemberVO">
+		select `uid`, `name`, `email`, `rdate` from `km_member` where `name`=#{name} and `email`=#{email}";
+	</select>
 
 </mapper>
