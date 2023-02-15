@@ -15,6 +15,24 @@
 
     <link rel="stylesheet" th:href="@{/css/termsPolicy.css}"/>
 </head>
+<script>
+/* jQuery */
+$(document).ready(function() {
+  
+	/* 텍스트에어리어 크기 조절 */
+	$('textarea').on( 'keyup', function (e){
+    	$(this).css('height', 'auto');
+    	$(this).height(this.scrollHeight);
+  	});
+  	$('textarea').keyup();
+  	
+  	$('.tremsPolic_list li').click(function(){
+  		
+  		let i = $(this).index();
+  		$('.tremsPolic_list li').removeClass('on').eq(i).addClass('on');
+  	})
+});
+</script>
 <body>
     <div id="wrapper">
         <header>
@@ -113,18 +131,18 @@
             <section class="buyer">
                 <nav>
                     <h1>KMARKET 서비스 이용약관</h1>
-                     <ul>
+                     <ul class ="tremsPolic_list">
                         <li>
                             <a th:href="@{/termsPolicy/buyer}">구매회원 약관</a>
                         </li>
                         <li>
                             <a th:href="@{/termsPolicy/seller}">판매회원 약관</a>
                         </li>
-                        <li class="on">
+                        <li>
                             <a th:href="@{/termsPolicy/finance}">전자금융거래 약관</a>
                         </li>
                         <li>
-                            <a th:href="@{/termsPolicy/loction}">위치정보이용 약관</a>
+                            <a th:href="@{/termsPolicy/location}">위치정보이용 약관</a>
                         </li>
                         <li>
                             <a th:href="@{/termsPolicy/privacy}">개인정보처리방침</a>
