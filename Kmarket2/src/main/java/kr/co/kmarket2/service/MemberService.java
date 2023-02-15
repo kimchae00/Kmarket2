@@ -1,10 +1,15 @@
 package kr.co.kmarket2.service;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.kmarket2.dao.MemberDAO;
+import kr.co.kmarket2.entity.MemberEntity;
 import kr.co.kmarket2.repository.MemberRepo;
 import kr.co.kmarket2.vo.MemberTermsVO;
 import kr.co.kmarket2.vo.MemberVO;
@@ -33,6 +38,9 @@ public class MemberService {
 	}
 	public int countUid(String uid) {
 		return repo.countByUid(uid);
+	}
+	public MemberVO findId(String name, String email) {
+		return dao.findId(name, email);
 	}
 	public MemberTermsVO selectTerms() {
 		return dao.selectTerms();
