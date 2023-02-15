@@ -1,17 +1,22 @@
 package kr.co.kmarket2.controller.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.kmarket2.entity.MemberEntity;
 import kr.co.kmarket2.service.MemberService;
 import kr.co.kmarket2.vo.MemberTermsVO;
 import kr.co.kmarket2.vo.MemberVO;
@@ -76,6 +81,26 @@ public class MemberController {
 	public String login() {
 		return "/member/login";
 	}
+
+	@GetMapping("member/findId")
+	public String findId() {
+		return "/member/findId";
+	}
 	
+	@ResponseBody
+	@PostMapping("member/findId")
+	public String findId(@RequestParam("name") String name, @RequestParam("email") String email) {
+		if(service.findId(name, email)==null) {
+			return null;
+		}else {
+			return "/member/findId";
+		}
+		
+	}
+	
+	@GetMapping("member/findIdResult")
+	public String findIdResult() {
+		return "/member/findIdResult";
+	}
 	
 }
