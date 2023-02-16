@@ -18,8 +18,10 @@ public interface MemberDAO {
 	public int insertUserNormal(MemberVO vo);
 	public int insertUserSeller(MemberVO vo);
 	public int countByUid(String uid);
-	public int findIdOk(MemberVO vo);
+	public int countByNameAndEmail(String name, String email);
 	public MemberVO findId(String name, String email);
+	public int findPw(String uid, String email);
+	public int findPwChange(String uid, String pass);
 	public MemberTermsVO selectTerms();
 	public void selectUser();
 	public void selectUsers();

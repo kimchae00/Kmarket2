@@ -2,7 +2,7 @@
 <main id="member">
    <div class="login">
         <nav>
-            <h1>로그인</h1>                    
+            <h1>로그인</h1>
         </nav>
 		<form action="#" method="post">
              <table border="0">
@@ -17,7 +17,7 @@
              </table>					
 			<input type="submit" value="로그인" />
 			<span>
-			    <label><input type="checkbox" name="auto"/>자동 로그인</label>
+			    <label><input type="checkbox" name="remember-me" id="remember-me"/>자동 로그인</label>
 				<a th:href="@{/member/findId}">아이디찾기</a>
 				<a th:href="@{/member/findPw}">비밀번호찾기</a>
 				<a th:href="@{/member/join}">회원가입</a>
