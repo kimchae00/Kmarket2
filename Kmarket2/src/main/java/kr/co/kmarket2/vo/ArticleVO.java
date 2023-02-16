@@ -1,7 +1,6 @@
 package kr.co.kmarket2.vo;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
 public class ArticleVO {
 
 	public int no;
@@ -28,5 +26,8 @@ public class ArticleVO {
 	public String uid;
 	public String regip;
 	public String rdate;
+	public String getRdate() {
+		return rdate.substring(2,10);
+	}
 	
 }
