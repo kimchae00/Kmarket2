@@ -5,26 +5,26 @@
 			
 			console.log('here1');
 			
-			let name = $('input[name=name]').val();
+			let uid = $('input[name=uid]').val();
 			let email = $('input[name=email]').val();
 			
 			let jsonData = {
-					"name": name,
+					"uid": uid,
 					"email": email
 			};
 			console.log(jsonData);
 			
 			$.ajax({
-				url: '/Kmarket2/member/findId',
+				url: '/Kmarket2/member/findPw',
 				type: 'post',
 				data: jsonData,
 				dataType: 'json',
 				success: function(data){
-					if(data.vo != null){
+					if(data.result == 1){
 						console.log(data);
-						location.href="/Kmarket2/member/findIdResult";
+						location.href="/Kmarket2/member/findPwChange?uid="+uid;
 					}else{
-						alert('해당하는 사용자가 존재하지 않습니다.\n이름과 이메일을 다시 확인하십시오.');
+						alert('해당하는 사용자가 존재하지 않습니다.\n아이디와 이메일을 다시 확인하십시오.');
 					}
 				}
 			});
@@ -33,15 +33,15 @@
 	});
 </script>
 <main id="member">
-   <div class="find findId">
+   <div class="find findPw">
         <nav>
-            <h1>아이디 찾기</h1>                    
+            <h1>비밀번호 찾기</h1>                    
         </nav>
 		<form action="#" method="post">
              <table border="0">
                  <tr>
-                    <td>이름</td>
-                    <td><input type="text" id="name" name="name" placeholder="이름 입력" required="required"/></td>
+                    <td>아이디</td>
+                    <td><input type="text" id="uid" name="uid" placeholder="아이디 입력" required="required"/></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
@@ -54,13 +54,13 @@
                 </tr>
              </table>
              <p>
-	            회원가입시 입력한 이름과 입력한 이메일 주소가 같아야, 아이디를 찾을 수 있습니다.<br>
-	            이름과 이메일을 입력 후 확인 버튼을 누르세요.
+	            회원가입시 입력한 아이디와 입력한 이메일 주소가 같아야, 비밀번호를 변경할 수 있습니다.<br>
+	            아이디와 이메일을 입력 후 확인 버튼을 누르세요.
 	         </p>
 	
 	        <div class="btn">
 	            <a th:href="@{/member/login}" class="btnCancel">취소</a>
-	            <a th:href="@{/member/findIdResult}" class="btnNext">확인</a>
+	            <a th:href="@{/member/findPwChange}" class="btnNext">확인</a>
 	        </div>					
 		</form>
 		
