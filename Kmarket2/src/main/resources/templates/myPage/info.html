@@ -1,4 +1,4 @@
-<th:block th:include="@{_header.html}"/>
+<th:block th:include="@{myPage/_header.html}"/>
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -52,11 +52,16 @@
             }
         }).open();
     }
+    
+    $(document).ready(function() {
+    	 //수정하기 누르면 리드온리 풀리도록 함
+    });
+    
 </script>
 
                 <section class="myInfo">
                     <a href="#">
-                        <img src="/Kmarket2 HTML/myPage/img/my_banner2.png" alt="">
+                        <img th:src="@{/img/my_banner2.png}" alt="banner2">
                     </a>
                     <div class="infoForm">
                         <div>
@@ -67,7 +72,7 @@
                                 <table>
                                     <tr>
                                         <th>사용자 ID</th>
-                                        <td>z123123</td>
+                                        <td class="uid" >ID123</td>                                        
                                     </tr>
                                     <tr>
                                         <th>비밀번호</th>
@@ -75,18 +80,18 @@
                                     </tr>
                                     <tr>
                                         <th>이름</th>
-                                        <td>설*영</td>
+                                        <td class="name" th:value=${???}>길동이</td>                                        
                                     </tr>
                                     <tr>
                                         <th>생년월일</th>
-                                        <td>1995년04월25일</td>
+                                        <td class="rdate" sec:authentication="principal.member.rdate">생년월일</td>                                        
                                     </tr>
                                     <tr>
                                         <th>email</th>
                                         <td>
-                                            <input type="text" name="email1">
+                                            <input type="text" name="email1" readonly="readonly">
                                             @
-                                            <input type="text" name="email2">
+                                            <input type="text" name="email2" readonly="readonly">
                                             <select name="" id="">
                                                 <option value="">naver.com</option>
                                                 <option value="">daum.net</option>
@@ -137,4 +142,4 @@
             </div>
        </main>
 
-<th:block th:include="@{_footer.html}"/>
+<th:block th:include="@{myPage/_footer.html}"/>
