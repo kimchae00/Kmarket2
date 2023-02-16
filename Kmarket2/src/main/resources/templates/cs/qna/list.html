@@ -43,125 +43,16 @@
                         </nav>
                         <table>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <a th:href="@{#}">
-                                            [가입] 가입 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
+                                <tr th:each="qnas : ${qnas}">
+                                	<td>
+                                		<!-- 이거 조인해서 c2Name을 넣어야한다 나중에 해라 -->
+                                		<a th:href="@{#}">[[${qnas.cate2}]]&nbsp[[${qnas.title}]]</a>
+                                	</td>
+                                	<td class="progress">
                                         검토중
                                     </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a th:href="@{#}">
-                                            [탈퇴] 탈퇴 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="complete">
-                                        답변완료
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            [회원정보] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            [로그인] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            [로그인] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a th:href="@{#}">
-                                            [로그인] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a th:href="@{#}">
-                                            [회원정보] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a th:href="@{#}">
-                                            [회원정보] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a th:href="@{#}">
-                                            [탈퇴] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a th:href="@{#}">
-                                            [탈퇴] 회원정보 문의내용
-                                        </a>
-                                    </td>
-                                    <td class="progress">
-                                        검토중
-                                    </td>
-                                    <td>chh**</td>
-                                    <td>2022.11.21</td>
+                                    <td>[[${qnas.uid}]]</td>
+                                    <td>[[${qnas.rdate}]]</td>
                                 </tr>
                             </tbody>
                         </table>
