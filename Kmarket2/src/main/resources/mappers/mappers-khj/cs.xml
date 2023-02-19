@@ -34,7 +34,31 @@
 	
 	<!-- 리스트 출력(qna) -->
 	<select id="selectQnaList" resultType="kr.co.kmarket2.vo.ArticleVO">
-		SELECT * FROM `km_article` WHERE `group`=#{group} and `cate`=#{cate} ORDER BY `no` DESC LIMIT #{start},10;
+		SELECT a.*, b.c2Name FROM `km_article` AS a 
+		JOIN `km_article_cate` AS b 
+		ON a.cate2=b.cate2 
+		WHERE `group`=#{group} and a.`cate`=#{cate} ORDER BY `no` DESC LIMIT #{start},10;
 	</select>
+	
+	<!-- 뷰 출력(qna) -->
+	<select id="selectQna" resultType="kr.co.kmarket2.vo.ArticleVO">
+		select a.*, b.c2Name FROM `km_article` AS a 
+		JOIN `km_article_cate` AS b 
+		ON a.cate2=b.cate2 
+		WHERE `no`=#{no};
+	</select>
+	
+	<!-- 답변 존재 여부 확인(1이면 존재) -->
+	<select id="selectCountAnswer" resultType="int">
+		SELECT COUNT(`parent`) FROM `km_article` WHERE `parent`=#{no}; 
+	</select>
+	
+	<!-- 답변 출력 -->
+	<select id="selectAnswer" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT * FROM `km_article` WHERE `parent`=#{no};
+	</select>
+	
+	<!-- qna 작성 페이지 출력 -->
+	<select id="selectQnaWrite"></select>
 
 </mapper>

@@ -35,6 +35,18 @@ public class CsService {
 		return dao.selectQnaList(group, cate, start);
 	}
 	
+	public ArticleVO selectQna(int no) {
+		return dao.selectQna(no);
+	}
+	
+	public int selectCountAnswer(int no) {
+		return dao.selectCountAnswer(no);
+	}
+	
+	public ArticleVO selectAnswer(int no) {
+		return dao.selectAnswer(no);
+	}
+	
 	public void updateArticle() {
 		
 	}

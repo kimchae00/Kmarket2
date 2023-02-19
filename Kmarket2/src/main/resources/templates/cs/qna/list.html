@@ -36,17 +36,47 @@
                         </ul>
                     </aside>
                     <article>
-                        <nav>
+                        <nav th:if="${cate} eq member">
                             <h1>회원</h1>
                             <br>
                             <h2>회원관련 문의 내용입니다.</h2>
+                        </nav>
+                        <nav th:if="${cate} eq coupon">
+                            <h1>쿠폰/이벤트</h1>
+                            <br>
+                            <h2>쿠폰/이벤트관련 문의 내용입니다.</h2>
+                        </nav>
+                        <nav th:if="${cate} eq order">
+                            <h1>주문/결제</h1>
+                            <br>
+                            <h2>주문/결제관련 문의 내용입니다.</h2>
+                        </nav>
+                        <nav th:if="${cate} eq delivery">
+                            <h1>배송</h1>
+                            <br>
+                            <h2>배송관련 문의 내용입니다.</h2>
+                        </nav>
+                        <nav th:if="${cate} eq cancel">
+                            <h1>취소/반품/교환</h1>
+                            <br>
+                            <h2>취소/반품/교환관련 문의 내용입니다.</h2>
+                        </nav>
+                        <nav th:if="${cate} eq travel">
+                            <h1>여행/숙박/항공</h1>
+                            <br>
+                            <h2>여행/숙박/항공관련 문의 내용입니다.</h2>
+                        </nav>
+                        <nav th:if="${cate} eq safe">
+                            <h1>안전거래</h1>
+                            <br>
+                            <h2>안전거래관련 문의 내용입니다.</h2>
                         </nav>
                         <table>
                             <tbody>
                                 <tr th:each="qnas : ${qnas}">
                                 	<td>
                                 		<!-- 이거 조인해서 c2Name을 넣어야한다 나중에 해라 -->
-                                		<a th:href="@{#}">[[${qnas.cate2}]]&nbsp[[${qnas.title}]]</a>
+                                		<a th:href="@{/cs/qna/view(group=${qnas.group},cate=${qnas.cate},no=${qnas.no})}">[ [[${qnas.c2Name}]] ]&nbsp[[${qnas.title}]]</a>
                                 	</td>
                                 	<td class="progress">
                                         검토중
@@ -57,13 +87,20 @@
                             </tbody>
                         </table>
                         <div class="page">
-                            <a th:href="@{#}" class="prev">이전</a>
-                            <a th:href="@{#}" class="num on">1</a>
-                            <a th:href="@{#}" class="num">2</a>
-                            <a th:href="@{#}" class="num">3</a>
-                            <a th:href="@{#}" class="next">다음</a>
-                        </div>
-                        <a th:href="@{#}" class="btnWrite">문의하기</a>
+			                <th:block th:if="${groups[0]>1}">
+			                	<a th:href="@{/cs/qna/list(group=qna,cate=${cate},pg=${groups[0]-1})}" class="prev">이전</a>
+			                </th:block>
+			                
+			                <th:block th:each="num:${#numbers.sequence(groups[0],groups[1])}">
+			                	<a th:href="@{/cs/qna/list(group=qna,cate=${cate},pg=${num})}"
+			                	   th:class="${num==currentPage?'num current':'num'}">[[${num}]]</a>
+			                </th:block>
+			                
+			                <th:block th:if="${groups[1]<lastPageNum}">
+			                	<a th:href="@{/cs/qna/list(group=qna,cate=${cate},pg=${groups[1]+1})}" class="next">다음</a>
+			                </th:block>
+			            </div>
+                        <a th:href="@{/cs/qna/write}" class="btnWrite">문의하기</a>
                     </article>
                 </section>
             </div>

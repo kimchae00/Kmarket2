@@ -121,7 +121,21 @@ public class CsController {
 	}
 	
 	@GetMapping("/cs/qna/view")
-	public String qnaview() {
+	public String qnaview(Model model, int no, String cate) {
+		
+		// 본문
+		ArticleVO qna = service.selectQna(no);
+		int countAnswer = service.selectCountAnswer(no);
+		log.info("countAnswer : "+countAnswer);
+		// 답변
+		if(countAnswer != 0) {
+			ArticleVO answer = service.selectAnswer(no);
+			model.addAttribute("answer", answer);
+		}
+		
+		model.addAttribute("qna", qna);
+		model.addAttribute("cate", cate);
+		
 		return "cs/qna/view";
 	}
 	

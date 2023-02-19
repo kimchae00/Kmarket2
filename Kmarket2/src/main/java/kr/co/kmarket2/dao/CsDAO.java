@@ -24,6 +24,15 @@ public interface CsDAO {
 	/* QNA리스트 출력 */
 	public List<ArticleVO> selectQnaList(String group, String cate, int start);
 	
+	/* QNA VIEW 출력 */
+	public ArticleVO selectQna(int no);
+	
+	/* 답변 존재 여부 확인 */
+	public int selectCountAnswer(int no);
+	
+	/* 답변 출력 */
+	public ArticleVO selectAnswer(int no);
+	
 	public int updateArticle();
 	
 	public int deleteArticle();
