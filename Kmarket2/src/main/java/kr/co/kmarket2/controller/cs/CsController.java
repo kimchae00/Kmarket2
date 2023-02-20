@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.kmarket2.service.CsService;
 import kr.co.kmarket2.vo.ArticleVO;
@@ -19,7 +21,11 @@ public class CsController {
 	public CsService service;
 	
 	@GetMapping(value= {"/cs", "/cs/index"})
-	public String index() {
+	public String index(Model model) {
+		List<ArticleVO> notices = service.selectIndexNotice();
+		List<ArticleVO> qna = service.selectIndexQna();
+		model.addAttribute("notices", notices);
+		model.addAttribute("qna", qna);
 		return "cs/index";
 	}
 	
@@ -142,5 +148,12 @@ public class CsController {
 	@GetMapping("/cs/qna/write")
 	public String qnawrite() {
 		return "cs/qna/write";
+	}
+	
+	@ResponseBody
+	@PostMapping("/cs/write")
+	public void write() {
+		
+		System.out.println("1");
 	}
 }

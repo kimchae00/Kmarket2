@@ -78,9 +78,16 @@
                                 		<!-- 이거 조인해서 c2Name을 넣어야한다 나중에 해라 -->
                                 		<a th:href="@{/cs/qna/view(group=${qnas.group},cate=${qnas.cate},no=${qnas.no})}">[ [[${qnas.c2Name}]] ]&nbsp[[${qnas.title}]]</a>
                                 	</td>
-                                	<td class="progress">
-                                        검토중
+                                	<th:block th:if="${qnas.comment}==0">
+	                                	<td class='progress'>
+	                                        검토중
+	                                    </td>
+                                	</th:block>
+                                	<th:block th:if="${qnas.comment}!=0">
+                                	<td class='complete'>
+                                        답변완료
                                     </td>
+                                    </th:block>
                                     <td>[[${qnas.uid}]]</td>
                                     <td>[[${qnas.rdate}]]</td>
                                 </tr>
