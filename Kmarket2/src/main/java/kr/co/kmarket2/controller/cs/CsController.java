@@ -30,7 +30,18 @@ public class CsController {
 	}
 	
 	@GetMapping("/cs/faq/list")
-	public String faqlist() {
+	public String faqlist(Model model, String group, String cate) {
+		
+		// 각각의 cate공간(반복용)
+		//List<ArticleVO> cates = service.selectFaqCates(cate);
+		
+		//목록 가져오기
+    	//List<ArticleVO> faqs = service.selectFaqs(group, cate);
+		
+		//model.addAttribute("cates", cates);
+    	//model.addAttribute("faqs", faqs);
+    	//model.addAttribute("cate", cate);
+		
 		return "cs/faq/list";
 	}
 	

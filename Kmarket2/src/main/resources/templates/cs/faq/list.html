@@ -71,96 +71,18 @@
                             <br>
                             <h2>안전거래 관련 자주 묻는 질문입니다.</h2>
                         </nav>
-                        <div>
-                            <h3>가입</h3>
+                        <div th:each="cate:${cates}">
+                            <h3>[[${cate.c2Name}]]</h3>
                             <ul>
-                                <li th:each="faqs : #{faqs}">
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>개인회원과 법인회원에 차이가 있나요?
-                                    </a>
-                                </li>
-                                <li class="more">
-                                    <a th:href="@{#}">더보기</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>탈퇴</h3>
-                            <ul>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>회원탈퇴 후 재가입이 가능한가요?
-                                    </a>
-                                </li>
-                                <li class="more">
-                                    <a th:href="@{#}">더보기</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>회원정보</h3>
-                            <ul>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>회원정보를 수정하고 싶어요.
-                                    </a>
-                                </li>
-                                <li class="more">
-                                    <a th:href="@{#}">더보기</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>로그인</h3>
-                            <ul>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{#}">
-                                        <span>Q.</span>로그인에 문제가 있어요.
-                                    </a>
-                                </li>
-                                <li class="more">
-                                    <a th:href="@{#}">더보기</a>
-                                </li>
+                            	<th:block th:each="faq:${faqs}">
+	                        		<th:block th:if="${cate.c2Name eq faqs.c2Name}">
+		                                <li>
+		                                    <a th:href="@{/cs/faq/view(group=faq,cate=${faq.cate},no=${faq.no})}">
+		                                        <span>Q.</span>[[${faq.title}]]
+		                                    </a>
+		                                </li>
+	                                </th:block>
+                                </th:block>
                             </ul>
                         </div>
                     </article>
