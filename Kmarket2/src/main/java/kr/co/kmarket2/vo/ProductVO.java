@@ -32,10 +32,14 @@ public class ProductVO {
 	private int hit;
 	private int score;
 	private int review;
-	private MultipartFile thumb1;
-	private MultipartFile thumb2;
-	private MultipartFile thumb3;
-	private MultipartFile detail;
+	private String thumb1;
+	private String thumb2;
+	private String thumb3;
+	private String detail;
+	private MultipartFile filethumb1;
+	private MultipartFile filethumb2;
+	private MultipartFile filethumb3;
+	private MultipartFile filedetail;
 	private String status;
 	private String duty;
 	private String receipt;
@@ -43,4 +47,5 @@ public class ProductVO {
 	private String origin;
 	private String ip;
 	private String rdate;
+	private String imgPath;
 }

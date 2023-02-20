@@ -14,5 +14,6 @@ public class ProdCate2VO {
 	
 	private int cate1;
 	private int cate2;
+	private String c1Name;
 	private String c2Name;
 }

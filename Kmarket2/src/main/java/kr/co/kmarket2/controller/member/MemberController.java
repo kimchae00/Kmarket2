@@ -34,7 +34,7 @@ public class MemberController {
 	
 	@GetMapping("member/join")
 	public String join() {
-		return "/member/join";
+		return "member/join";
 	}
 	
 	@GetMapping("member/signup")
@@ -42,12 +42,12 @@ public class MemberController {
 		MemberTermsVO vo = service.selectTerms();
 		model.addAttribute("vo", vo);
 		model.addAttribute("type", type);
-		return "/member/signup";
+		return "member/signup";
 	}
 	
 	@GetMapping("member/register")
 	public String register() {
-		return "/member/register";
+		return "member/register";
 	}
 	
 	@PostMapping("member/register")
@@ -70,7 +70,7 @@ public class MemberController {
 	
 	@GetMapping("member/registerSeller")
 	public String registerSeller() {
-		return "/member/registerSeller";
+		return "member/registerSeller";
 	}
 	
 	@PostMapping("member/registerSeller")
@@ -84,13 +84,13 @@ public class MemberController {
 	
 	@GetMapping("member/login")
 	public String login() {
-		return "/member/login";
+		return "member/login";
 	}
 
 	/* 아이디찾기 */
 	@GetMapping("member/findId")
 	public String findId() {
-		return "/member/findId";
+		return "member/findId";
 	}
 	
 	@ResponseBody
@@ -110,14 +110,14 @@ public class MemberController {
 		MemberVO member = (MemberVO) sess.getAttribute("member");
 		//System.out.println("memberuid :" + member.getUid());
 		model.addAttribute("member", member);
-		return "/member/findIdResult";
+		return "member/findIdResult";
 	}
 	
 	/* 비밀번호찾기(변경) */
 	@GetMapping("member/findPw")
 	public String findPw(HttpSession sess) {
 		sess.removeAttribute("member");
-		return "/member/findPw";
+		return "member/findPw";
 	}
 	
 	@ResponseBody
@@ -132,7 +132,7 @@ public class MemberController {
 	@GetMapping("member/findPwChange")
 	public String findPwChange(Model model, String uid) {
 		model.addAttribute("uid",uid);
-		return "/member/findPwChange";
+		return "member/findPwChange";
 	}
 	
 	@ResponseBody

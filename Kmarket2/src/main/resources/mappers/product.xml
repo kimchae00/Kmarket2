@@ -2,11 +2,16 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.kmarket2.dao.CateDAO">
+<mapper namespace="kr.co.kmarket2.dao.ProductDAO">
 	<select id="selectCate1" resultType="kr.co.kmarket2.vo.ProdCate1VO">
 		select * from `km_product_cate1`;
 	</select>
 	<select id="selectCate2" resultType="kr.co.kmarket2.vo.ProdCate2VO">
 		select * from `km_product_cate2`;
 	</select>
+	
+	<select id="selectProducts" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2};
+	</select>
+	
 </mapper>

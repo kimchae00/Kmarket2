@@ -32,17 +32,24 @@ public class AdminService {
 	public List<ProdCate1VO> selectCate1() {
 		return dao.selectCate1();
 	}
-	/*
-	public List<ProdCate2VO> selectCate2(String cate1){
+	
+	public List<ProdCate2VO> selectCate2(int cate1){
 		return dao.selectCate2(cate1);
 	}
-	*/
+	
 	
 	public int insertProduct(ProductVO vo) {
-		int result = dao.insertProduct(vo);
+		int result = 0;
+		// 썸네일 이미지 경로 지정
+		List<String> newFiles = thumbUpload(vo);
+		vo.setThumb1("/Kmarket2/thumb/"+newFiles.get(0));
+		vo.setThumb2("/Kmarket2/thumb/"+newFiles.get(1));
+		vo.setThumb3("/Kmarket2/thumb/"+newFiles.get(2));
+		vo.setDetail("/Kmarket2/thumb/"+newFiles.get(3));
 		
-		 //List<String> thumbs = thumbUpload(vo);
-		
+		if(vo.getThumb1() != null) {
+			result = dao.insertProduct(vo);
+		}
 		return result;
 	}
 	
@@ -50,25 +57,32 @@ public class AdminService {
 	@Value("${spring.servlet.multipart.location}")
     private String uploadPath;
 	
-	public List<String> thumbUpload(ProductVO vo, MultipartFile file) {
-        MultipartFile[] thumbs = {vo.getThumb1(),vo.getThumb2(),vo.getThumb3(),vo.getDetail()};
-        
-        List<String> saveFiles = new ArrayList<>();
+	public List<String> thumbUpload(ProductVO vo) {
+		MultipartFile[] thumbs = {vo.getFilethumb1(),vo.getFilethumb2(),vo.getFilethumb3(),vo.getFiledetail()};
         List<String> newFiles = new ArrayList<>();
 
-        String path = new File(uploadPath).getAbsolutePath();
+        	for(MultipartFile img : thumbs) {
+        		if(!img.isEmpty()) {
+        			String path = new File(uploadPath).getAbsolutePath();
+                    
+                    // 새 파일명 생성
+                	String oName = img.getOriginalFilename();
+                	int idx = oName.lastIndexOf(".");
+                    String ext = oName.substring(idx); // 확장자
+                    String nName = UUID.randomUUID().toString()+ext;
+                    
+                    try {
+                    	img.transferTo(new File(path, nName));
+                    	newFiles.add(nName);
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                    	e.printStackTrace();
+        			}
+        		}
+            }
         
-        // 새 파일명 생성
-    	String oName = file.getOriginalFilename();
-    	int idx = oName.lastIndexOf(".");
-        String ext = oName.substring(idx); // 확장자
-        String nName = UUID.randomUUID().toString()+ext;
         
-        try {
-        	//thumbs.transferTo(new File(path, nName));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } 
         return newFiles;
     }
 	
