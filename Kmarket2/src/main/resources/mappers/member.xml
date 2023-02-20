@@ -25,15 +25,15 @@
             `rdate`=NOW();
 	</insert>
 	
-	<insert id="insertUserSeller">
+	<insert id="insertUserSeller" >
 		insert into `km_member` set
 			`uid`=#{uid},
             `pass`=#{pass},
             `name`='판매자',
             `gender`=3,
             `email`=#{email},
+            `hp`='000-0000-0000',
             `type`=#{type},
-            `point`=null,
             `level`=#{level},
             `company`=#{company},
             `ceo`=#{ceo},

@@ -1,6 +1,9 @@
 package kr.co.kmarket2.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class ProductVO {
 	
 	private int prodNo;
@@ -28,10 +32,10 @@ public class ProductVO {
 	private int hit;
 	private int score;
 	private int review;
-	private String thumb1;
-	private String thumb2;
-	private String thumb3;
-	private String detail;
+	private MultipartFile thumb1;
+	private MultipartFile thumb2;
+	private MultipartFile thumb3;
+	private MultipartFile detail;
 	private String status;
 	private String duty;
 	private String receipt;

@@ -3,6 +3,7 @@ package kr.co.kmarket2.controller.admin;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
 import kr.co.kmarket2.service.AdminService;
+import kr.co.kmarket2.service.CateService;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
@@ -25,6 +28,9 @@ public class AdminProductController {
 	
 	@Autowired
 	private AdminService service;
+	
+	@Autowired
+	private CateService cateservice;
 	
 	
 	@GetMapping("admin/product/list")
@@ -47,17 +53,21 @@ public class AdminProductController {
 		vo.setIp(ip);
 		
 		int result = service.insertProduct(vo);
-		return "redirect:/admin?success="+result;
+		if(result > 0) {
+			return "redirect:/admin/product/register?success="+result;
+		}else {
+			return "redurect:/admin/product/register?success=fail";
+		}
+		
 	}
-	/*
 	// cate2 list 불러오기
+	@ResponseBody
 	@PostMapping("admin/product/cate2s")
-	public String cate2s(HttpServletRequest req ,HttpServletResponse resp) {
+	public List<ProdCate2VO> cate2s(String cate1) {
 		
-		String cate1 = req.getParameter("cate1");
+		List<ProdCate2VO> cate2s = cateservice.selectCate2s(cate1);
 		
-		List<ProdCate2VO> cate2s = service.selectCate2(cate1);
-		
+		/*
 		// Gson으로 AJAX 응답
 		Gson gson = new Gson();
 		String jsonData = gson.toJson(cate2s);
@@ -66,8 +76,10 @@ public class AdminProductController {
 		
 		PrintWriter out = resp.getWriter();
 		out.print(jsonData);
+		return jsonData;
+		*/
+		return cate2s;
 	}
-	*/
 	
 	
 }
