@@ -237,12 +237,9 @@ main > aside > .best > ol > li > a > .thumb {
     box-sizing: border-box;
 }
 main > aside > .best > ol > li:first-child > a > .thumb {
-    position: relative;
     float: none;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    margin: 0 auto;
 }
 main > aside > .best > ol > li:first-child > a > .thumb > i {width: 35px; height: 26px;}
 main > aside > .best > ol > li > a > .thumb > i {
@@ -331,6 +328,9 @@ main > section > section > article .thumb {
     margin: 0px auto;
     overflow: hidden;
     text-align: center;
+}
+main > section > section > article .thumb > img {
+	width: 100%;
 }
 main > section > section > article h2 {
     font-size: 15px;

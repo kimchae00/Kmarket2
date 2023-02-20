@@ -29,10 +29,6 @@ public class AdminProductController {
 	@Autowired
 	private AdminService service;
 	
-	@Autowired
-	private CateService cateservice;
-	
-	
 	@GetMapping("admin/product/list")
 	public String list() {
 		return "admin/product/list";
@@ -51,21 +47,17 @@ public class AdminProductController {
 	public String register(ProductVO vo, HttpServletRequest req) {
 		String ip = req.getRemoteAddr();
 		vo.setIp(ip);
-		
 		int result = service.insertProduct(vo);
-		if(result > 0) {
-			return "redirect:/admin/product/register?success="+result;
-		}else {
-			return "redurect:/admin/product/register?success=fail";
-		}
 		
+		return "redirect:/admin/product/list";
 	}
+		
 	// cate2 list 불러오기
 	@ResponseBody
 	@PostMapping("admin/product/cate2s")
-	public List<ProdCate2VO> cate2s(String cate1) {
+	public List<ProdCate2VO> cate2s(int cate1) {
 		
-		List<ProdCate2VO> cate2s = cateservice.selectCate2s(cate1);
+		List<ProdCate2VO> cate2s = service.selectCate2(cate1);
 		
 		/*
 		// Gson으로 AJAX 응답

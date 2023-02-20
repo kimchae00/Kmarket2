@@ -11,10 +11,10 @@ import kr.co.kmarket2.vo.ProductVO;
 
 @Mapper
 @Repository
-public interface AdminDAO {
+public interface ProductDAO {
 	
 	public List<ProdCate1VO> selectCate1();
-	public List<ProdCate2VO> selectCate2(int cate1);
-	public int insertProduct(ProductVO vo);
-	
+	public List<ProdCate2VO> selectCate2();
+	public List<ProductVO> selectProducts(String prodCate1,String prodCate2);
+
 }

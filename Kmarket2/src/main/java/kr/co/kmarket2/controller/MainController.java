@@ -26,6 +26,6 @@ public class MainController {
 		model.addAttribute("cate1s", cate1s);
 		model.addAttribute("cate2s", cate2s);
 		
-		return "/index";
+		return "index";
 	}
 }
