@@ -499,6 +499,7 @@ footer p > strong {
 #termsPolicy > section > article {
     box-sizing: border-box;
     float: left;
+    width: 100%;
 }
 
 #termsPolicy > section > article > h2 {
@@ -527,9 +528,13 @@ footer p > strong {
 }
 
 
-
-
-
+.tremsPolicy_text{
+	font-size:15px;
+	color:#666;
+	width:100%;
+	border: 0;
+	white-space: pre-wrap;
+}
 
 
 

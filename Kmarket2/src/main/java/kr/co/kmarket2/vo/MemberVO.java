@@ -30,4 +30,13 @@ public class MemberVO {
 	public String wdate;
 	public String rdate;
 	public int locationTerms;
+	
+	private String email1;
+	private String email2;
+
+	public String getEmail1() {
+		int index = email.indexOf("@");
+	    return email.substring(0, index);
+	}
+	
 }
