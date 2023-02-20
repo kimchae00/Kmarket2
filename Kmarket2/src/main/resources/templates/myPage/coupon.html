@@ -1,8 +1,8 @@
-<th:block th:include="@{_header.html}"/>
+<th:block th:include="@{myPage/_header.html}"/>
 
                 <section>
                     <a href="#">
-                        <img src="/Kmarket2 HTML/myPage/img/my_banner2.png" alt="">
+                        <img th:src="@{/img/my_banner2.png}" alt="banner2">
                     </a>
                     <article class="latest oredered point coupon">
                         <h3>쿠폰</h3>
@@ -72,4 +72,4 @@
             </div>
        </main>
 
-<th:block th:include="@{_footer.html}"/>
+<th:block th:include="@{myPage/_footer.html}"/>

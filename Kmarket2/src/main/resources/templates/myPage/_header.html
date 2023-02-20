@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" th:href="@{/css/myPage.css}"/>
 </head>
 <body>
@@ -41,7 +43,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="#">
+                            <a th:href="@{/mypage/ordered}">
                                 주문배송
                                 <span class="delivery">1</span>
                             </a>
@@ -71,21 +73,21 @@
                 <ul>
                     <span class="menu_else"></span>
                     <li>
-                        <a href="#">전체주문내역</a>
+                        <a th:href="@{/myPage/ordered}">전체주문내역</a>
                     </li>
                     <li>
-                        <a href="#">포인트내역</a>
+                        <a th:href="@{/myPage/point}">포인트내역</a>
                     </li>
                     <li>
-                        <a href="#">쿠폰</a>
+                        <a th:href="@{/myPage/coupon}">쿠폰</a>
                     </li>
                     <li>
-                        <a href="#">나의리뷰</a>
+                        <a th:href="@{/myPage/review}">나의리뷰</a>
                     </li>
                     <li>
-                        <a href="#">문의하기</a>
+                        <a th:href="@{/myPage/qna}">문의하기</a>
                     </li>
                     <li>
-                        <a href="#">나의설정</a>
+                        <a th:href="@{/myPage/info}">나의설정</a>
                     </li>
                 </ul>
