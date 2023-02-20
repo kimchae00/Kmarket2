@@ -2,36 +2,37 @@
 <main id="member">
    <div class="find findIdResult">
         <nav>
-            <h1>아이디찾기 결과</h1>                    
+            <h1>아이디 찾기 결과</h1>                    
         </nav>
-		<form action="#" method="post">
+		<form action="#" class="frm">
              <table border="0">
                  <tr>
                     <td>이름</td>
-                    <td>[[${member.name}]]</td>
+                    <td th:if="${member} ne null">[[${member.name}]]</td>
                 </tr>
                 <tr>
                     <td>아이디</td>
-                    <td>s</td>
+                    <td th:if="${member} ne null">[[${member.uid}]]</td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td>s</td>
+                    <td th:if="${member} ne null">[[${member.email}]]</td>
                 </tr>
                 <tr>
                     <td>가입일</td>
-                    <td>s</td>
+                    <td th:if="${member} ne null">[[${member.rdate.substring(2, 10)}]]</td>
                 </tr>
-             </table>					
+             </table>
+             <p>
+		         고객님의 정보와 일치하는 아이디 입니다.
+			 </p>
+		
+	         <div class="btn">
+	           <a th:href="@{/member/login}" class="btnCancel">로그인</a>
+	           <a th:href="@{/member/findPw}" class="btnNext">비밀번호 찾기</a>
+	         </div>				
 		</form>
-		<p>
-            고객님의 정보와 일치하는 아이디 입니다.
-        </p>
-
-        <div>
-            <a th:href="@{/member/login}" class="btn btnCancel">로그인</a>
-            <a th:href="@{/member/findPw}" class="btn btnNext">비밀번호 찾기</a>
-        </div>
+		
     </div>
 </main> 
 <th:block th:include="@{member/_footer.html}"/>

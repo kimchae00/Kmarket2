@@ -2,28 +2,32 @@ package kr.co.kmarket2.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+public class SecurityConfig {
+	
+	// 스프링 버전이 업데이트 됨에 따라 WebSecurityConfigurerAdapter이 Deprecated됨 (대체 - @bean, filterchain 등 사용)
+	@Bean
+	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 		// 인가(접근권한) 설정
 		http.authorizeRequests().antMatchers("/").permitAll();
-		//http.authorizeRequests().antMatchers("/admin/*").hasAnyRole("2", "7");
+		http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("2", "7");
 		
 		// 사이트 위조 방지 설정
 		http.csrf().disable();
 		
-		
+		// 자동로그인 설정
+
 		// 로그인 설정
 		http.formLogin()
 		.loginPage("/member/login")
@@ -36,10 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout()
 		.invalidateHttpSession(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-		.logoutSuccessUrl("/index");
+		.logoutSuccessUrl("/index")
+		.deleteCookies("remember-me", "JSESIONID"); // 자동 로그인 쿠키 삭제
 		
+		return http.build();
 	}
-	
 	
 	@Autowired
 	private SecurityUserService userService;

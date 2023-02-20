@@ -6,4 +6,31 @@
 	<select id="selectCate1" resultType="kr.co.kmarket2.vo.ProdCate1VO">
 		select * from `km_product_cate1`;
 	</select>
+	<insert id="insertProduct">
+			insert into `km_product` set
+			`prodCate1`=#{prodCate1},
+            `prodCate2`=#{prodCate2},
+            `prodName`=#{prodName},
+            `descript`=#{descript},
+            `company`=#{company},
+            `seller`=#{seller},
+            `price`=#{price},
+            `discount`=#{discount},
+            `point`=#{point},
+            `delivery`=#{delivery},
+            `thumb1`=#{thumb1},
+            `thumb2`=#{thumb2},
+            `thumb3`=#{thumb3},
+            `detail`=#{detail},
+            `status`=#{status},
+            `duty`=#{duty},
+            `receipt`=#{receipt},
+            `bizType`=#{bizType},
+            `origin`=#{origin},
+            `ip`=#{ip},
+            `rdate`=NOW();
+	</insert>
+	<select id="seleteCate2" resultType="kr.co.kmarket2.vo.ProdCate2VO">
+		select * from `km_product_cate2` where `cate1`=#{cate1}
+	</select>
 </mapper>

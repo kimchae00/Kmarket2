@@ -9,5 +9,5 @@ import kr.co.kmarket2.entity.MemberEntity;
 public interface MemberRepo extends JpaRepository<MemberEntity, String> {
 	
 	public int countByUid(String uid);
-	public List<MemberEntity> findMemberEntityByNameAndEmail(String name, String email);
+	public int countByNameAndEmail(String name, String email);
 }

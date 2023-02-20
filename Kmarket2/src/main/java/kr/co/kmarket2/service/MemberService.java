@@ -39,8 +39,17 @@ public class MemberService {
 	public int countUid(String uid) {
 		return repo.countByUid(uid);
 	}
+	public int countByNameAndEmail(String name, String email) {
+		return repo.countByNameAndEmail(name, email);
+	}
 	public MemberVO findId(String name, String email) {
 		return dao.findId(name, email);
+	}
+	public int findPw(String uid, String email) {
+		return dao.findPw(uid, email);
+	}
+	public int findPwChange(String uid, String pass) {
+		return dao.findPwChange(uid, pass);
 	}
 	public MemberTermsVO selectTerms() {
 		return dao.selectTerms();
