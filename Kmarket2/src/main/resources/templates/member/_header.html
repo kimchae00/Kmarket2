@@ -21,7 +21,9 @@
                 <div>
 	                 <a sec:authorize="!isAuthenticated()" th:href="@{/member/login}">로그인</a>
 	                 <a sec:authorize="!isAuthenticated()" th:href="@{/member/join}">회원가입</a>
-	                 <label sec:authorize="isAuthenticated()"><span class="name" sec:authentication="principal.member.name">길동</span>님</label>
+	                 <label sec:authorize="hasAuthority('ROLE_1')"><span class="name" sec:authentication="principal.member.name">길동</span>님</label>
+	                 <label sec:authorize="hasAuthority('ROLE_2')"><span th:onclick="location.href='/Kmarket2/admin/index'">관리자</span></label></a>
+	                 <label sec:authorize="hasAuthority('ROLE_7')"><span th:onclick="location.href='/Kmarket2/admin/index'">관리자</span></label></a>
                 	 <a sec:authorize="isAuthenticated()" th:href="@{/member/logout}" class="logout">로그아웃</a>
 	                 <a sec:authorize="isAuthenticated()" th:href="@{/myPage/home}">마이페이지</a>
 	                 <a sec:authorize="isAuthenticated()" th:href="@{/product/cart}">

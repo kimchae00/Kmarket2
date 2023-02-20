@@ -11,14 +11,12 @@
                 <caption>필수 정보입력</caption>
                 <tbody>
                     <tr>
-                        <th>
-                            <span class="essential">*</span>아이디
-                        </th>
+                        <th><span class="essential">*</span>아이디</th>
                         <td><input type="text" name="uid" placeholder="아이디를 입력" required>
-                     	<button type="button" id="btnUidCheck">중복확인</button>
-                     	<span class="resultUid">영문, 숫자로 4~12자까지 설정해 주세요.</span>
-                           <input type="hidden" name="type" value="2">
- 						   <input type="hidden" name="level" value="2">
+	                     	<button type="button" id="btnUidCheck">중복확인</button>
+	                     	<span class="resultUid">영문, 숫자로 4~12자까지 설정해 주세요.</span>
+	                        <input type="hidden" name="type" th:value="2">
+						    <input type="hidden" name="level" th:value="2">
                   		</td>
                    </tr>
                    <tr>
@@ -133,7 +131,7 @@
 					<tr>
 						<th><span class="essential">*</span>휴대폰</th>
 						<td><input type="text" name="managerHp" maxlength="13"placeholder="휴대폰번호 입력" required /> 
-							<span class="msgHp">&nbsp;&nbsp;- 포함 13자리를 입력하세요.</span></td>
+							<span class="msgManagerHp">&nbsp;&nbsp;- 포함 13자리를 입력하세요.</span></td>
 					</tr>
 				</table>
 			</section>

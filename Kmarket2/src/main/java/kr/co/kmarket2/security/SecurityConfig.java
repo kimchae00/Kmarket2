@@ -1,5 +1,7 @@
 package kr.co.kmarket2.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,11 +11,18 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+	
+	private final DataSource dataSource;
 	
 	// 스프링 버전이 업데이트 됨에 따라 WebSecurityConfigurerAdapter이 Deprecated됨 (대체 - @bean, filterchain 등 사용)
 	@Bean
@@ -27,6 +36,9 @@ public class SecurityConfig {
 		http.csrf().disable();
 		
 		// 자동로그인 설정
+		http.rememberMe()
+			.userDetailsService(userService)
+			.tokenRepository(tokenRepository());
 
 		// 로그인 설정
 		http.formLogin()
@@ -45,6 +57,14 @@ public class SecurityConfig {
 		
 		return http.build();
 	}
+	
+	@Bean
+    public PersistentTokenRepository tokenRepository() {
+      // JDBC 기반의 tokenRepository 구현체
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource); // dataSource 주입
+        return jdbcTokenRepository;
+    }
 	
 	@Autowired
 	private SecurityUserService userService;

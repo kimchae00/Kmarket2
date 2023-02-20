@@ -17,6 +17,7 @@
             `price`=#{price},
             `discount`=#{discount},
             `point`=#{point},
+            `stock`=#{stock},
             `delivery`=#{delivery},
             `thumb1`=#{thumb1},
             `thumb2`=#{thumb2},
