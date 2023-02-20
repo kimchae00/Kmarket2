@@ -21,6 +21,12 @@ public interface CsDAO {
 	/* 카테고리(notice) */
 	public List<ArticleVO> selectCates(String group, String cate, int start);
 	
+	/* index에 공지사항 5개만 미리보기 */
+	public List<ArticleVO> selectIndexNotice();
+	
+	/* index에 qna 5개만 미리보기 */
+	public List<ArticleVO> selectIndexQna();
+	
 	/* QNA리스트 출력 */
 	public List<ArticleVO> selectQnaList(String group, String cate, int start);
 	

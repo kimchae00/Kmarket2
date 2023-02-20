@@ -31,6 +31,14 @@ public class CsService {
 		return dao.selectCates(group, cate, start);
 	}
 	
+	public List<ArticleVO> selectIndexNotice(){
+		return dao.selectIndexNotice();
+	}
+	
+	public List<ArticleVO> selectIndexQna(){
+		return dao.selectIndexQna();
+	}
+	
 	public List<ArticleVO> selectQnaList(String group, String cate, int start){
 		return dao.selectQnaList(group, cate, start);
 	}
