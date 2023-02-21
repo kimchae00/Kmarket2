@@ -16,38 +16,36 @@
                 </nav>
                 <!-- 정렬 메뉴 -->
                 <ul class="sort">
-                    <li><a href="#" class="on">판매많은순</a></li>
-                    <li><a href="#">낮은가격순</a></li>
-                    <li><a href="#">높은가격순</a></li>
-                    <li><a href="#">평점높은순</a></li>
-                    <li><a href="#">후기많은순</a></li>
-                    <li><a href="#">최근등록순</a></li>
+                    <li th:class="${type == 'sold' ? 'on':'off'}"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${currentPage},type=sold)}">판매많은순</a></li>
+                    <li th:class="${type == 'lowPrice' ? 'on':'off'}"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${currentPage},type=lowPrice)}">낮은가격순</a></li>
+                    <li th:class="${type == 'highPrice' ? 'on':'off'}"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${currentPage},type=highPrice)}">높은가격순</a></li>
+                    <li th:class="${type == 'score' ? 'on':'off'}"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${currentPage},type=score)}">평점높은순</a></li>
+                    <li th:class="${type == 'review' ? 'on':'off'}"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${currentPage},type=review)}">후기많은순</a></li>
+                    <li th:class="${type == 'new' ? 'on':'off'}"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${currentPage},type=new)}">최근등록순</a></li>
                 </ul>
 
                 <!-- 상품목록 -->
                 <table border="0">
                     <tr th:each="product:${products}">
                         <td>
-                            <a href="./view.html" class="thumb">
-                                <img th:src="${product.thumb1}" alt="상품이미지">
-                            </a>
+                            <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${product.prodNo})}" class="thumb"><img th:src="${product.thumb1}" alt="상품이미지"></a>
                         </td>
                         <td>
-                            <h3 class="name">[[${product.prodName}]]</h3>
-                            <a href="./view.html" class="desc">[[${product.descript}]]</a>
+                            <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${product.prodNo})}"><h3 class="name">[[${product.prodName}]]</h3></a>
+                            <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${product.prodNo})}" class="desc">[[${product.descript}]]</a>
                         </td>
                         <td>
                             <ul>
                                 <li>
                                 <th:block th:if="${product.discount == 0}">
-                                    <ins class="dis-price">[[${product.price}]]</ins>
+                                    <ins class="dis-price" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')}">[[${product.price}]]</ins>
                                 </th:block>
-                                <th:block th:unless="${product.discount == 0}">
-                                    <ins class="dis-price">[[${Math.round(product.price*(100-product.discount)/100)}]]</ins>
+                                <th:block th:if="${product.discount != 0}">
+                                    <ins class="dis-price" data-th-text="${#numbers.formatInteger(product.price*(100-product.discount)/100, 3, 'COMMA')}">[[${#numbers.formatInteger(product.price*(100-product.discount)/100, 3)}]]</ins>
                                 </th:block>
                                 <li>
                                 <th:block th:if="${product.discount != 0}">
-                                    <del class="org-price">[[${product.price}]]</del>
+                                    <del class="org-price" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')}">[[${product.price}]]</del>
                                     <span class="discount">[[${product.discount}]]%</span>
                                 </li>
                                 </th:block>
@@ -56,35 +54,31 @@
 	                                    <span class="free-delivery">무료배송</span>
                                     </th:block>
 	                                <th:block th:unless="${product.delivery == 0}">
-	                                    <span class="delivery">배송비 : [[${product.delivery}]]원</span>
+	                                    <span class="delivery" >배송비 : [[${product.delivery}]]원</span>
                                     </th:block>
                                 </li>
                             </ul>
                         </td>
                         <td>
-                            <h4 class="seller"><i class="fas fa-home" aria-hidden="true"></i>&nbsp;판매자</h4>
+                            <h4 class="seller"><i class="fas fa-home" aria-hidden="true"></i>&nbsp;[[${product.seller}]]</h4>
                             <h5 class="badge power">판매자등급</h5>
-                            <h6 class="rating star1">상품평</h6>
+                            <h6 th:classappend="${product.score != null} ? 'rating star' + ${product.score}: ''">상품평</h6>
                         </td>
                     </tr>
                 </table>
                 <!-- 상품목록 페이지 번호 -->
                 <div class="paging">
-                    <span class="prev">
-                        <a href="#"><&nbsp;이전</a>
-                    </span>
-                    <span class="num">
-                        <a href="#" class="on">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">7</a>
-                    </span>
-                    <span class="next">
-                        <a href="#">다음&nbsp;></a>
-                    </span>
+	               <th:block th:if="${groups[0]>1}">
+	                   <span class="prev"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${groups[0]-1})}"><&nbsp;이전</a></span>
+	               </th:block>
+	               
+	               <th:block th:each="num:${#numbers.sequence(groups[0],groups[1])}">
+	                   <span class="num"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${num})}" th:class="${num == currentPage?'num current':'num'}">[[${num}]]</a></span>
+	               </th:block>
+	               
+	               <th:block th:if="${groups[1]<lastPageNum}">
+	                   <span class="next"><a th:href="@{/product/list(prodCate1=${prodCate1},prodCate2=${prodCate2},pg=${groups[1] + 1})}">다음&nbsp;></a></span>
+	               </th:block>
                 </div>
             </section>
         </main>

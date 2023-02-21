@@ -40,7 +40,7 @@
     padding: 0 10px;
     border-right: 1px solid #ddd;
 }
-#product > .list > .sort > li > a.on {font-weight: bold;}
+#product > .list > .sort > li.on > a {font-weight: bold;}
 #product > .list > table {
     width: 100%;
     height: auto;
@@ -146,7 +146,7 @@
     text-align: center;
     text-decoration: none;
 }
-#product > .list > .paging > .num > a.on {
+#product > .list > .paging > .num > .current {
     color: #fe434c;
     font-weight: bold;
 }
@@ -241,7 +241,7 @@
     
 }
 #product > .view > .info > .summary .arrival {font-size: 14px; margin-left: 10px;}
-#product > .view > .info > .summary .desc {display: block; color: #aaa;}
+#product > .view > .info > .summary .desc {display: block; color: #aaa; padding: 5px 0;}
 
 #product > .view > .info > .summary .origin {font-size: 16px;}
 #product > .view > .info > .summary .banner {width: 100%;}

@@ -1,42 +1,137 @@
 <th:block th:include="@{product/_header.html}"/>
+<script>
+		//수량 변경 + 자동 총 합계 계산
+		$(function(){
+			
+			let price = parseInt($('input[name=price]').val());
+			let discount = parseInt($('input[name=discount]').val());
+			let delivery = parseInt($('input[name=delivery]').val());
+			let totalPrice = 1 * Math.round(price*(100-discount)/100) + delivery;
+			$('.total > span').text(totalPrice.toLocaleString());
+			
+			$('.increase').on('click', function(){
+				let quantity = $(this).parent("div").find("input").val();
+				$(this).parent("div").find("input").val(++quantity);
+				let count = parseInt($('input[name=num]').val());
+				let totalPrice = count * Math.round(price*(100-discount)/100) + delivery;
+				$('.total > span').text(totalPrice.toLocaleString());
+			});
+			
+			$(".decrease").on("click", function(){
+				let quantity = $(this).parent("div").find("input").val();
+				if(quantity > 1){
+					$(this).parent("div").find("input").val(--quantity);		
+				}
+				let count = parseInt($('input[name=num]').val());
+				let totalPrice = count * Math.round(price*(100-discount)/100) + delivery;
+				$('.total > span').text(totalPrice.toLocaleString());
+			});
+			
+			// 장바구니 클릭
+			$('.cart').click(function(){
+				
+				
+				let uid = $('input[name=uid]').val();
+				let prodNo = $('input[name=prodNo]').val();
+				let count = $('input[name=num]').val();
+				let price = $('input[name=price]').val();
+				let discount = $('input[name=discount]').val();
+				let point = $('input[name=point]').val();
+				let delivery = $('input[name=delivery]').val();
+				let total = $('.total > span').text().replaceAll(',','');
+				console.log(uid);
+				
+				let jsonData = {
+						"uid": uid,
+						"prodNo": prodNo,
+						"count": count,
+						"price": price,
+						"discount": discount,
+						"point": point,
+						"delivery": delivery,
+						"total": total,
+				};
+				
+				$.ajax({
+					url: '/Kmarket2/product/view',
+					type: 'post',
+					data: jsonData,
+					dataType: 'json',
+					success: function(data){
+						
+						if(uid != null){
+							alert('사용자 있음.');
+						}else{
+							alert('로그인 후 이용 가능합니다.');
+						}
+					}
+				});
+			});
+			
+		});
+</script>
             <section class="view">
+            <input type="hidden" name="uid" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.member.uid}" >
+		    <input type="hidden" name="price" th:value="${product.price}">
+		    <input type="hidden" name="prodNo" th:value="${product.prodNo}">
+		    <input type="hidden" name="discount" th:value="${product.discount}">
+		    <input type="hidden" name="point" th:value="${product.point}">
+		    <input type="hidden" name="delivery" th:value="${product.delivery}">
                  <!-- 제목, 페이지 네비게이션 -->
                  <nav>
                     <h1>상품보기</h1>
                     <p>
                         HOME >
-                        <span>패션·의류·뷰티</span>
-                         > 
-                         <strong>남성의류</strong>
+                        <th:block th:each="ca1:${cate1s}">
+                        	<th:block th:if="${prodCate1} == ${ca1.cate1}"><span>[[${ca1.c1Name}]]</span></th:block>
+                        </th:block>
+                         >
+                         <th:block th:each="ca2:${cate2s}">
+                         	<th:block th:if="${prodCate1} == ${ca2.cate1} and ${prodCate2} == ${ca2.cate2}"><strong>[[${ca2.c2Name}]]</strong></th:block>
+                    	</th:block>
                     </p>
                 </nav>
                 <article class="info">
-                    <div class="image"><img src="https://via.placeholder.com/460x460" alt="상품이미지"></div>
+                    <div class="image"><img th:src="${product.thumb1}" alt="상품이미지"></div>
                     <div class="summary">
                         <nav>
-                            <h1>(주)판매자명</h1>
-                            <h2>상품번호 : 10010118412</h2>
+                            <h1>[[${product.seller}]]</h1>
+                            <h2>상품번호 : [[${product.prodNo}]]</h2>
                         </nav>
                         <nav>
-                            <h3>상품명</h3>
-                            <p>상품설명 출력</p>
-                            <h5 class="rating star4">
+                            <h3>[[${product.prodName}]]</h3>
+                            <p>[[${product.descript}]]</p>
+                            <h5 th:classappend="${product.score != null} ? 'rating star' + ${product.score}: ''">
                                 <a href="#">상품평보기</a>
                             </h5>
                         </nav>
                         <nav>
                             <div class="org_price">
-                                <del>30,000</del>
-                                <span>10%</span>
+                                <th:block th:if="${product.discount != 0}">
+                                    <del class="org-price" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')}">[[${product.price}]]</del>
+                                    <span class="discount">[[${product.discount}]]%</span>
+                                </li>
+                                </th:block>
                             </div>
                             <div class="dis_price">
-                                <ins>27,000</ins>
+                                <th:block th:if="${product.discount == 0}">
+                                    <ins class="dis-price" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')}">[[${product.price}]]</ins>
+                                </th:block>
+                                <th:block th:if="${product.discount != 0}">
+                                    <ins class="dis-price" id="price" data-th-text="${#numbers.formatInteger(product.price*(100-product.discount)/100, 3, 'COMMA')}">[[${#numbers.formatInteger(product.price*(100-product.discount)/100, 3)}]]</ins>
+                                </th:block>
+                                </th:block>
                             </div>
                         </nav>
                         <nav>
-                            <span class="delivery">무료배송</span>
-                            <span class="arrival">모레(금) 7/8 도착예정</span>
-                            <span class="desc">본 상품은 국내배송만 가능합니다</span>
+                            <th:block th:if="${product.delivery == 0}">
+                                <span class="free-delivery">무료배송</span>
+                            </th:block>
+                            <th:block th:unless="${product.delivery == 0}">
+                                <span class="delivery" >배송비 : [[${product.delivery}]]원</span>
+                            </th:block>
+                            <span class="arrival" th:text="${#dates.format(#dates.createToday().getTime() + 60*60*24*1000*3, '모레(E) MM/dd 도착예정')}"></span>
+                            <span class="desc">[[${product.descript}]]</span>
                         </nav>
                         <nav>
                             <span class="card cardfree">
@@ -47,15 +142,18 @@
                             </span>
                         </nav>
                         <nav><span class="origin">원산지-상세설명 참조</span></nav>
-                        <img src="../img/vip_plcc_banner.png" alt="배너" class="banner">
+                        <img th:src="@{/img/vip_plcc_banner.png}" alt="배너" class="banner">
+                        
                         <div class="count">
                             <button class="decrease">-</button>
                             <input type="text" name="num" value="1">
                             <button class="increase">+</button>
                         </div>
+                        
                         <div class="total">
-                            <span>35,000</span><em>총 상품금액</em>
+                            <span></span><em>총 상품금액</em>
                         </div>
+                        
                         <div class="button">
                             <input type="button" class="cart" value="장바구니">
                             <input type="button" class="order" value="주문하기">
@@ -64,9 +162,8 @@
                 </article>
                 <article class="detail">
                     <nav><h1>상품정보</h1></nav>
-                    <img src="https://via.placeholder.com/860x460" alt="상세1">
-                    <img src="https://via.placeholder.com/860x460" alt="상세2">
-                    <img src="https://via.placeholder.com/860x460" alt="상세3">
+                    <img th:src="${product.thumb2}" alt="상세1">
+                    <img th:src="${product.detail}" alt="상세1">
                 </article>
                 <article class="notice">
                     <nav>
@@ -76,31 +173,31 @@
                     <table>
                         <tr>
                             <td>상품번호</td>
-                            <td>1011012444</td>
+                            <td>[[${product.prodNo}]]</td>
                         </tr>
                         <tr>
                             <td>상품상태</td>
-                            <td>새상품</td>
+                            <td>[[${product.status}]]</td>
                         </tr>
                         <tr>
                             <td>부가세 면세여부</td>
-                            <td>과세상품</td>
+                            <td>[[${product.duty}]]</td>
                         </tr>
                         <tr>
                             <td>영수증발행</td>
-                            <td>발행가능 - 신용카드 전표, 온라인 현금영수증</td>
+                            <td>[[${product.receipt}]]</td>
                         </tr>
                         <tr>
                             <td>사업자구분</td>
-                            <td>사업자 판매자</td>
+                            <td>[[${product.bizType}]]</td>
                         </tr>
                         <tr>
                             <td>브랜드</td>
-                            <td>블루포스</td>
+                            <td>[[${product.seller}]]</td>
                         </tr>
                         <tr>
                             <td>원산지</td>
-                            <td>국내생산</td>
+                            <td>[[${product.origin}]]</td>
                         </tr>
                     </table>
                     <table>
