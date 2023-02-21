@@ -31,6 +31,14 @@ public class CsService {
 		return dao.selectCates(group, cate, start);
 	}
 	
+	public List<ArticleVO> selectFaqList(String group, String cate){
+		return dao.selectFaqList(group, cate);
+	}
+	
+	public List<ArticleVO> selectFaqCates(String cate){
+		return dao.selectFaqCates(cate);
+	}
+	
 	public List<ArticleVO> selectIndexNotice(){
 		return dao.selectIndexNotice();
 	}

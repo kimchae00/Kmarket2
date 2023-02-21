@@ -33,14 +33,14 @@ public class CsController {
 	public String faqlist(Model model, String group, String cate) {
 		
 		// 각각의 cate공간(반복용)
-		//List<ArticleVO> cates = service.selectFaqCates(cate);
+		List<ArticleVO> cates = service.selectFaqCates(cate);
 		
 		//목록 가져오기
-    	//List<ArticleVO> faqs = service.selectFaqs(group, cate);
+    	List<ArticleVO> faqs = service.selectFaqList(group, cate);
 		
-		//model.addAttribute("cates", cates);
-    	//model.addAttribute("faqs", faqs);
-    	//model.addAttribute("cate", cate);
+		model.addAttribute("cates", cates);
+    	model.addAttribute("faqs", faqs);
+    	model.addAttribute("cate", cate);
 		
 		return "cs/faq/list";
 	}
@@ -48,7 +48,10 @@ public class CsController {
 	@GetMapping("/cs/faq/view")
 	public String faqview(Model model, int no, String group, String cate) {
 		
-		ArticleVO article = service.selectArticle(no);
+		ArticleVO faq = service.selectArticle(no);
+		
+		model.addAttribute("faq", faq);
+		model.addAttribute("cate", cate);
 		return "cs/faq/view";
 	}
 	

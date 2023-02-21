@@ -75,18 +75,45 @@
                             <h3>[[${cate.c2Name}]]</h3>
                             <ul>
                             	<th:block th:each="faq:${faqs}">
-	                        		<th:block th:if="${cate.c2Name eq faqs.c2Name}">
-		                                <li>
+	                        		<th:block th:if="${cate.c2Name eq faq.c2Name}">
+		                                <li class="faqList">
 		                                    <a th:href="@{/cs/faq/view(group=faq,cate=${faq.cate},no=${faq.no})}">
 		                                        <span>Q.</span>[[${faq.title}]]
 		                                    </a>
 		                                </li>
 	                                </th:block>
                                 </th:block>
+                                <th:block th:if="${#lists.size(faqs)} > 5">
+                                <li class="more" id="tq" onclick="doDisplay()">
+		                                	<a id="more">더보기</a>
+                               	</li>
+                               	</th:block>
                             </ul>
                         </div>
                     </article>
                 </section>
             </div>
         </section>
+        <script>
+        /* n+6의 갯수를 말하는듯?*/
+        var lis = document.querySelectorAll('.faqList:nth-child(n+6)');
+        console.log(lis);
+       	/*
+        function doDisplay() {
+            if(document.querySelector('.faqList:nth-child(n+1)').style.display === 'block') {
+            	var lis = document.querySelector('.faqList:nth-child(n+6)');
+                for(li in lis) {
+                	document.querySelector('.faqList:nth-child(n+6)').style.display = 'none';
+                }
+              document.getElementById('more').textContent = '보이기';
+            } else {
+            	var lis = document.querySelector('.faqList:nth-child(n+6)');
+                for(li in lis) {
+                	document.querySelector('.faqList:nth-child(n+6)').style.display = 'block';
+                }
+              document.getElementById('more').textContent = '숨기기';
+            }
+          }
+       	*/	
+        </script>
 <th:block th:include="@{cs/_footer.html}"/>

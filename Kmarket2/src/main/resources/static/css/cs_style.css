@@ -599,6 +599,13 @@
     border-bottom: 1px solid #ccc;
 }
 
+#cs > .faq > .list > article > div > ul > li:nth-child(n+6) {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+    display: none;
+}
+
 #cs > .faq > .list > article > div > ul > li > a {
     display: block;
     width: 100%;
