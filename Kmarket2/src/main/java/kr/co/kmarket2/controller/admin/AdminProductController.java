@@ -49,7 +49,7 @@ public class AdminProductController {
 		vo.setIp(ip);
 		int result = service.insertProduct(vo);
 		
-		return "redirect:/admin/product/list";
+		return "redirect:/admin/product/register";
 	}
 		
 	// cate2 list 불러오기

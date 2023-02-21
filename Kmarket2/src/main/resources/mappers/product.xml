@@ -10,8 +10,34 @@
 		select * from `km_product_cate2`;
 	</select>
 	
+	 <select id="selectCountTotal" resultType="int" parameterType="map">
+        select count(`prodNo`) from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2};
+     </select>
+	
 	<select id="selectProducts" resultType="kr.co.kmarket2.vo.ProductVO">
-		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2};
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} limit #{start}, 10;
 	</select>
+	<select id="selectProductsBySold" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `sold` desc limit #{start}, 10;
+	</select>
+	<select id="selectProductsByLowPrice" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `price` asc limit #{start}, 10;
+	</select>
+	<select id="selectProductsByHighPrice" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `price` desc limit #{start}, 10;
+	</select>
+	<select id="selectProductsByScore" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `score` desc limit #{start}, 10;
+	</select>
+	<select id="selectProductsByReview" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `review` desc limit #{start}, 10;
+	</select>
+	<select id="selectProductsByNew" resultType="kr.co.kmarket2.vo.ProductVO">
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `rdate` desc limit #{start}, 10;
+	</select>
+	
+	<select id="selectProduct" resultType="kr.co.kmarket2.vo.ProductVO">
+        select * from `km_product` where `prodNo`=#{prodNo};
+    </select>
 	
 </mapper>

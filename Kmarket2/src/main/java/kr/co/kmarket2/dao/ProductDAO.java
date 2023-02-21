@@ -15,6 +15,14 @@ public interface ProductDAO {
 	
 	public List<ProdCate1VO> selectCate1();
 	public List<ProdCate2VO> selectCate2();
-	public List<ProductVO> selectProducts(String prodCate1,String prodCate2);
+	public int selectCountTotal(String prodCate1, String prodCate2);
+	public List<ProductVO> selectProducts(int start, String prodCate1, String prodCate2);
+	public List<ProductVO> selectProductsBySold(int start, String prodCate1, String prodCate2);
+	public List<ProductVO> selectProductsByLowPrice(int start, String prodCate1, String prodCate2);
+	public List<ProductVO> selectProductsByHighPrice(int start, String prodCate1, String prodCate2);
+	public List<ProductVO> selectProductsByScore(int start, String prodCate1, String prodCate2);
+	public List<ProductVO> selectProductsByReview(int start, String prodCate1, String prodCate2);
+	public List<ProductVO> selectProductsByNew(int start, String prodCate1, String prodCate2);
+	public ProductVO selectProduct(int prodNo);
 
 }
