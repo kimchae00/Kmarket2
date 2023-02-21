@@ -47,5 +47,5 @@ public class ProductVO {
 	private String origin;
 	private String ip;
 	private String rdate;
-	private String imgPath;
+	private int disprice;
 }

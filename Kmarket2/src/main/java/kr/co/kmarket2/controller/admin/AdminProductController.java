@@ -47,6 +47,7 @@ public class AdminProductController {
 	public String register(ProductVO vo, HttpServletRequest req) {
 		String ip = req.getRemoteAddr();
 		vo.setIp(ip);
+		
 		int result = service.insertProduct(vo);
 		
 		return "redirect:/admin/product/register";

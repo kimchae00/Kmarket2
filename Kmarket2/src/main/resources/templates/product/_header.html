@@ -105,7 +105,7 @@
                         <ol>
                         	<th:block th:each="ca2 : ${cate2s}">
 	                        	<th:block th:if="${ca1.cate1} == ${ca2.cate1}">
-	                            	<li><a th:href="@{/product/list(prodCate1=${ca2.cate1}, prodCate2=${ca2.cate2})}">[[${ca2.c2Name}]]</a></li>
+	                            	<li><a th:href="@{/product/list(prodCate1=${ca2.cate1}, prodCate2=${ca2.cate2}, type=sold)}">[[${ca2.c2Name}]]</a></li>
 	                            </th:block>
                         	</th:block>
                         </ol>

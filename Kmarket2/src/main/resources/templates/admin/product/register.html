@@ -49,6 +49,18 @@
 			let price = $('input[name=price]').val();
 			let dis = $('#discount').val();
 		}
+		/* 할인된 가격 km+product 데이터 삽입 */
+		$('input[name=stock]').keydown(function(){
+			disprice();
+		});
+		
+		function disprice(){
+			let price = $('input[name=price]').val();
+			let dis = $('#discount').val();
+			let disprice = Math.round(price*(100-dis)/100);
+			console.log(disprice);
+			$('input[name=disprice]').val(disprice);
+		}
 		
 		$('.btnReg').click(function() {
 			let point = $('input[name=point]').val();
@@ -194,9 +206,9 @@
                             <td>
                                 <span>0을 입력하면 할인율 없음</span>
                                 <input type="text" id="discount" name="discount"> 원
-                                <input type="hidden" name="discount">
                             </td>
                         </tr>
+                        <input type="hidden" name="disprice"/>
                         <tr>
                             <td>포인트</td>
                             <td>

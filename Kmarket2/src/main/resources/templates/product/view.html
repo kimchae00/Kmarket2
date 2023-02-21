@@ -30,7 +30,6 @@
 			// 장바구니 클릭
 			$('.cart').click(function(){
 				
-				
 				let uid = $('input[name=uid]').val();
 				let prodNo = $('input[name=prodNo]').val();
 				let count = $('input[name=num]').val();
@@ -58,8 +57,7 @@
 					data: jsonData,
 					dataType: 'json',
 					success: function(data){
-						
-						if(uid != null){
+						if(uid == true){
 							alert('사용자 있음.');
 						}else{
 							alert('로그인 후 이용 가능합니다.');
@@ -71,7 +69,7 @@
 		});
 </script>
             <section class="view">
-            <input type="hidden" name="uid" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.member.uid}" >
+            <input type="hidden" name="uid"/>
 		    <input type="hidden" name="price" th:value="${product.price}">
 		    <input type="hidden" name="prodNo" th:value="${product.prodNo}">
 		    <input type="hidden" name="discount" th:value="${product.discount}">
@@ -163,7 +161,7 @@
                 <article class="detail">
                     <nav><h1>상품정보</h1></nav>
                     <img th:src="${product.thumb2}" alt="상세1">
-                    <img th:src="${product.detail}" alt="상세1">
+                    <img th:src="${product.detail}" alt="상세2">
                 </article>
                 <article class="notice">
                     <nav>

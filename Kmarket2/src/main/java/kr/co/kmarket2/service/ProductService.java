@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.ProductDAO;
+import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
@@ -54,6 +55,12 @@ public class ProductService {
 	// 상품 view
 	public ProductVO selectProduct(int prodNo) {
 		return dao.selectProduct(prodNo);
+	}
+	
+	// 장바구니
+	public int insertCart(CartVO vo) {
+		int result = dao.insertCart(vo);
+		return result;
 	}
 	
 	/////// list 페이징 처리
