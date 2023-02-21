@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kmarket2.dao.MyPageDAO">
+	
+	<select id="selectUserInfo" resultType="kr.co.kmarket2.vo.MemberVO">
+		SELECT * FROM `km_member` WHERE `uid`=#{uid};
+	</select>
+	
+	
+	<!-- 문의하기 -->
+	<select id="selectQnaMore" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT * FROM `km_article` WHERE `group`= 'qna' and `uid`=#{uid} order by `no` desc limit #{start}, 10;
+	</select>
+	
+	<select id="selectQna" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT * FROM `km_article` WHERE `group`= 'qna' and `uid`=#{uid} order by `no` desc limit 3;
+	</select>
+	
+	<!-- 문의하기 페이징-->
+	<select id="selectCountTotal" resultType="int">
+		select count(`no`) from `km_article` WHERE `group`= 'qna' and `uid`=#{uid};
+	</select>
+
+</mapper>

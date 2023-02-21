@@ -117,7 +117,7 @@
                     </article>
                     <article class="qna">
                         <h3>문의내역</h3>
-                        <a href="#"> 더보기+</a>
+                        <a th:href="@{/myPage/qna}"> 더보기+</a>
                         <table>
                             <tbody>
                                 <tr>
@@ -128,30 +128,14 @@
                                     <th>작성일</th>
                                     <th>상태</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>고객센터</td>
-                                    <td>주문/결제</td>
-                                    <td>신용카드 결제 중 오류가 난경우 어떻게 하나요?</td>
-                                    <td>2022-12-20</td>
-                                    <td><span>검토중</span></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>고객센터</td>
-                                    <td>주문/결제</td>
-                                    <td>신용카드 결제 중 오류가 난경우 어떻게 하나요?</td>
-                                    <td>2022-12-20</td>
-                                    <td><span>답변완료</span></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>고객센터</td>
-                                    <td>주문/결제</td>
-                                    <td>신용카드 결제 중 오류가 난경우 어떻게 하나요?</td>
-                                    <td>2022-12-20</td>
-                                    <td><span>답변완료</span></td>
-                                </tr>
+                                  <tr th:each="qna : ${vo}">
+                                	<td>[[${qna.no}]]</td>
+				                     <td>고객센터</td>
+	                                <td>[[${qna.group}]]</td>
+	                                <td class="title"><a th:href="@{/cs/qna/view(group=${qna.group}, no=${qna.no}, pg=1)}">[[${qna.title}]]</a></td>
+	                                <td>[[${qna.rdate}]]</td>
+	                                <td>검토중</td>
+               					</tr>   
                             </tbody>
                         </table>
                     </article>
