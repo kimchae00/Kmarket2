@@ -98,22 +98,21 @@
         /* n+6의 갯수를 말하는듯?*/
         var lis = document.querySelectorAll('.faqList:nth-child(n+6)');
         console.log(lis);
-       	/*
+       	
         function doDisplay() {
             if(document.querySelector('.faqList:nth-child(n+1)').style.display === 'block') {
             	var lis = document.querySelector('.faqList:nth-child(n+6)');
-                for(li in lis) {
+                for(var i = 0; i<lis.length; i++) {
                 	document.querySelector('.faqList:nth-child(n+6)').style.display = 'none';
                 }
               document.getElementById('more').textContent = '보이기';
             } else {
             	var lis = document.querySelector('.faqList:nth-child(n+6)');
-                for(li in lis) {
+            	for(var i = 0; i<lis.length; i++) {
                 	document.querySelector('.faqList:nth-child(n+6)').style.display = 'block';
                 }
               document.getElementById('more').textContent = '숨기기';
             }
           }
-       	*/	
         </script>
 <th:block th:include="@{cs/_footer.html}"/>
