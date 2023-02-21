@@ -19,6 +19,7 @@
             `seller`=#{seller},
             `price`=#{price},
             `discount`=#{discount},
+            `disprice`=#{disprice},
             `point`=#{point},
             `stock`=#{stock},
             `delivery`=#{delivery},

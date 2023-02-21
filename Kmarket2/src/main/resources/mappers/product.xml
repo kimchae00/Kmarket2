@@ -21,10 +21,10 @@
 		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `sold` desc limit #{start}, 10;
 	</select>
 	<select id="selectProductsByLowPrice" resultType="kr.co.kmarket2.vo.ProductVO">
-		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `price` asc limit #{start}, 10;
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `disprice` asc limit #{start}, 10;
 	</select>
 	<select id="selectProductsByHighPrice" resultType="kr.co.kmarket2.vo.ProductVO">
-		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `price` desc limit #{start}, 10;
+		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `disprice` desc limit #{start}, 10;
 	</select>
 	<select id="selectProductsByScore" resultType="kr.co.kmarket2.vo.ProductVO">
 		select * from `km_product` where `prodCate1`=#{prodCate1} and `prodCate2`=#{prodCate2} order by `score` desc limit #{start}, 10;
@@ -39,5 +39,9 @@
 	<select id="selectProduct" resultType="kr.co.kmarket2.vo.ProductVO">
         select * from `km_product` where `prodNo`=#{prodNo};
     </select>
+    
+    <insert id="insertCart">
+    	insert into `km_product_cart` set `uid`=#{uid}, `prodNo`=#{prodNo},`count`=#{count},`price`=#{price},`discount`=#{discount},`point`=#{point}, `delivery`=#{delivery}, `total`=#{total}, `rdate`=NOW();
+    </insert>
 	
 </mapper>
