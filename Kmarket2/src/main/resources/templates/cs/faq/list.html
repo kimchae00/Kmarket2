@@ -1,4 +1,5 @@
 <th:block th:include="@{cs/_header.html}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <section id="cs">
             <div class="faq">
                 <nav>
@@ -76,18 +77,16 @@
                             <ul>
                             	<th:block th:each="faq:${faqs}">
 	                        		<th:block th:if="${cate.c2Name eq faq.c2Name}">
-		                                <li class="faqList">
+		                                <li class="faqArticle">
 		                                    <a th:href="@{/cs/faq/view(group=faq,cate=${faq.cate},no=${faq.no})}">
 		                                        <span>Q.</span>[[${faq.title}]]
 		                                    </a>
 		                                </li>
 	                                </th:block>
                                 </th:block>
-                                <th:block th:if="${#lists.size(faqs)} > 5">
-                                <li class="more" id="tq" onclick="doDisplay()">
-		                                	<a id="more">더보기</a>
+                                <li class="more">
+                                	<a class="check">더보기</a>
                                	</li>
-                               	</th:block>
                             </ul>
                         </div>
                     </article>
@@ -95,25 +94,24 @@
             </div>
         </section>
         <script>
-        /* n+6의 갯수를 말하는듯?*/
-        var lis = document.querySelectorAll('.faqList:nth-child(n+6)');
-        console.log(lis);
-       	/*
-        function doDisplay() {
-            if(document.querySelector('.faqList:nth-child(n+1)').style.display === 'block') {
-            	var lis = document.querySelector('.faqList:nth-child(n+6)');
-                for(li in lis) {
-                	document.querySelector('.faqList:nth-child(n+6)').style.display = 'none';
-                }
-              document.getElementById('more').textContent = '보이기';
-            } else {
-            	var lis = document.querySelector('.faqList:nth-child(n+6)');
-                for(li in lis) {
-                	document.querySelector('.faqList:nth-child(n+6)').style.display = 'block';
-                }
-              document.getElementById('more').textContent = '숨기기';
-            }
-          }
-       	*/	
+     		// 더보기 구현
+     		$(document).ready(function(){
+     			$('.faqArticle:nth-child(n+4)').hide();
+     		});
+     		
+	        $(function(){
+	      	  $('.more').click(function() {
+	      	        let check = $(this).children('.check').text();
+	      	        if(check == '더보기'){
+	      	        	$('.faqArticle:nth-child(n+4)').show();
+	      	        	$(this).children('.check').text('간단히 보기');
+	      	        }else{
+	      	        	$('.faqArticle:nth-child(n+4)').hide();
+	      	        	$(this).children('.check').text('더보기');
+	      	        }
+	      	        console.log(check);
+	      	      
+	      	    });
+	        });
         </script>
 <th:block th:include="@{cs/_footer.html}"/>
