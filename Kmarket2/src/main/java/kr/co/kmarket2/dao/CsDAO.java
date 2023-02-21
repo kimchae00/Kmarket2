@@ -27,6 +27,12 @@ public interface CsDAO {
 	/* index에 qna 5개만 미리보기 */
 	public List<ArticleVO> selectIndexQna();
 	
+	/* FAQ 각각의 카테고리 출력 */
+	public List<ArticleVO> selectFaqCates(String cate);
+	
+	/* FAQ 각각의 카테고리별 리스트 출력 */
+	public List<ArticleVO> selectFaqList(String group, String cate);
+	
 	/* QNA리스트 출력 */
 	public List<ArticleVO> selectQnaList(String group, String cate, int start);
 	
@@ -52,4 +58,8 @@ public interface CsDAO {
 	
 	/* 페이징을 위해 qna 카테고리의 게시물 총 갯수 */
 	public int selectCountQna(String group, String cate);
+
+	
+
+	
 }
