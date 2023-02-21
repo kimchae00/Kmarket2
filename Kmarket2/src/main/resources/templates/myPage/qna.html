@@ -5,7 +5,6 @@
                     </a>
                     <article class="qna">
                         <h3>문의하기</h3>
-                        <a href="#"> 더보기+</a>
                         <table>
                             <tbody>
                                 <tr>
@@ -16,39 +15,34 @@
                                     <th>작성일</th>
                                     <th>상태</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>고객센터</td>
-                                    <td>주문/결제</td>
-                                    <td>신용카드 결제 중 오류가 난경우 어떻게 하나요?</td>
-                                    <td>2022-12-20</td>
-                                    <td><span>검토중</span></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>고객센터</td>
-                                    <td>주문/결제</td>
-                                    <td>신용카드 결제 중 오류가 난경우 어떻게 하나요?</td>
-                                    <td>2022-12-20</td>
-                                    <td><span>답변완료</span></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>고객센터</td>
-                                    <td>주문/결제</td>
-                                    <td>신용카드 결제 중 오류가 난경우 어떻게 하나요?</td>
-                                    <td>2022-12-20</td>
-                                    <td><span>답변완료</span></td>
-                                </tr>
+                                <tr th:each="qna : ${vo}">
+                                	<td>[[${qna.no}]]</td>
+				                     <td>고객센터</td>
+	                                <td>[[${qna.group}]]</td>
+	                                <td class="title"><a th:href="@{/cs/qna/view(group=${qna.group}, no=${qna.no}, pg=1)}">[[${qna.title}]]</a></td>
+	                                <td>[[${qna.rdate}]]</td>
+	                                <td>검토중</td>
+               					</tr>   
                             </tbody>
                         </table>
-                        <p class="page">
-                            <a href="#" class="prev">이전</a>
-                            <a href="#" class="num on">1</a>
-                            <a href="#" class="num">2</a>
-                            <a href="#" class="num">3</a>
-                            <a href="#" class="next">다음</a>
-                        </p>
+                        
+                         <div class="page">
+			                <th:block th:if="${groups[0]>1}">
+			                	<a th:href="@{/myPage/qna(pg=${groups[0]-1})}" class="prev">이전</a>
+			                </th:block>
+			                
+			                <th:block th:each="num:${#numbers.sequence(groups[0],groups[1])}">
+			                
+			                	<a th:href="@{/myPage/qna(pg=${num})}" 
+			                	   th:class="${num==currentPage?'num current':'num'}">[[${num}]]</a>
+			                	          
+			                </th:block>
+			                
+			                <th:block th:if="${groups[1]<lastPageNum}">
+			                	<a th:href="@{/myPage/qna(pg=${groups[1]+1})}" class="next">다음</a>
+			                </th:block>
+			            </div>
+                        
                 </section>
             </div>
        </main>
