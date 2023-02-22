@@ -102,11 +102,12 @@
 	        $(function(){
 	      	  $('.more').click(function() {
 	      	        let check = $(this).children('.check').text();
+	      	        
 	      	        if(check == '더보기'){
-	      	        	$('.faqArticle:nth-child(n+4)').show();
+	      	        	$(this).prevAll('.faqArticle:nth-child(n+4)').show();
 	      	        	$(this).children('.check').text('간단히 보기');
 	      	        }else{
-	      	        	$('.faqArticle:nth-child(n+4)').hide();
+	      	        	$(this).prevAll('.faqArticle:nth-child(n+4)').hide();
 	      	        	$(this).children('.check').text('더보기');
 	      	        }
 	      	        console.log(check);

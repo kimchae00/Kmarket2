@@ -58,7 +58,7 @@
 						 
                         </table>
                         <div class="page">
-							
+							    <!-- **************************************************** -->
 								<th:block th:if="${cate} eq null">
 				                <th:block th:if="${groups[0]>1}">
 				                	<a th:href="@{/cs/notice/list(group=notice,pg=${groups[0]-1})}" class="prev">이전</a>
@@ -73,8 +73,9 @@
 				                	<a th:href="@{/cs/notice/list(group=notice,pg=${groups[1]+1})}" class="next">다음</a>
 				                </th:block>
 								</th:block>
+								<!-- **************************************************** -->
 								
-								
+								<!-- **************************************************** -->
 								<th:block th:if="${cate} ne null">
 				                <th:block th:if="${groups[0]>1}">
 				                	<a th:href="@{/cs/notice/list(group=notice,cate=${cate},pg=${groups[0]-1})}" class="prev">이전</a>
@@ -89,6 +90,7 @@
 				                	<a th:href="@{/cs/notice/list(group=notice,cate=${cate},pg=${groups[1]+1})}" class="next">다음</a>
 				                </th:block>
 								</th:block>
+								<!-- **************************************************** -->
 			            </div>
                     </article>
                 </section>

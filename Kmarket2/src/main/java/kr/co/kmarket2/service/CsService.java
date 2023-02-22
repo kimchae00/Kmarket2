@@ -19,6 +19,10 @@ public class CsService {
 		
 	}
 	*/
+	public String selectCate2(String c2Name) {
+		return dao.selectCate2(c2Name);
+	}
+	
 	public ArticleVO selectArticle(int no) {
 		return dao.selectArticle(no);
 	}
@@ -63,8 +67,16 @@ public class CsService {
 		return dao.selectAnswer(no);
 	}
 	
-	public void updateArticle() {
+	public int insertQna(String uid, String cate, String cate2, String title, String content, String regip) {
 		
+		
+		System.out.println("here1 : " + uid);
+		System.out.println("here2 : " + cate);
+		System.out.println("here3 : " + cate2);
+		System.out.println("here4 : " + title);
+		System.out.println("here5 : " + content);
+		
+		return dao.insertQna(uid, cate, cate2, title, content, regip);
 	}
 	
 	public void deleteArticle() {

@@ -1,141 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>관리자 공지사항 목록</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/notice.css">
-    <script src="/js/gnb.js"></script>
-    <!-- 2023/02/10 관리자 공지사항 목록 화면구현 - 길은섭 -->
-</head>
-<body>
-    <div id="admin-wrapper">
-        <header>
-            <div>
-                <a href="/index.html" class="logo">
-                    <img src="/img/admin_logo.png" alt="admin_logo">
-                </a>
-                <p>
-                    <span>홍길동님 반갑습니다. </span>
-                    <a href="/index.html">HOME |</a>
-                    <a href="#">로그아웃 |</a>
-                    <a href="./list.html">고객센터</a>
-                </p>
-            </div>
-        </header>
-        <main>
-            <aside>
-                <ul id="gnb">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-cogs" aria-hidden="true"></i>
-                            환경설정
-                        </a>
-                        <ol>
-                            <li>
-                                <a href="#">기본환경설정</a>
-                            </li>
-                            <li>
-                                <a href="#">배너관리</a>
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-store" aria-hidden="true"></i>
-                            상점관리
-                        </a>
-                        <ol>
-                            <li>
-                                <a href="#">판매자현황</a>
-                            </li>
-                            <li>
-                                <a href="#">재고관리</a>
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            회원관리
-                        </a>
-                        <ol>
-                            <li>
-                                <a href="#">회원현황</a>
-                            </li>
-                            <li>
-                                <a href="#">포인트관리</a>
-                            </li>
-                            <li>
-                                <a href="#">비회원관리</a>
-                            </li>
-                            <li>
-                                <a href="#">접속자집계</a>
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-box-open" aria-hidden="true"></i>
-                            상품관리
-                        </a>
-                        <ol>
-                            <li>
-                                <a href="/product/list.html">상품목록</a>
-                            </li>
-                            <li>
-                                <a href="/product/register.html">상품등록</a>
-                            </li>
-                            <li>
-                                <a href="#">재고관리</a>
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-credit-card" aria-hidden="true"></i>
-                            주문관리
-                        </a>
-                        <ol>
-                            <li>
-                                <a href="#">주문현황</a>
-                            </li>
-                            <li>
-                                <a href="#">매출현황</a>
-                            </li>
-                            <li>
-                                <a href="#">결제관리</a>
-                            </li>
-                            <li>
-                                <a href="#">배송관리</a>
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            고객센터
-                        </a>
-                        <ol>
-                            <li>
-                                <a href="#">공지사항</a>
-                            </li>
-                            <li>
-                                <a href="#">자주묻는질문</a>
-                            </li>
-                            <li>
-                                <a href="#">문의하기</a>
-                            </li>
-                        </ol>
-                    </li>
-                </ul>
-            </aside>
-            <!-- list -->
+<th:block th:include="@{admin/_header.html}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+	$(function(){
+		$("select[name=search]").change(function(){
+			let cate = $(this).val();
+			// console.log("cate : " + cate);
+			
+			let jsonData ={
+					cate: cate
+			}
+			/*
+			$.ajax({
+				url: '/Kmarket2/admin/notice/list',
+				type: 'post',
+				data: jsonData,
+				dataType: 'json',
+				success: function(data){
+					console.log("전송1")
+					
+					if(data.result > 0){
+						console.log("전송2")
+						alert('정상적으로 작성되었습니다');
+					}
+				}
+			});
+			*/
+		}); 
+	});
+</script>
             <section id="admin-notice-list">
                 <nav>
                     <h3>공지사항 목록</h3>
@@ -146,13 +38,12 @@
                 </nav>
                 <section>
                     <div>
-                        <select name="search" class="type">
-                            <option value="search1">유형선택</option>
-                            <option value="search1">전체</option>
-                            <option value="search1">고객서비스</option>
-                            <option value="search1">안전거래</option>
-                            <option value="search1">위해상품</option>
-                            <option value="search1">이벤트 당첨</option>
+                        <select name="search" class="cate">
+                            <option value="">전체</option>
+                            <option value="customerService">고객서비스</option>
+                            <option value="safeTrade">안전거래</option>
+                            <option value="hazardousProduct">위해상품</option>
+                            <option value="winningEvent">이벤트 당첨</option>
                         </select>
                     </div>
                     <table>
@@ -180,150 +71,6 @@
                             <td>
                                 <a href="./view.html">[안내] 해외결제 사칭 문자 주의</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>99</td>
-                            <td>이벤트 당첨</td>
-                            <td>[발표]『G.Live X SK스토아(하남쭈꾸미)』 이벤트 당첨자</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>98</td>
-                            <td>안전거래 </td>
-                            <td>[안내] 로젠택배 반품/교환 수거지시 지연 안내</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>97</td>
-                            <td>고객서비스</td>
-                            <td>[안내] 위치정보이용 약관 개정 공지</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>96</td>
-                            <td>고객서비스</td>
-                            <td>[안내] 해외결제 사칭 문자 주의</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>95</td>
-                            <td>고객서비스</td>
-                            <td>[안내] 해외결제 사칭 문자 주의</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>94</td>
-                            <td>고객서비스</td>
-                            <td>[안내] 해외결제 사칭 문자 주의</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>93</td>
-                            <td>고객서비스</td>
-                            <td>[안내] 구매회원 이용약관 개정</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>92</td>
-                            <td>위해상품</td>
-                            <td>[위해상품정보] 무주꾸지뽕 지도점검 회수사유적발</td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>91</td>
-                            <td>고객서비스</td>
-                            <td>[안내] 씨티은행 시스템 점검에 따른 계좌, 체크카드… </td>
                             <td>120</td>
                             <td>2023.02.10</td>
                             <td>
