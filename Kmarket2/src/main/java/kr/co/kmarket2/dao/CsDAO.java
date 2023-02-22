@@ -3,6 +3,7 @@ package kr.co.kmarket2.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import kr.co.kmarket2.vo.ArticleVO;
@@ -11,7 +12,9 @@ import kr.co.kmarket2.vo.ArticleVO;
 @Repository
 public interface CsDAO {
 
-	public int insertArticle();
+	public int insertQna(@Param("uid") String uid, @Param("cate") String cate, @Param("cate2") String cate2, @Param("title") String title, @Param("content") String content, @Param("regip")String regip);
+	
+	public String selectCate2(String c2Name);
 	
 	public ArticleVO selectArticle(int no);
 	

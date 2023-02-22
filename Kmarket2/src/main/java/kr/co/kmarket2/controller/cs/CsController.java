@@ -1,13 +1,21 @@
 package kr.co.kmarket2.controller.cs;
 
+import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import kr.co.kmarket2.service.CsService;
 import kr.co.kmarket2.vo.ArticleVO;
@@ -164,10 +172,49 @@ public class CsController {
 		return "cs/qna/write";
 	}
 	
+	
+	@PostMapping("/cs/qna/write")
 	@ResponseBody
-	@PostMapping("/cs/write")
-	public void write() {
+	public Map<String, Integer> qnawrite(Principal principal, @RequestParam("cate") String cate, @RequestParam("c2Name") String c2Name, @RequestParam("title") String title, @RequestParam("content") String content) {
+		System.out.println("cate : " + cate);
+		String uid = principal.getName();
+		System.out.println("uid : " + uid);
 		
-		System.out.println("1");
+		
+		String cate2 = service.selectCate2(c2Name);
+		System.out.println("cate2 : " + cate2);
+		
+		
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String regip 	= req.getRemoteAddr();
+		
+		int result = service.insertQna(uid, cate, cate2, title, content, regip);
+		
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", result);
+		return map;
 	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
