@@ -9,7 +9,7 @@
 			let jsonData ={
 					cate: cate
 			}
-			/*
+			
 			$.ajax({
 				url: '/Kmarket2/admin/notice/list',
 				type: 'post',
@@ -24,7 +24,7 @@
 					}
 				}
 			});
-			*/
+			
 		}); 
 	});
 </script>
@@ -46,6 +46,14 @@
                             <option value="winningEvent">이벤트 당첨</option>
                         </select>
                     </div>
+                    <th:block th:if="${cate} eq null">
+                        	
+                            <tr th:each="articles : ${articles}">
+                                <td><a th:href="@{/cs/notice/view(group=${articles.group},no=${articles.no},cate=${articles.cate})}">[[${articles.title}]]</a></td>
+                                <td>[[${articles.rdate}]]</td>
+                            </tr>
+                            
+                           </th:block>
                     <table>
                         <tr>
                             <th>
@@ -60,6 +68,27 @@
                             <th>날짜</th>
                             <th>관리</th>
                         </tr>
+                        <th:block th:if="${cate} eq null">
+                        <tr th:each="articles : ${articles}">
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="all">
+                                </label>
+                            </td>
+                            <td>[[${articles.no]]</td>
+                            <td>[[${articels.cate}]]</td>
+                            <td>
+                                <a href="./view.html">[안내] 해외결제 사칭 문자 주의</a>
+                            </td>
+                            <td>120</td>
+                            <td>2023.02.10</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                        </tr>
+                        </th:block>
+                        <th:block th:if="${cate} eq null">
                         <tr>
                             <td>
                                 <label>
@@ -78,6 +107,7 @@
                                 <a href="#">[수정]</a>
                             </td>
                         </tr>
+                        </th:block>
                     </table>
                     <input type="button" value="선택삭제">
                     <a href="./write.html">작성하기</a>
