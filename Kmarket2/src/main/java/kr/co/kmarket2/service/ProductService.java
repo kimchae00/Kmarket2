@@ -10,6 +10,7 @@ import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
+import kr.co.kmarket2.vo.ReviewVO;
 
 @Service
 public class ProductService {
@@ -53,14 +54,33 @@ public class ProductService {
 	}
 	
 	// 상품 view
-	public ProductVO selectProduct(int prodNo) {
+	public ProductVO selectProduct(String prodNo) {
 		return dao.selectProduct(prodNo);
+	}
+	
+	// review
+	public List<ReviewVO> selectReview(String prodNo, int start){
+		return dao.selectReview(prodNo, start);
+	}
+	public int selectCountTotalReview(String prodNo) {
+		return dao.selectCountTotalReview(prodNo);
 	}
 	
 	// 장바구니
 	public int insertCart(CartVO vo) {
 		int result = dao.insertCart(vo);
 		return result;
+	}
+	public List<CartVO> selectCart(String uid){
+		return dao.selectCart(uid);
+	}
+	public int deleteCart(List<String> chks) {
+		return dao.deleteCart(chks);
+	}
+	
+	// 주문
+	public List<CartVO> selectCartByCartNo(List<String> cartNo){
+		return dao.selectCartByCartNo(cartNo);
 	}
 	
 	// 검색
@@ -112,6 +132,57 @@ public class ProductService {
 	  int groupCurrent = (int) Math.ceil(currentPage / 10.0);
 	  int groupStart = (groupCurrent - 1) * 10 + 1;
 	  int groupEnd = groupCurrent * 10;
+	
+	  if(groupEnd > lastPageNum) {
+	      groupEnd = lastPageNum;
+	  }
+	
+	  int[] groups = {groupStart, groupEnd};
+	
+	  return groups;
+	}
+	
+	/////// review 페이징 처리
+	// 현재 페이지 번호
+	public int getCurrentPage2(String pg) {
+	  int currentPage = 1;
+	
+	  if(pg != null) {
+	      currentPage = Integer.parseInt(pg);
+	  }
+	  return currentPage;
+	}
+	
+	// 페이지 시작값
+	public int getLimitStart2(int currentPage) {
+	  return (currentPage - 1) * 5;
+	}
+	
+	// 마지막 페이지 번호
+	public int getLastPageNum2(int total) {
+	
+	  int lastpageNum = 0;
+	
+	  if(total % 10 == 0) {
+	      lastpageNum = total / 5;
+	
+	  }else {
+	      lastpageNum = total / 5 + 1;
+	  }
+	  return lastpageNum;
+	}
+	
+	// 페이지 시작 번호
+	public int getpageStartNum2(int total, int start) {
+	  return total - start;
+	}
+	
+	// 페이지 그룹
+	public int[] getPageGroup2(int currentPage, int lastPageNum) {
+	
+	  int groupCurrent = (int) Math.ceil(currentPage / 5.0);
+	  int groupStart = (groupCurrent - 1) * 5 + 1;
+	  int groupEnd = groupCurrent * 5;
 	
 	  if(groupEnd > lastPageNum) {
 	      groupEnd = lastPageNum;

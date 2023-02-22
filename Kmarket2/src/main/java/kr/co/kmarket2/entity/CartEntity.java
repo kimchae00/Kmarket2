@@ -1,9 +1,11 @@
-package kr.co.kmarket2.vo;
+package kr.co.kmarket2.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class CartVO {
+@AllArgsConstructor
+public class CartEntity {
 	private int cartNo;
 	private String uid;
 	private int prodNo;
@@ -14,10 +16,5 @@ public class CartVO {
 	private int delivery;
 	private int total;
 	private String rdate;
-	private String prodName;
-	private String thumb1;
-	private String descript;
-	private int prodCate1;
-	private int prodCate2;
 
 }

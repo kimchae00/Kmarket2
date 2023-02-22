@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 	
+	
 	private final DataSource dataSource;
 	
 	// 스프링 버전이 업데이트 됨에 따라 WebSecurityConfigurerAdapter이 Deprecated됨 (대체 - @bean, filterchain 등 사용)
@@ -31,6 +32,9 @@ public class SecurityConfig {
 		// 인가(접근권한) 설정
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("2", "7");
+		http.authorizeRequests().antMatchers("/product/cart").hasAnyRole("1","2", "7");
+		http.authorizeRequests().antMatchers("/product/order").hasAnyRole("1","2", "7");
+		http.authorizeRequests().antMatchers("/product/complete").hasAnyRole("1","2", "7");
 		
 		// 사이트 위조 방지 설정
 		http.csrf().disable();

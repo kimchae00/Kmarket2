@@ -9,6 +9,7 @@ import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
+import kr.co.kmarket2.vo.ReviewVO;
 
 @Mapper
 @Repository
@@ -29,10 +30,20 @@ public interface ProductDAO {
 	public List<ProductVO> selectProductsByNew(int start, String prodCate1, String prodCate2);
 	
 	// view
-	public ProductVO selectProduct(int prodNo);
+	public ProductVO selectProduct(String prodNo);
+	
+	// review
+	public List<ReviewVO> selectReview(String prodNo, int start);
+	public int selectCountTotalReview(String prodNo);
+	
 	
 	// cart
 	public int insertCart(CartVO vo);
+	public List<CartVO> selectCart(String uid);
+	public int deleteCart(List<String> chks);
+	
+	// order
+	public List<CartVO> selectCartByCartNo(List<String> cartNo);
 	
 	// search
 	public List<ProductVO> searchProduct(String keyword);

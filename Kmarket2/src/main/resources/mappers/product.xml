@@ -40,13 +40,34 @@
         select * from `km_product` where `prodNo`=#{prodNo};
     </select>
     
+    <select id="selectReview" resultType="kr.co.kmarket2.vo.ReviewVO">
+    	select a.*, b.`prodName` from `km_product_review` as a join `km_product` as b on a.prodNo=b.prodNo where a.`prodNo`=#{prodNo} order by `rdate` desc limit #{start}, 5;
+    </select>
+    
+    <select id="selectCountTotalReview" resultType="int" parameterType="map">
+        select count(`revNo`) from `km_product_review` where `prodNo`=#{prodNo};
+     </select>
+    
     <insert id="insertCart">
     	insert into `km_product_cart` set `uid`=#{uid}, `prodNo`=#{prodNo},`count`=#{count},`price`=#{price},`discount`=#{discount},`point`=#{point}, `delivery`=#{delivery}, `total`=#{total}, `rdate`=NOW();
     </insert>
     
+    <select id="selectCart" resultType="kr.co.kmarket2.vo.CartVO">
+    	select a.*, b.`prodName`, b.`thumb1`, b.`descript`, b.`prodCate1`, b.`prodCate2` from `km_product_cart` as a join `km_product` as b on a.prodNo=b.prodNo where `uid`=#{uid};
+    </select>
+    
+    <delete id="deleteCart">
+    	delete from `km_product_cart` where `cartNo` in (<foreach collection="list" item="chks" separator=",">#{chks}</foreach>);
+    </delete>
+    
+    <select id="selectCartByCartNo" resultType="kr.co.kmarket2.vo.CartVO">
+    	select a.*, b.`prodName`, b.`thumb1`, b.`descript`, b.`prodCate1`, b.`prodCate2` from `km_product_cart` as a join `km_product` as b on a.prodNo=b.prodNo where `cartNo` in (<foreach collection="list" item="cartNo" separator=",">#{cartNo}</foreach>);
+    </select>
+    
     <select id="searchProduct" resultType="kr.co.kmarket2.vo.ProductVO">
     	select * from `km_product` where `prodName`=#{keyword} order by `sold` desc;
     </select>
+
 
     <select id="searchProductTotal" resultType="int">
     	select count(`prodNo`) from `km_product` where `prodName`=#{keyword};

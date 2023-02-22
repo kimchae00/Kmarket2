@@ -7,15 +7,7 @@ import lombok.Setter;
 @Data
 public class TermsLocationVO {
 	
-	private String one;
-	private String two;
-	private String three;
-	private String four;
-	private String five;
-	private String six;
-	private String seven;
-	private String eight;
-	private String nine	;
-	private String ten;
+	private String tit;
+	private String content;
 	
 }

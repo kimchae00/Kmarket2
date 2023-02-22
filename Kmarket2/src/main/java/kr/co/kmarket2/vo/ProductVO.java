@@ -50,4 +50,6 @@ public class ProductVO {
 	private int disprice;
 	
 	private String keyword;
+	private int count;
+	private int total;
 }

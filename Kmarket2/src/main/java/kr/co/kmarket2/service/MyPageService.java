@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.MyPageDAO;
-import kr.co.kmarket2.dao.termsPolicyDAO;
+import kr.co.kmarket2.dao.TermsPolicyDAO;
 import kr.co.kmarket2.vo.ArticleVO;
 import kr.co.kmarket2.vo.MemberVO;
 import kr.co.kmarket2.vo.TermsBuyerVO;
