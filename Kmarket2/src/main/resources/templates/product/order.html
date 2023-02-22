@@ -1,4 +1,40 @@
 <th:block th:include="@{product/_header.html}"/>
+<script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script th:src="@{/js/postcode.js}"></script>
+<script>
+	$(function() {
+		let isOnce = 0;
+		
+		$('.btnPoint').click(function() {
+			let point = $('input[name=point]').val();
+			let userPoint = $('.userPoint').text();
+			
+			if(point < 5000){
+				alert('5,000점 이상부터 사용 가능합니다.');
+				return false;
+			}else if(point >= 5000){
+				if(point > userPoint){
+					alert('현재 포인트보다 많이 사용할 수 없습니다.');
+					return false;
+				}
+				
+				if(isOnce == 0){
+					$('.pointDC').text(Number(point).toLocaleString());
+					const finTot = parseInt($('.finTot').text().replaceAll(',',''));
+					let result = finTot-point;
+					$('.pointDC').removeAttr("style");
+					$('.finTot').text(result.toLocaleString());
+					isOnce = 1;
+				}else{
+					alert('한 번 적용이 가능합니다.');
+					return false;
+				}
+			}
+		});
+	
+	});
+
+</script>
             <section class="order">
                 <nav>
                     <h1>주문결제</h1>
@@ -13,85 +49,102 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>상품명</th>
+                                <th style="width: 65%">상품명</th>
                                 <th>총수량</th>
                                 <th>판매가</th>
+                                <th>할인</th>
+                                <th>포인트</th>
                                 <th>배송비</th>
-                                <th>소계</th>
+                                <th>총합</th>
                             </tr>
                         </thead>
+                        <th:block th:if="${#lists.isEmpty(cartList)}">
                         <tr>
                             <td>
                                 <article>
-                                    <a href="#"><img src="https://via.placeholder.com/80x80"></a>
+                                    <a th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}"><img th:src="${product.thumb1}"></a>
                                     <div>
-                                        <h2><a href="#">상품명</a></h2>
-                                        <p>상품설명</p>
+                                        <h2><a th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}">[[${product.prodName}]]</a></h2>
+                                        <p>>[[${product.descript}]]</p>
                                     </div>
                                 </article>
                             </td>
-                            <td>1</td>
-                            <td>27,000</td>
-                            <td>무료배송</td>
-                            <td>27,000</td>
+                            <td>[[${count}]]</td>
+                            <td data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')}">[[${product.price}]]</td>
+                            <td>[[${product.discount}]]%</td>
+                            <td>[[${product.point}]]</td>
+                            <th:block th:if="${product.delivery == 0}">
+                                <td>무료배송</td>
+                            </th:block>
+                            <th:block th:unless="${product.delivery == 0}">
+                                <td class="delivery">[[${product.delivery}]]</td>
+                            </th:block>
+                            <td data-th-text="${#numbers.formatInteger(count*product.price*(100-product.discount)/100+product.delivery, 3, 'COMMA')}">[[${#numbers.formatInteger(count*product.price*(100-product.discount)/100+product.delivery, 3)}]]</td>
                         </tr>
+                        </th:block>
+                        <th:block th:if="${product == null}">
+                        <th:block th:each="cart : ${cartList}">
                         <tr>
                             <td>
                                 <article>
-                                    <a href="#"><img src="https://via.placeholder.com/80x80"></a>
+                                    <a th:href="@{/product/view(prodCate1=${cart.prodCate1},prodCate2=${cart.prodCate2},prodNo=${cart.prodNo})}"><img th:src="${cart.thumb1}"></a>
                                     <div>
-                                        <h2><a href="#">상품명</a></h2>
-                                        <p>상품설명</p>
+                                        <h2><a th:href="@{/product/view(prodCate1=${cart.prodCate1},prodCate2=${cart.prodCate2},prodNo=${cart.prodNo})}">[[${cart.prodName}]]</a></h2>
+                                        <p>[[${cart.descript}]]</p>
                                     </div>
                                 </article>
                             </td>
-                            <td>1</td>
-                            <td>27,000</td>
-                            <td>무료배송</td>
-                            <td>27,000</td>
+                            <td>[[${cart.count}]]</td>
+                            <td data-th-text="${#numbers.formatInteger(cart.price, 3, 'COMMA')}">[[${cart.price}]]</td>
+                            <td>[[${cart.discount}]]%</td>
+                            <td data-th-text="${#numbers.formatInteger(cart.point, 3, 'COMMA')}">[[${cart.point}]]</td>
+                            <th:block th:if="${cart.delivery == 0}">
+                                <td>무료배송</td>
+                            </th:block>
+                            <th:block th:unless="${cart.delivery == 0}">
+                                <td class="delivery">[[${cart.delivery}]]</td>
+                            </th:block>
+                            <td data-th-text="${#numbers.formatInteger(cart.total, 3, 'COMMA')}">[[${cart.total}]]</td>
                         </tr>
-                        <tr>
-                            <td>
-                                <article>
-                                    <a href="#"><img src="https://via.placeholder.com/80x80"></a>
-                                    <div>
-                                        <h2><a href="#">상품명</a></h2>
-                                        <p>상품설명</p>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>1</td>
-                            <td>27,000</td>
-                            <td>무료배송</td>
-                            <td>27,000</td>
-                        </tr>
+                        </th:block>
+                        </th:block>
                     </table>
                     <div class="final">
                         <h2>최종결제 정보</h2>
                         <table>
                             <tr>
                                 <td>총</td>
-                                <td>2 건</td>
+                                <td class="ordCount" th:text="${product==null?cartList.size():'1'}+건"></td>
                             </tr>
                             <tr>
                                 <td>상품금액</td>
-                                <td>27,000</td>
+                                <th:block th:if="${product == null}">
+                                		<td class="ordPrice" th:text=${sum}>
+                                		</td>
+                                </th:block>
+                                <th:block th:unless="${product == null}">
+                                	<td class="ordPrice" th:text="${product.price * count}"></td>
+                                </th:block>
                             </tr>
                             <tr>
                                 <td>할인금액</td>
-                                <td>-1,000</td>
+                                <td class="ordDiscount">-1,000</td>
                             </tr>
                             <tr>
                                 <td>배송비</td>
-                                <td>0</td>
+                                <td class="ordDelivery">0</td>
                             </tr>
                             <tr>
-                                <td>포인트</td>
-                                <td>-1,000</td>
+                                <td>포인트할인</td>
+                                <td class="pointDC">-1,000</td>
+                            </tr>
+                            <tr>
+                                <td>적립포인트</td>
+                                <td class="savePoint">5,000</td>
                             </tr>
                             <tr>
                                 <td>전체주문금액</td>
-                                <td>25,000</td>
+                                <td class="finTot">25,000</td>
                             </tr>
                         </table>
                         <input type="submit" value="결제하기">
@@ -101,26 +154,26 @@
                         <table>
                             <tr>
                                 <td>주문자</td>
-                                <td><input type="text" name="orderer"></td>
+                                <td><input type="text" name="orderer"  th:value="${#authentication.principal.member.name}"></td>
                             </tr>
                             <tr>
                                 <td>휴대폰</td>
-                                <td><input type="text" name="hp"><span> - 포함 입력</span></td>
+                                <td><input type="text" name="hp" th:value="${#authentication.principal.member.hp}"><span> - 포함 입력</span></td>
                             </tr>
                             <tr>
                                 <td>우편번호</td>
                                 <td>
-                                    <input type="text" name="zip">
-                                    <input type="button" value="검색">
+                                    <input type="text" name="zip" id="zip"  th:value="${#authentication.principal.member.zip}">
+                                    <input type="button" value="검색" th:onclick="postcode()">
                                 </td>
                             </tr>
                             <tr>
                                 <td>기본주소</td>
-                                <td><input type="text" name="addr1"></td>
+                                <td><input type="text" name="addr1" id="addr1" th:value="${#authentication.principal.member.addr1}"></td>
                             </tr>
                             <tr>
                                 <td>상세주소</td>
-                                <td><input type="text" name="addr2"></td>
+                                <td><input type="text" name="addr2" id="addr2" th:value="${#authentication.principal.member.addr2}"></td>
                             </tr>
                         </table>
                     </article>
@@ -129,11 +182,11 @@
                         <div>
                             <p>
                                 현재 포인트 : 
-                                <span>7200</span>점
+                                <span class="userPoint" sec:authentication="principal.member.point"></span>점
                             </p>
                             <label>
                                 <input type="text" name="point">점 
-                                <input type="button" value="적용">
+                                <input type="button" class="btnPoint" value="적용">
                             </label>
                             <span>포인트 5,000점 이상이면 현금처럼 사용 가능합니다.</span>
                         </div>
@@ -160,7 +213,7 @@
                                 <label><input type="radio" name="payment" value="type5">휴대폰결제</label>
                                 <label>
                                     <input type="radio" name="payment" value="type6">카카오페이
-                                    <img src="../img/ico_kakaopay.gif" alt="카카오페이">
+                                    <img th:src="@{/img/ico_kakaopay.gif}" alt="카카오페이">
                                 </label>
                             </p>
                         </div>

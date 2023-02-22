@@ -160,6 +160,7 @@
 
 /* 보기 */
 #product > .view {}
+#product > .view .uid {display: none;}
 #product > .view > article {
     width: 100%;
     height: auto;
@@ -412,7 +413,7 @@
     text-align: center;
     text-decoration: none;
 }
-#product > .view > .review > .paging > .num > a.on {
+#product > .view > .review > .paging > .num > .current {
     color: #fe434c;
     font-weight: bold;
 }
@@ -444,7 +445,10 @@
 }
 #product > .cart > form > table td {text-align: center;}
 #product > .cart > form > table th:first-child {width: 60px;}
-#product > .cart > form > table .empty {display: none;}
+#product > .cart > form > table .empty {
+	width: 100%;
+	height: 70px;
+}
 #product > .cart > form > table .empty td {}
 #product > .cart > form > table td:first-child {width: 60px;}
 #product > .cart > form > table td:last-child {
@@ -564,7 +568,7 @@
 #product > .order > form > .final {
     float: right;
     width: 360px;
-    height: 412px;
+    height: 470px;
     padding: 20px;
     margin-top: 12px;
     background: #fff;
@@ -581,7 +585,7 @@
     box-sizing: border-box;
     color: #1e1e1e;
 }
-#product > .order > form > .final > table {width: 100%;}
+#product > .order > form > .final > table {width: 100%; height: 315px;}
 #product > .order > form > .final > table td {
     padding: 10px 0;
     font-size: 14px;
