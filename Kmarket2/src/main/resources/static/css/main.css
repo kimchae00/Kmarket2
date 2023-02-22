@@ -199,6 +199,16 @@ main > aside > .category ol > li > a:hover {
     color: #41ab47;
     text-decoration: underline;
 }
+#main > section .free-delivery {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: text-bottom;
+    width: 55px;
+    height: 13px;
+    background: url(../img/ico_freeshipping.gif) no-repeat;
+    margin-top: 4px;
+}
+
 main > aside > .best {
     width: 215px;
     height: auto;

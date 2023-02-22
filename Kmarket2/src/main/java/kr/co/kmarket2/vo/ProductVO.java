@@ -48,4 +48,6 @@ public class ProductVO {
 	private String ip;
 	private String rdate;
 	private int disprice;
+	
+	private String keyword;
 }
