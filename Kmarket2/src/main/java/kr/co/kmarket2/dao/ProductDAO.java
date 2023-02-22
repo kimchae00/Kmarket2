@@ -33,5 +33,8 @@ public interface ProductDAO {
 	
 	// cart
 	public int insertCart(CartVO vo);
-
+	
+	// search
+	public List<ProductVO> searchProduct(String keyword);
+	public int searchProductTotal(String keyword);
 }

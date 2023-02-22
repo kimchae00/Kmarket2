@@ -63,6 +63,14 @@ public class ProductService {
 		return result;
 	}
 	
+	// 검색
+	public List<ProductVO> searchProduct(String keyword){
+		return dao.searchProduct(keyword);
+	}
+	public int searchProductTotal(String keyword) {
+		return dao.searchProductTotal(keyword);
+	}
+	
 	/////// list 페이징 처리
 	// 현재 페이지 번호
 	public int getCurrentPage(String pg) {

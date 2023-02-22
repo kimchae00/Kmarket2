@@ -126,7 +126,7 @@
                                 <span class="free-delivery">무료배송</span>
                             </th:block>
                             <th:block th:unless="${product.delivery == 0}">
-                                <span class="delivery" >배송비 : [[${product.delivery}]]원</span>
+                                <span class="delivery">배송비 : [[${product.delivery}]]원</span>
                             </th:block>
                             <span class="arrival" th:text="${#dates.format(#dates.createToday().getTime() + 60*60*24*1000*3, '모레(E) MM/dd 도착예정')}"></span>
                             <span class="desc">[[${product.descript}]]</span>
