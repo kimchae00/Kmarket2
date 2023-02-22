@@ -1,4 +1,36 @@
 <th:block th:include="@{admin/_header.html}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+	$(function(){
+		$('.btnSubmit').click(function(){
+			let cate = $('select[name=search]').val();
+			// console.log(cate);
+			let title = $('.title').val();
+			let content = $('.content').val();
+			
+			let jsonData = {
+					cate: cate,
+					title: title,
+					content: content
+			}
+			
+			$.ajax({
+				url: '/Kmarket2/admin/cs/notice/write',
+				type: 'post',
+				data: jsonData,
+				dataType: 'json',
+				success:function(data){
+					console.log("전송!")
+					if(data.result > 0){
+						console.log("전송2")
+						alert('정상적으로 작성되었습니다');
+						location.href="/Kmarket2/admin";
+					}
+				}
+			});
+		});
+	});
+</script>
             <section id="admin-notice-write">
                 <nav>
                     <h3>공지사항 작성</h3>
@@ -14,27 +46,26 @@
                             <td>
                                 <div>
                                     <select name="search">
-                                        <option value="search1">유형선택</option>
-                                        <option value="search1">전체</option>
-                                        <option value="search1">고객서비스</option>
-                                        <option value="search1">안전거래</option>
-                                        <option value="search1">위해상품</option>
-                                        <option value="search1">이벤트 당첨</option>
+                                        <option value="">유형선택</option>
+                                        <option value="customerService">고객서비스</option>
+                                        <option value="safeTrade">안전거래</option>
+                                        <option value="hazardousProduct">위해상품</option>
+                                        <option value="winningEvent">이벤트 당첨</option>
                                     </select>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>제목</td>
-                            <td><input type="text" placeholder="제목을 입력합니다."></td>
+                            <td><input type="text" placeholder="제목을 입력합니다." class="title"></td>
                         </tr>
                         <tr>
                             <td>내용</td>
-                            <td><input type="text" placeholder="내용을 입력합니다."></td>
+                            <td><input type="text" placeholder="내용을 입력합니다." class="content"></td>
                         </tr>
                     </table>
                     <div>
-                        <input type="button" value="등록하기">
+                        <input type="button" value="등록하기" class="btnSubmit">
                         <a href="./list.html">취소하기</a>
                     </div>
                 </section>
