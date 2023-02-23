@@ -27,11 +27,18 @@ public class AdminCsController {
 	private AdminCsService service;
 	
 	@GetMapping("/admin/cs/notice/list")
-	public String noticelist(Model model, String cate, String pg) {
+	@ResponseBody
+	public String noticelist(Model model, @RequestParam(value="cate") String cate) {
+		List<ArticleVO> notices = service.selectNoticeAll();
+		model.addAttribute("notices", notices);
+		
+		List<ArticleVO> cates = service.selectNotices(cate);
+		model.addAttribute("cates", cates);
+		
 		
 		return "/admin/cs/notice/list";
 	}
-	
+
 	@GetMapping("/admin/cs/notice/view")
 	public String noticeview(Model model, int no, String group, String cate) {
 		
@@ -98,10 +105,100 @@ public class AdminCsController {
 		return "/admin/cs/faq/list";
 	}
 	
+	/* faq view*/
+	@GetMapping("/admin/cs/faq/view")
+	public String faqview(Model model, int no, String cate, String cate2) {
+		ArticleVO faq = service.selectArticle(no);
+		model.addAttribute("faq",faq);
+		
+		return "/admin/cs/faq/view";
+	}
+	
+	/* faq modify*/
+	@GetMapping("/admin/cs/faq/modify")
+	public String faqmodify(Model model, int no, String cate, String cate2) {
+		ArticleVO modify = service.selectArticle(no);
+		model.addAttribute("modify",modify);
+		
+		return "/admin/cs/faq/modify";
+	}
+	
+	/* faq modify post*/
+	@PostMapping("/admin/cs/faq/modify")
+	@ResponseBody
+	public Map<String, Integer> faqmodify(Principal principal, @RequestParam("cate") String cate, @RequestParam("c2Name") String c2Name, @RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("no") Integer no) {
+		System.out.println("cate : " + cate);
+		String uid = principal.getName();
+		System.out.println("uid : " + uid);
+		
+		
+		String cate2 = service.selectCate2(c2Name);
+		System.out.println("cate2 : " + cate2);
+		
+		
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String regip 	= req.getRemoteAddr();
+		
+		int result = service.updateFaq(uid, cate, cate2, title, content, regip, no);
+		
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", result);
+		return map;
+	}
+	
 	/* qna 리스트 */
 	@GetMapping("/admin/cs/qna/list")
 	public String qnalist() {
 		return "/admin/cs/qna/list";
 	}
 	
+	/* qna view */
+	@GetMapping("/admin/cs/qna/view")
+	public String qnaview(Model model, int no, String cate, String cate2) {
+		ArticleVO qna = service.selectArticle(no);
+		int on = service.selectCountParent(no);
+		if(on != 0) {
+		int parent = no;
+		ArticleVO response = service.selectResponse(parent);
+		model.addAttribute("response", response);
+		}
+		
+		model.addAttribute("qna", qna);
+		
+		model.addAttribute("cate", cate);
+		model.addAttribute("cate2", cate2);
+		return "/admin/cs/qna/view";
+	}
+	
+	/* qna reply */
+	@GetMapping("/admin/cs/qna/reply")
+	public String qnareply(Model model, int no, String cate, String cate2) {
+		ArticleVO qna = service.selectArticle(no);
+		
+		model.addAttribute("qna", qna);
+		
+		model.addAttribute("cate", cate);
+		model.addAttribute("cate2", cate2);
+		return "/admin/cs/qna/reply";
+	}
+	
+	/* qna reply 답변 등록 */
+	@PostMapping("/admin/cs/qna/reply")
+	@ResponseBody
+	public Map<String, Integer> qnawrite(Principal principal, @RequestParam("content") String content, @RequestParam("no") String no) {
+		String uid = principal.getName();
+		System.out.println("uid : " + uid);
+		int num = Integer.parseInt(no);
+		
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String regip 	= req.getRemoteAddr();
+		
+		int result = service.insertReply(uid, content, num, regip);
+		
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", result);
+		return map;
+	}
 }

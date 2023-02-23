@@ -36,5 +36,6 @@ public class ArticleVO {
 	
 	// 카테고리 이름 출력을 위해 추가
 	public String c2Name;
+	public String cName;
 	
 }

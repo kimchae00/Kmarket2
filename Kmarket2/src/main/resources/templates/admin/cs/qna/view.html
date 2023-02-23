@@ -11,36 +11,42 @@
                     <table>
                         <tr>
                             <td>유형</td>
-                            <td>회원 - 가입</td>
+                            <td>[[${qna.cName}]] - [[${qna.c2Name}]]</td>
                         </tr>
                         <tr>
                             <td>제목</td>
-                            <td>아이디를 여러 개 사용할 수 있나요?
+                            <td>[[${qna.title}]]
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
                                 <p>
-                                    개인적인 사정으로 아이드를 3개 사용했으면 하는데</br>
-                                    사용할 수 있나요?
+                                    [[${qna.content}]]
                                 </p>
                             </td>
                         </tr>
+                        <th:block th:if="${response} ne null">
                         <tr>
                             <td>답변</td>
                             <td>
                                 <p>
-                                    대한민국 No1 오픈마켓 Kmarket</br>
-                                    안녕하세요. Chhak 고객님 저희 Kmarket을 이용해 주셔서 감사합니다.</br>
-                                    안타깝게도 개인회원은 1개의 계정만 사용할 수 있습니다.</br>
-                                    문의하신 내용에 만족하셨나요?
+                                    [[${response.content}]]
                                 </p>
                             </td>
                         </tr>
+                        </th:block>
+                        <th:block th:if="${response} eq null">
+                        </th:block>
                     </table>
-                    <a href="./list.html">목록</a>
-                    <a href="#">삭제</a>
+                    <th:block th:if="${response} ne null">
+                    	<a>목록</a>
+                    	<a>삭제</a>
+                    </th:block>
+                    <th:block th:if="${response} eq null">
+                    	<a>목록</a>
+                    	<a>추가</a>
+                    </th:block>
                 </section>
             </section>
         </main>

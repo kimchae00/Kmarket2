@@ -1,4 +1,36 @@
 <th:block th:include="@{admin/_header.html}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+      	$(function(){
+      		$('.btnSubmit').click(function(){
+			let content = $('.reply').val();
+			let no = $('.no').val();
+			
+			let jsonData = {
+					content: content,
+					no: no
+			}
+			
+			console.log(jsonData);
+			
+			$.ajax({
+				url: '/Kmarket2/admin/cs/qna/reply',
+				type: 'post',
+				data: jsonData,
+				dataType: 'json',
+				success: function(data){
+					console.log("전송1")
+					
+					if(data.result > 0){
+						console.log("전송2")
+						alert('정상적으로 작성되었습니다');
+						location.href="/Kmarket2/admin/cs/";
+					}
+				}
+      		});
+      	});
+      	});
+</script>
             <section id="admin-qna-reply">
                 <nav>
                     <h3>문의하기 답변</h3>
@@ -11,30 +43,30 @@
                     <table>
                         <tr>
                             <td>유형</td>
-                            <td>회원 - 가입</td>
+                            <td>[[${qna.cName}]] - [[${qna.c2Name}]]</td>
                         </tr>
                         <tr>
                             <td>제목</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>[[${qna.title}]]</td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                                <p>
-                                    개인회원하고 법인회원하고 차이를 알고 싶어요. 그리고 법입회원으로 가입하면</br>
-                                    혜택이 있나요?</br>
-                                    마지막으로 법인가입 하려면 어떻게 해야 하죠?</br>
-                                    알려주세요.
+                                <p class="content">
+                                    [[${qna.content}]]
                                 </p>
+                                <input type="hidden" class="no" th:value="${qna.no}">
                             </td>
                         </tr>
                         <tr>
                             <td>답변</td>
-                            <td><input type="text"></td>
+                            <td>
+                            	<textarea name="content" class="reply"></textarea>
+                            </td>
                         </tr>
                     </table>
                     <a href="./list.html">목록</a>
-                    <a href="./modify.html">답변등록</a>
+                    <a class="btnSubmit">답변등록</a>
                     <a href="#">삭제</a>
                 </section>
             </section>
