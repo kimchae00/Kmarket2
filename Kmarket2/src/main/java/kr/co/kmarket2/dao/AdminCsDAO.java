@@ -23,8 +23,11 @@ public interface AdminCsDAO {
 	// notice 공지 쓰기
 	public int insertNotice(String uid, String cate, String title, String content, String regip);
 	
-	// notice 공지 보기
+	// 글 보기
 	public ArticleVO selectArticle(int no);
+	
+	// notice 글보기
+	public ArticleVO selectNotice(int no);
 	
 	// notice 답변 보기
 	public ArticleVO selectResponse(int parent);

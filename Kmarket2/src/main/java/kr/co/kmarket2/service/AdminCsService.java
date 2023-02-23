@@ -50,6 +50,10 @@ public class AdminCsService {
 		return dao.selectCountNotice(cate);
 	}
 	
+	public ArticleVO selectNotice(int no) {
+		return dao.selectNotice(no);
+	}
+	
 	public List<ArticleVO> selectNotices(String cate) {
 		return dao.selectNotices(cate);
 	}

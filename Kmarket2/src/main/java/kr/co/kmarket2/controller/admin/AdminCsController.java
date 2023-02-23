@@ -42,7 +42,7 @@ public class AdminCsController {
 	@GetMapping("/admin/cs/notice/view")
 	public String noticeview(Model model, int no, String group, String cate) {
 		
-		ArticleVO notice = service.selectArticle(no);
+		ArticleVO notice = service.selectNotice(no);
 		
 		model.addAttribute("notice", notice);
 		model.addAttribute("cate", cate);
@@ -74,7 +74,7 @@ public class AdminCsController {
 	@GetMapping("/admin/cs/notice/modify")
 	public String noticemodify(Model model, int no, String group, String cate) {
 		
-		ArticleVO article = service.selectArticle(no);
+		ArticleVO article = service.selectNotice(no);
 		
 		model.addAttribute("article", article);
 		model.addAttribute("cate", cate);
