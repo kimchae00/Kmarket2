@@ -9,6 +9,8 @@ import kr.co.kmarket2.dao.MyPageDAO;
 import kr.co.kmarket2.dao.TermsPolicyDAO;
 import kr.co.kmarket2.vo.ArticleVO;
 import kr.co.kmarket2.vo.MemberVO;
+import kr.co.kmarket2.vo.OrderVO;
+import kr.co.kmarket2.vo.ReviewVO;
 import kr.co.kmarket2.vo.TermsBuyerVO;
 import kr.co.kmarket2.vo.TermsFinanceVO;
 import kr.co.kmarket2.vo.TermsLocationVO;
@@ -37,6 +39,24 @@ public class MyPageService {
 	
 	public int selectCountTotal(String uid) {
 		return dao.selectCountTotal(uid);
+	}
+	
+	//리뷰하기
+	public List<ReviewVO> selectReviewMore(String uid, int start){
+		return dao.selectReviewMore(uid, start);
+	}
+	
+	public List<ReviewVO> selectReview(String uid){
+		return dao.selectReview(uid);
+	}
+	
+	public int selectCountReview(String uid) {
+		return dao.selectCountReview(uid);
+	}
+
+	//상품전체 내역
+	public List<OrderVO> selectOrderMore(String ordUid){
+		return dao.selectOrderMore(ordUid);
 	}
 	
 
@@ -89,5 +109,6 @@ public class MyPageService {
 			
 			return groups;
 		}
+		
 
 }

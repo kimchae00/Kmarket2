@@ -22,5 +22,39 @@
 	<select id="selectCountTotal" resultType="int">
 		select count(`no`) from `km_article` WHERE `group`= 'qna' and `uid`=#{uid};
 	</select>
-
+	
+	<!-- 리뷰하기-->
+	
+	<select id="selectCountReview" resultType="int">
+		select count(`revNo`) from `km_product_review` WHERE `uid`=#{uid};
+	</select>
+	
+	<select id="selectReviewMore" resultType="kr.co.kmarket2.vo.ReviewVO">
+		SELECT a.*, b.* from `km_product_review` AS a
+		JOIN `km_product` AS b
+		ON a.prodNo = b.prodNo
+		WHERE `uid`=#{uid} limit #{start}, 10;
+	</select>
+	
+	<select id="selectReview" resultType="kr.co.kmarket2.vo.ReviewVO">
+	SELECT a.*, b.* from `km_product_review` AS a
+		JOIN `km_product` AS b
+		ON a.prodNo = b.prodNo
+		WHERE `uid`=#{uid} limit 3;	
+	</select>
+	
+	<!--전체주문내역-->
+	<select id="selectOrderMore" resultType="kr.co.kmarket2.vo.OrderVO">
+		SELECT a.*,b.* from `km_product_order` AS a
+			JOIN `km_product` AS b
+			ON a.prodNo =  b.prodNo	
+			where `ordUid`=#{ordUid};
+	</select>
+	
+	<select id="selectOrder" resultType="kr.co.kmarket2.vo.OrderVO">
+		SELECT a.*,b.* from `km_product_order` AS a
+			JOIN `km_product` AS b
+			ON a.prodNo =  b.prodNo	
+			where `ordUid`=#{ordUid} limit 3;
+	</select>
 </mapper>
