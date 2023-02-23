@@ -70,199 +70,28 @@
                             <th>날짜</th>
                             <th>관리</th>
                         </tr>
-                        <tr>
+                        <tr th:each="faqs : ${faqs}">
                             <td>
                                 <label>
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
+                            <td>[[${faqs.no}]]</td>
+                            <td>[[${faqs.cName}]]</td>
+                            <td>[[${faqs.c2Name}]]</td>
                             <td>
-                                <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
+                                <a th:href="@{/admin/cs/faq/view(group=${faqs.group},no=${faqs.no},cate=${faqs.cate})}">[[${faqs.title}]]</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>[[${faqs.hit}]]</td>
+                            <td>[[${faqs.rdate}]]</td>
                             <td>
                                 <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>9</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>
-                                <a href="./view.html">본인인증 시 이미 가입되어 있는 정보라고 나옵니다.</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>8</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>
-                                <a href="./view.html">아이디를 여러 개 사용할 수 있나요?</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>7</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>
-                                <a href="./view.html">회원 종류 및 혜택 안내</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>6</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>
-                                <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>5</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>
-                                <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>4</td>
-                            <td>회원</td>
-                            <td>탈퇴</td>
-                            <td>
-                                <a href="./view.html">개인회원과 법인회원에 차이가 있나요?</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>3</td>
-                            <td>회원</td>
-                            <td>탈퇴</td>
-                            <td>
-                                <a href="./view.html">회원탈퇴 후 재가입이 가능한가요?</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>2</td>
-                            <td>회원</td>
-                            <td>탈퇴</td>
-                            <td>
-                                <a href="./view.html">회원탈퇴는 어떻게 하나요? </a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="all">
-                                </label>
-                            </td>
-                            <td>1</td>
-                            <td>회원</td>
-                            <td>탈퇴</td>
-                            <td>
-                                <a href="./view.html">탈퇴하면 개인정보는 모두 삭제되나요?</a>
-                            </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
-                            <td>
-                                <a href="./list.html">[삭제]</a>
-                                <a href="./modify.html">[수정]</a>
+                                <a th:href="@{/admin/cs/faq/modify(group=${faqs.group},no=${faqs.no},cate=${faqs.cate})}">[수정]</a>
                             </td>
                         </tr>
                     </table>
                     <input type="button" value="선택삭제">
-                    <a href="./write.html">작성하기</a>
+                    <a th:href="@{/admin/cs/faq/write}">작성하기</a>
                 </section>
             </section>
         </main>

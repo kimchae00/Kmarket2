@@ -536,7 +536,7 @@ p.alert {
     border: 1px solid #454c5f;
     text-decoration: none;
 }
-#admin-notice-list .paging > .num > a.on {
+#admin-notice-list .paging > .num > a.current {
     color: #fe434c;
     font-weight: bold;
 }
@@ -768,7 +768,7 @@ p.info {
     border: 1px solid #454c5f;
     text-decoration: none;
 }
-#admin-faq-list .paging > .num > a.on {
+#admin-faq-list .paging > .num > a.current {
     color: #fe434c;
     font-weight: bold;
 }
@@ -1001,7 +1001,7 @@ p.info {
     border: 1px solid #454c5f;
     text-decoration: none;
 }
-#admin-qna-list .paging > .num > a.on {
+#admin-qna-list .paging > .num > a.current {
     color: #fe434c;
     font-weight: bold;
 }

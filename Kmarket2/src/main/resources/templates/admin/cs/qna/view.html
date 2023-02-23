@@ -40,12 +40,12 @@
                         </th:block>
                     </table>
                     <th:block th:if="${response} ne null">
-                    	<a>목록</a>
+                    	<a th:href="@{/admin/cs/qna/list?group=qna}">목록</a>
                     	<a>삭제</a>
                     </th:block>
                     <th:block th:if="${response} eq null">
-                    	<a>목록</a>
-                    	<a>추가</a>
+                    	<a th:href="@{/admin/cs/qna/list?group=qna}">목록</a>
+                    	<a th:href="@{/admin/cs/qna/reply(group=${qna.group},no=${qna.no},cate=${qna.cate})}">추가</a>
                     </th:block>
                 </section>
             </section>

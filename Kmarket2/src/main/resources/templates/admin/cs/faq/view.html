@@ -26,8 +26,8 @@
                             </td>
                         </tr>
                     </table>
-                    <a href="./list.html">목록</a>
-                    <a href="./modify.html">수정</a>
+                    <a th:href="@{/admin/cs/faq/list?group=faq}">목록</a>
+                    <a th:href="@{/admin/cs/faq/modify(group=${faq.group},no=${faq.no},cate=${faq.cate})}">수정</a>
                     <a href="#">삭제</a>
                 </section>
             </section>
