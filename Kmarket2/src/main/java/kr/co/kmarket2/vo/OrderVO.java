@@ -7,7 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class OrderVO {
 	
 	public int ordNo;
@@ -34,5 +38,8 @@ public class OrderVO {
 	private String thumb1;
 	private String thumb2;
 	private String thumb3;
+	
+	private int count;
+	private int total;
 
 }

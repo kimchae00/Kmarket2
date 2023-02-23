@@ -62,7 +62,6 @@
 		// 총 합계
 		$('.allCheck, .check').click(function(){
 			
-			let dis = $('input[name=discount]').val();
 			var totalCount = 0;
 			var totalPrice = 0;
 			var totalDiscount = 0;
@@ -76,11 +75,11 @@
 					totalCount = totalCount + totalcount;
 				}
 				if($(this).is(':checked') == true){
-					var totalprice = parseInt($(this).parents('tr').find('input[name=price]').val());
+					var totalprice = parseInt($(this).parents('tr').find('input[name=price]').val())*totalcount;
 					totalPrice = totalPrice + totalprice;
 				}
 				if($(this).is(':checked') == true){
-					var totaldiscount = parseInt($(this).parents('tr').find('input[name=discount]').val());
+					var totaldiscount = Math.round(totalprice*(parseInt($(this).parents('tr').find('input[name=discount]').val()))/100);
 					totalDiscount = totalDiscount + totaldiscount;
 				}
 				if($(this).is(':checked') == true){
@@ -88,14 +87,13 @@
 					totalDelivery = totalDelivery + totaldelivery;
 				}
 				if($(this).is(':checked') == true){
-					var totalpoint = parseInt($(this).parents('tr').find('input[name=point]').val());
+					var totalpoint = totalcount*parseInt($(this).parents('tr').find('input[name=point]').val());
 					totalPoint = totalPoint + totalpoint;
 				}
 				if($(this).is(':checked') == true){
 					var total = parseInt($(this).parents('tr').find('input[name=total]').val());
 					totalSum = totalSum + total;
 				}
-				totalDiscount = Math.round(totalPrice*(dis/100));
 			});
 		$('.totalCount').text(totalCount);
 		$('.totalPrice').text(Number(totalPrice).toLocaleString());			
@@ -146,7 +144,7 @@
                         <thead>
                             <tr>
                                 <th><input type="checkbox" name="all" class="allCheck"></th>
-                                <th>상품명</th>
+                                <th style="width: 65%">상품명</th>
                                 <th>총수량</th>
                                 <th>판매가</th>
                                 <th>할인</th>

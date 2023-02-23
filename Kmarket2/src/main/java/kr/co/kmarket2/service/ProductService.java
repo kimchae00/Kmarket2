@@ -1,12 +1,19 @@
 package kr.co.kmarket2.service;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.kmarket2.dao.ProductDAO;
 import kr.co.kmarket2.vo.CartVO;
+import kr.co.kmarket2.vo.OrderItemVO;
+import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
@@ -74,15 +81,37 @@ public class ProductService {
 	public List<CartVO> selectCart(String uid){
 		return dao.selectCart(uid);
 	}
-	public int deleteCart(List<String> chks) {
-		return dao.deleteCart(chks);
+	public int deleteCartByCartNo(@Param("cartNo") int cartNo) {
+		return dao.deleteCartByCartNo(cartNo);
+	}
+	public int deleteCartByProdNo(List<String> prodNo) {
+		return dao.deleteCartByProdNo(prodNo);
 	}
 	
 	// 주문
 	public List<CartVO> selectCartByCartNo(List<String> cartNo){
 		return dao.selectCartByCartNo(cartNo);
 	}
+	public int insertOrder(OrderVO order) {
+		return dao.insertOrder(order);
+	}
 	
+	public CartVO selectCartByProdNo(String prodNo, String uid) {
+		return dao.selectCartByProdNo(prodNo, uid);
+	}
+	
+	public OrderVO selectOrderByUid(String uid) {
+		return dao.selectOrderByUid(uid);
+	}
+	
+	public int insertOrderItem(OrderItemVO item) {
+		return dao.insertOrderItem(item);
+	}
+	
+	
+	public OrderVO selectOrder(int ordNo){
+        return dao.selectOrder(ordNo);
+    }
 	// 검색
 	public List<ProductVO> searchProduct(String keyword){
 		return dao.searchProduct(keyword);

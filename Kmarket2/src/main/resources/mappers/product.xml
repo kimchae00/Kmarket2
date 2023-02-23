@@ -56,13 +56,73 @@
     	select a.*, b.`prodName`, b.`thumb1`, b.`descript`, b.`prodCate1`, b.`prodCate2` from `km_product_cart` as a join `km_product` as b on a.prodNo=b.prodNo where `uid`=#{uid};
     </select>
     
-    <delete id="deleteCart">
-    	delete from `km_product_cart` where `cartNo` in (<foreach collection="list" item="chks" separator=",">#{chks}</foreach>);
+    <delete id="deleteCartByProdNo">
+    	delete from `km_product_cart` where `prodNo`=#{prodNo};
     </delete>
+    <delete id="deleteCartByCartNo">
+    	delete from `km_product_cart` where `cartNo` in (<foreach collection="arr" item="cartNo" separator=",">#{cartNo}</foreach>);
+    </delete>
+    
+    <select id="selectCartByProdNo" resultType="kr.co.kmarket2.vo.CartVO">
+    	select * from `km_product_cart` where `prodNo`=#{prodNo} and `uid`=#{uid};
+    </select>
+    <select id="selectOrderByUid" resultType="kr.co.kmarket2.vo.OrderVO">
+    	select * from `km_product_order` where `ordUid`=#{uid} order by `ordDate` desc limit 1;
+    </select>
     
     <select id="selectCartByCartNo" resultType="kr.co.kmarket2.vo.CartVO">
     	select a.*, b.`prodName`, b.`thumb1`, b.`descript`, b.`prodCate1`, b.`prodCate2` from `km_product_cart` as a join `km_product` as b on a.prodNo=b.prodNo where `cartNo` in (<foreach collection="list" item="cartNo" separator=",">#{cartNo}</foreach>);
     </select>
+    
+   <insert id="insertOrder">
+        INSERT INTO `km_product_order`
+       		 SET
+            `ordUid`= #{ordUid},
+            `ordCount`= #{ordCount},
+            `ordPrice`= #{ordPrice},
+            `ordDiscount`= #{ordDiscount},
+            `ordDelivery`= #{ordDelivery},
+            `ordTotPrice`= #{ordTotPrice},
+            `savePoint`= #{savePoint},
+            `usedPoint`= #{usedPoint},
+            `recipName`= #{recipName},
+            `recipHp`= #{recipHp},
+            `recipZip`= #{recipZip},
+            `recipAddr1`= #{recipAddr1},
+            `recipAddr2`= #{recipAddr2},
+            `ordPayment`= #{ordPayment},
+            `ordComplete`= #{ordComplete},
+            `ordDate`= NOW();
+    </insert>
+    
+    <insert id="insertOrderItem" parameterType="kr.co.kmarket2.vo.OrderItemVO">
+        insert into `km_product_order_item` values (#{ordNo}, #{prodNo}, #{count}, #{price}, #{discount}, #{point}, #{delivery}, #{total});
+    </insert>
+    
+    <insert id="insertOrderItemNoCart" parameterType="map">
+        INSERT INTO `km_product_order_item`
+        (`ordNo`, `prodNo`, `count`, `price`, `discount`, `point`, `delivery`, `total`)
+        SELECT #{ordNo}, #{prodNo}, #{ordCount}, `price`, `discount`, `point`, `delivery`, #{ordTotPrice}
+        FROM `km_product` as a
+        WHERE `prodNo`= #{prodNo};
+    </insert>
+    
+    <select id="selectOrderOrderNo" resultType="kr.co.kmarket2.vo.OrderVO">
+    	SELECT `ordNo` FROM `km_product_order` WHERE `ordUid`=#{ordUid} ORDER BY `ordNo` DESC LIMIT 1;
+    </select>
+
+    <select id="selectOrderNo" resultType="kr.co.kmarket2.vo.OrderVO">
+    	SELECT * FROM `km_product_order` WHERE `ordNo`=#{ordNo};
+    </select>
+    
+     <select id="selectOrderItem" resultType="kr.co.kmarket2.vo.OrderItemVO">
+        select a.*, b.* from `km_product_order_item` as a 
+    	join `km_product` as b 
+    	on a.prodNo = b.prodNo 
+    	where `ordNo` =#{ordNo};
+    </select>
+    
+    
     
     <select id="searchProduct" resultType="kr.co.kmarket2.vo.ProductVO">
     	select * from `km_product` where `prodName`Like CONCAT('%',#{keyword},'%') order by `sold` desc;
