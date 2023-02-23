@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Kmarket Inc. 상상하는 모든것</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/company.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(function(){
@@ -22,18 +29,17 @@
             });
         });
     </script>
-    <link rel="stylesheet" href="./css/company.css">
 </head>
 <body>
     <div id="wrapper">
         <header style="background: transparent;">
             <div>
-                <a href="#"><img src="./img/company_header_logo2.png" alt="로고2" width="180px"></a>
+                <a th:href="@{/index}"><img th:src="@{/img/company_header_logo2.png}" alt="로고2" width="180px"></a>
                 <ul>
-                    <li><a href="#">회사소개</a></li>
-                    <li><a href="#">전자공시</a></li>
-                    <li><a href="#">홍보채널</a></li>
-                    <li><a href="#">투명경영</a></li>
+              		<li><a th:href="@{/company/introduce}">회사소개</a></li>
+                    <li><a th:href="@{/company/notice}">전자공시</a></li>
+                    <li><a th:href="@{/company/promote}">홍보채널</a></li>
+                    <li><a th:href="@{/company/manage}">투명경영</a></li>
                 </ul>
             </div>
         </header>

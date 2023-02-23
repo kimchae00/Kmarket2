@@ -65,12 +65,12 @@
     </select>
     
     <select id="searchProduct" resultType="kr.co.kmarket2.vo.ProductVO">
-    	select * from `km_product` where `prodName`=#{keyword} order by `sold` desc;
+    	select * from `km_product` where `prodName`Like CONCAT('%',#{keyword},'%') order by `sold` desc;
     </select>
 
 
     <select id="searchProductTotal" resultType="int">
-    	select count(`prodNo`) from `km_product` where `prodName`=#{keyword};
+    	select count(`prodNo`) from `km_product` where `prodName` Like CONCAT('%',#{keyword},'%');
     </select>
     
 	

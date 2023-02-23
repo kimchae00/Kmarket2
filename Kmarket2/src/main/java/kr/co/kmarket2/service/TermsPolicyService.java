@@ -32,19 +32,19 @@ public class TermsPolicyService {
 		return dao.selectTermsBuyer();
 	}
 	
-	public TermsSellerVO selectTermsSeller() {
+	public List<TermsSellerVO> selectTermsSeller() {
 		return dao.selectTermsSeller();
 	}
 	
-	public TermsFinanceVO selectTermsFinance() {
+	public List<TermsFinanceVO> selectTermsFinance() {
 		return dao.selectTermsFinance();
 	}
 	
-	public TermsLocationVO selectTermsLocation() {
+	public List<TermsLocationVO> selectTermsLocation() {
 		return dao.selectTermsLocation();
 	}
 	
-	public TermsPrivacyVO selectTermsPrivacy() {
+	public List<TermsPrivacyVO> selectTermsPrivacy() {
 		return dao.selectTermsPrivacy();
 	}
 	

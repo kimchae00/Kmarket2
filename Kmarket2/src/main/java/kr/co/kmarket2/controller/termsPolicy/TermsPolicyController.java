@@ -49,6 +49,9 @@ public class TermsPolicyController {
 		model.addAttribute("prodCate1", prodCate1);
 		model.addAttribute("prodCate2", prodCate2);
 		
+		List<TermsFinanceVO> finances = service.selectTermsFinance();
+		model.addAttribute("finances",finances);
+		
 		return "termsPolicy/finance";
 	}
 	
@@ -61,6 +64,10 @@ public class TermsPolicyController {
 		model.addAttribute("cate2s", cate2s);
 		model.addAttribute("prodCate1", prodCate1);
 		model.addAttribute("prodCate2", prodCate2);
+		
+		List<TermsLocationVO> locations = service.selectTermsLocation();
+		model.addAttribute("locations", locations);
+		
 		
 		return "termsPolicy/location";
 	}
@@ -76,6 +83,10 @@ public class TermsPolicyController {
 		model.addAttribute("prodCate1", prodCate1);
 		model.addAttribute("prodCate2", prodCate2);
 		
+		List<TermsPrivacyVO> ps = service.selectTermsPrivacy();
+		model.addAttribute("ps", ps);
+		
+		
 		return "termsPolicy/privacy";
 	}
 	
@@ -88,6 +99,9 @@ public class TermsPolicyController {
 		model.addAttribute("cate2s", cate2s);
 		model.addAttribute("prodCate1", prodCate1);
 		model.addAttribute("prodCate2", prodCate2);
+		
+		List<TermsSellerVO> ss = service.selectTermsSeller();
+		model.addAttribute("ss", ss);
 		
 		return "termsPolicy/seller";
 	}

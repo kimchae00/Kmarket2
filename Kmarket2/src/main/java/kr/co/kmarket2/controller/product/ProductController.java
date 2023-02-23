@@ -197,20 +197,5 @@ public class ProductController {
 		model.addAttribute("cate2s", cate2s);
 		return "product/complete";
 	}
-	@GetMapping("product/search")
-	public String search(Model model, HttpSession sess, String keyword) {
-		List<ProdCate1VO> cate1s = service.selectCate1();
-		List<ProdCate2VO> cate2s = service.selectCate2();
-		
-		model.addAttribute("cate1s", cate1s);
-		model.addAttribute("cate2s", cate2s);
-		
-		List<ProductVO> products = (List<ProductVO>) sess.getAttribute("products");
-		int result = service.searchProductTotal(keyword);
-		
-		model.addAttribute("products", products);
-		model.addAttribute("result", result);
-		
-		return "product/search";
-	}
+
 }
