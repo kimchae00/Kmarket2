@@ -13,5 +13,21 @@
 	<select id="selectTermsBuyer" resultType="kr.co.kmarket2.vo.TermsBuyerVO">
 		select * from `km_terms_policy_buyer`;
 	</select>
+
+	<select id="selectTermsSeller" resultType="kr.co.kmarket2.vo.TermsSellerVO">
+		select * from `km_terms_policy_seller`;
+	</select>
+
+	<select id="selectTermsFinance" resultType="kr.co.kmarket2.vo.TermsFinanceVO">
+		select * from `km_terms_policy_finance`;
+	</select>
+
+	<select id="selectTermsLocation" resultType="kr.co.kmarket2.vo.TermsLocationVO">
+		select * from `km_terms_policy_location`;
+	</select>
+
+	<select id="selectTermsPrivacy" resultType="kr.co.kmarket2.vo.TermsPrivacyVO">
+		select * from `km_terms_policy_privacy`;
+	</select>
 	
 </mapper>

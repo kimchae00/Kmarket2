@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.co.kmarket2.dao.ProductDAO;
 import kr.co.kmarket2.vo.CartVO;
+import kr.co.kmarket2.vo.OrderItemVO;
+import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
@@ -81,6 +83,12 @@ public class ProductService {
 	// 주문
 	public List<CartVO> selectCartByCartNo(List<String> cartNo){
 		return dao.selectCartByCartNo(cartNo);
+	}
+	public int insertOrder(OrderVO vo) {
+		return dao.insertOrder(vo);
+	}
+	public int insertOrderItem(OrderItemVO vo) {
+		return dao.insertOrderItem(vo);
 	}
 	
 	// 검색

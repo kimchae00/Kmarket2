@@ -24,12 +24,12 @@ public interface TermsPolicyDAO {
 
 	public List<TermsBuyerVO> selectTermsBuyer();
 	
-	public TermsSellerVO selectTermsSeller();
+	public List<TermsSellerVO> selectTermsSeller();
 	 
-	public TermsFinanceVO selectTermsFinance();
+	public List<TermsFinanceVO> selectTermsFinance();
 	
-	public TermsLocationVO selectTermsLocation();
+	public List<TermsLocationVO> selectTermsLocation();
 	
-	public TermsPrivacyVO selectTermsPrivacy();
+	public List<TermsPrivacyVO> selectTermsPrivacy();
 	
 }

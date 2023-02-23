@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import kr.co.kmarket2.vo.CartVO;
+import kr.co.kmarket2.vo.OrderItemVO;
+import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
@@ -44,6 +46,8 @@ public interface ProductDAO {
 	
 	// order
 	public List<CartVO> selectCartByCartNo(List<String> cartNo);
+	public int insertOrder(OrderVO vo);
+	public int insertOrderItem(OrderItemVO vo);
 	
 	// search
 	public List<ProductVO> searchProduct(String keyword);

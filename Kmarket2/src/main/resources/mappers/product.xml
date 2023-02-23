@@ -64,6 +64,14 @@
     	select a.*, b.`prodName`, b.`thumb1`, b.`descript`, b.`prodCate1`, b.`prodCate2` from `km_product_cart` as a join `km_product` as b on a.prodNo=b.prodNo where `cartNo` in (<foreach collection="list" item="cartNo" separator=",">#{cartNo}</foreach>);
     </select>
     
+    <insert id="insertOrder">
+    	insert into `km_product_order` set `ordUid`=#{ordUid}, `ordCount`=#{ordCount},`ordPrice`=#{ordPrice},`ordDiscount`=#{ordDiscount},`ordDelivery`=#{ordDelivery},`savePoint`=#{savePoint}, `usedPoint`=#{usedPoint}, `ordTotPrice`=#{ordTotPrice}, `recipName`=#{recipName}, `recipHp`=#{recipHp}, `recipZip`=#{recipZip}, `recipAddr1`=#{recipAddr1}, `recipAddr2`=#{recipAddr2}, `ordPayment`=#{ordPayment}, `ordComplete`=#{ordComplete}, `ordDate`=NOW();
+    </insert>
+    
+    <insert id="insertOrderItem">
+    	insert into `km_product_order_item` set `ordNo`=#{ordNo}, `prodNo`=#{prodNo},`count`=#{count},`price`=#{price},`discount`=#{discount},`point`=#{point}, `delivery`=#{delivery}, `total`=#{total};
+    </insert>
+    
     <select id="searchProduct" resultType="kr.co.kmarket2.vo.ProductVO">
     	select * from `km_product` where `prodName`=#{keyword} order by `sold` desc;
     </select>

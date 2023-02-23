@@ -6,32 +6,39 @@
 		let isOnce = 0;
 		
 		$('.btnPoint').click(function() {
-			let point = $('input[name=point]').val();
+			let point = parseInt($('input[name=point]').val());
 			let userPoint = $('.userPoint').text();
+			console.log(userPoint);
+			console.log(point);
 			
-			if(point < 5000){
+			if(userPoint < 5000){
 				alert('5,000점 이상부터 사용 가능합니다.');
 				return false;
-			}else if(point >= 5000){
-				if(point > userPoint){
+			}else{
+				if(userPoint < point){
 					alert('현재 포인트보다 많이 사용할 수 없습니다.');
 					return false;
+				}else if(point < 5000){
+					alert('5,000점 이상부터 사용 가능합니다.');
+					return false;
+				}else{
+					if(isOnce == 0){
+						$('.pointDC').text('-'+Number(point).toLocaleString());
+						const finTot = parseInt($('.finTot').text().replaceAll(',',''));
+						let result = finTot-point;
+						$('.pointDC').removeAttr("style");
+						$('.finTot').text(result.toLocaleString());
+						isOnce = 1;
+					}else{
+						alert('한 번 적용이 가능합니다.');
+						return false;
+					}
 				}
 				
-				if(isOnce == 0){
-					$('.pointDC').text(Number(point).toLocaleString());
-					const finTot = parseInt($('.finTot').text().replaceAll(',',''));
-					let result = finTot-point;
-					$('.pointDC').removeAttr("style");
-					$('.finTot').text(result.toLocaleString());
-					isOnce = 1;
-				}else{
-					alert('한 번 적용이 가능합니다.');
-					return false;
-				}
+				
 			}
 		});
-	
+		
 	});
 
 </script>
@@ -62,10 +69,10 @@
                         <tr>
                             <td>
                                 <article>
-                                    <a th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}"><img th:src="${product.thumb1}"></a>
+                                    <a th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}"><img class="thm" th:src="${product.thumb1}"></a>
                                     <div>
-                                        <h2><a th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}">[[${product.prodName}]]</a></h2>
-                                        <p>>[[${product.descript}]]</p>
+                                        <h2><a class="prdN" th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}">[[${product.prodName}]]</a></h2>
+                                        <p class="dsc">[[${product.descript}]]</p>
                                     </div>
                                 </article>
                             </td>
@@ -95,16 +102,16 @@
                                 </article>
                             </td>
                             <td>[[${cart.count}]]</td>
-                            <td data-th-text="${#numbers.formatInteger(cart.price, 3, 'COMMA')}">[[${cart.price}]]</td>
+                            <td class="prc" data-th-text="${#numbers.formatInteger(cart.price, 3, 'COMMA')}"></td>
                             <td>[[${cart.discount}]]%</td>
-                            <td data-th-text="${#numbers.formatInteger(cart.point, 3, 'COMMA')}">[[${cart.point}]]</td>
+                            <td data-th-text="${#numbers.formatInteger(cart.point, 3, 'COMMA')}"></td>
                             <th:block th:if="${cart.delivery == 0}">
                                 <td>무료배송</td>
                             </th:block>
                             <th:block th:unless="${cart.delivery == 0}">
                                 <td class="delivery">[[${cart.delivery}]]</td>
                             </th:block>
-                            <td data-th-text="${#numbers.formatInteger(cart.total, 3, 'COMMA')}">[[${cart.total}]]</td>
+                            <td data-th-text="${#numbers.formatInteger(cart.total, 3, 'COMMA')}"></td>
                         </tr>
                         </th:block>
                         </th:block>
@@ -118,33 +125,52 @@
                             </tr>
                             <tr>
                                 <td>상품금액</td>
-                                <th:block th:if="${product == null}">
-                                		<td class="ordPrice" th:text=${sum}>
-                                		</td>
-                                </th:block>
-                                <th:block th:unless="${product == null}">
-                                	<td class="ordPrice" th:text="${product.price * count}"></td>
-                                </th:block>
+                           		<th:block th:if="${product == null}" >
+                           			<td class="ordPrice" data-th-text="${#numbers.formatInteger(#aggregates.sum(cartList.![price*count]), 3, 'COMMA')}" ></td>
+                           		</th:block>
+                           		<th:block th:unless="${product == null}" >
+                           			<td class="ordPrice" data-th-text="${#numbers.formatInteger(product.price * count, 3, 'COMMA')}"></td>
+                            	</th:block>
                             </tr>
                             <tr>
                                 <td>할인금액</td>
-                                <td class="ordDiscount">-1,000</td>
+                                <th:block th:if="${product == null}" >
+                           			<td class="ordDiscount" data-th-text="'-'+${#numbers.formatInteger(#aggregates.sum(cartList.![count*price*discount/100]), 3, 'COMMA')}" ></td>
+                           		</th:block>
+                           		<th:block th:unless="${product == null}" >
+                           			<td class="ordDiscount" data-th-text="${#numbers.formatInteger(product.price * count*product.discount/100, 3, 'COMMA')}"></td>
+                            	</th:block>
                             </tr>
                             <tr>
                                 <td>배송비</td>
-                                <td class="ordDelivery">0</td>
+                                <th:block th:if="${product == null}" >
+                           			<td class="ordDelivery" data-th-text="${#numbers.formatInteger(#aggregates.sum(cartList.![delivery]), 3, 'COMMA')}" ></td>
+                           		</th:block>
+                           		<th:block th:unless="${product == null}" >
+                           			<td class="ordDelivery" data-th-text="${#numbers.formatInteger(product.delivery, 3, 'COMMA')}"></td>
+                            	</th:block>
                             </tr>
                             <tr>
                                 <td>포인트할인</td>
-                                <td class="pointDC">-1,000</td>
+                                <td class="pointDC">0</td>
                             </tr>
                             <tr>
                                 <td>적립포인트</td>
-                                <td class="savePoint">5,000</td>
+                                <th:block th:if="${product == null}" >
+                           			<td class="savePoint" data-th-text="${#numbers.formatInteger(#aggregates.sum(cartList.![point*count]), 3, 'COMMA')}" ></td>
+                           		</th:block>
+                           		<th:block th:unless="${product == null}" >
+                           			<td class="savePoint" data-th-text="${#numbers.formatInteger(product.point * count, 3, 'COMMA')}"></td>
+                            	</th:block>
                             </tr>
                             <tr>
                                 <td>전체주문금액</td>
-                                <td class="finTot">25,000</td>
+                                <th:block th:if="${product == null}" >
+                           			<td class="finTot" data-th-text="${#numbers.formatInteger(#aggregates.sum(cartList.![total]), 3, 'COMMA')}" ></td>
+                           		</th:block>
+                           		<th:block th:unless="${product == null}" >
+                           			<td class="finTot" data-th-text="${#numbers.formatInteger(product.price * count*(100 - product.discount/100), 3, 'COMMA')}"></td>
+                            	</th:block>
                             </tr>
                         </table>
                         <input type="submit" value="결제하기">
@@ -182,7 +208,7 @@
                         <div>
                             <p>
                                 현재 포인트 : 
-                                <span class="userPoint" sec:authentication="principal.member.point"></span>점
+                                <span class="userPoint" name="userPoint" th:text="${#authentication.principal.member.point}"></span>점
                             </p>
                             <label>
                                 <input type="text" name="point">점 
@@ -196,23 +222,23 @@
                         <div>
                             <span>신용카드</span>
                             <p>
-                                <label><input type="radio" name="payment" value="type1">신용카드 결제</label>
-                                <label><input type="radio" name="payment" value="type2">체크카드 결제</label>
+                                <label><input type="radio" name="payment" th:value="1">신용카드 결제</label>
+                                <label><input type="radio" name="payment" th:value="2">체크카드 결제</label>
                             </p>
                         </div>
                         <div>
                             <span>계좌이체</span>
                             <p>
-                                <label><input type="radio" name="payment" value="type3">실시간 계좌이체</label>
-                                <label><input type="radio" name="payment" value="type4">무통장 입금</label>
+                                <label><input type="radio" name="payment" th:value="3">실시간 계좌이체</label>
+                                <label><input type="radio" name="payment" th:value="4">무통장 입금</label>
                             </p>
                         </div>
                         <div>
                             <span>기타</span>
                             <p>
-                                <label><input type="radio" name="payment" value="type5">휴대폰결제</label>
+                                <label><input type="radio" name="payment" th:value="5">휴대폰결제</label>
                                 <label>
-                                    <input type="radio" name="payment" value="type6">카카오페이
+                                    <input type="radio" name="payment" th:value="6">카카오페이
                                     <img th:src="@{/img/ico_kakaopay.gif}" alt="카카오페이">
                                 </label>
                             </p>
