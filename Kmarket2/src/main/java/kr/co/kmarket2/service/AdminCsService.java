@@ -14,12 +14,28 @@ public class AdminCsService {
 	@Autowired
 	private AdminCsDAO dao;
 	
+	public int insertReply(String uid, String content, int num, String regip) {
+		return dao.insertReply(uid, content, num, regip);
+	}
+	
 	public int insertNotice(String uid, String cate, String title, String content, String regip) {
 		return dao.insertNotice(uid, cate, title, content, regip);
 	}
 	
+	public String selectCate2(String c2Name) {
+		return dao.selectCate2(c2Name);
+	}
+	
+	public int selectCountParent(int no) {
+		return dao.selectCountParent(no);
+	}
+	
 	public ArticleVO selectArticle(int no) {
 		return dao.selectArticle(no);
+	}
+	
+	public ArticleVO selectResponse(int parent) {
+		return dao.selectResponse(parent);
 	}
 	
 	public int selectCountNoticeAll() {
@@ -40,6 +56,10 @@ public class AdminCsService {
 	
 	public int updateNotice(String uid, String cate, String title, String content, String regip, int no) {
 		return dao.updateNotice(uid, cate, title, content, regip, no);
+	}
+	
+	public int updateFaq(String uid, String cate, String cate2,String title, String content, String regip, int no) {
+		return dao.updateFaq(uid, cate, cate2,title, content, regip, no);
 	}
 	
 	

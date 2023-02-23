@@ -11,11 +11,23 @@ import kr.co.kmarket2.vo.ArticleVO;
 @Repository
 public interface AdminCsDAO {
 	
+	// 답변 쓰기
+	public int insertReply(String uid, String content, int num, String regip);
+	
+	// c2Name cate2로 변환
+	public String selectCate2(String c2Name);
+	
+	// parent 존재 여부 확인
+	public int selectCountParent(int no);
+	
 	// notice 공지 쓰기
 	public int insertNotice(String uid, String cate, String title, String content, String regip);
 	
 	// notice 공지 보기
 	public ArticleVO selectArticle(int no);
+	
+	// notice 답변 보기
+	public ArticleVO selectResponse(int parent);
 	
 	// notice 전체 게시글 갯수
 	public int selectCountNoticeAll();
@@ -31,5 +43,8 @@ public interface AdminCsDAO {
 	
 	// notice 공지 수정
 	public int updateNotice(String uid, String cate, String title, String content, String regip, int no);
+	
+	// faq 수정
+	public int updateFaq(String uid, String cate, String cate2, String title, String content, String regip, int no);
 }
 

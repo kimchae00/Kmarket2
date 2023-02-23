@@ -4,24 +4,24 @@
 	$(function(){
 		$("select[name=search]").change(function(){
 			let cate = $(this).val();
-			// console.log("cate : " + cate);
+			 console.log("cate : " + cate);
 			
 			let jsonData ={
 					cate: cate
 			}
 			
+			console.log("jsonData : " + jsonData);
+			
 			$.ajax({
-				url: '/Kmarket2/admin/notice/list',
-				type: 'post',
+				url: '/Kmarket2/admin/cs/notice/list',
+				type: 'get',
 				data: jsonData,
 				dataType: 'json',
 				success: function(data){
-					console.log("전송1")
-					
-					if(data.result > 0){
-						console.log("전송2")
-						alert('정상적으로 작성되었습니다');
-					}
+					console.log("");
+				},
+				error: function(error){
+					console.log(error);
 				}
 			});
 			
@@ -46,14 +46,6 @@
                             <option value="winningEvent">이벤트 당첨</option>
                         </select>
                     </div>
-                    <th:block th:if="${cate} eq null">
-                        	
-                            <tr th:each="articles : ${articles}">
-                                <td><a th:href="@{/cs/notice/view(group=${articles.group},no=${articles.no},cate=${articles.cate})}">[[${articles.title}]]</a></td>
-                                <td>[[${articles.rdate}]]</td>
-                            </tr>
-                            
-                           </th:block>
                     <table>
                         <tr>
                             <th>
@@ -69,39 +61,39 @@
                             <th>관리</th>
                         </tr>
                         <th:block th:if="${cate} eq null">
-                        <tr th:each="articles : ${articles}">
+                        <tr th:each="notices : ${notices}">
                             <td>
                                 <label>
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>[[${articles.no]]</td>
-                            <td>[[${articels.cate}]]</td>
+                            <td>[[${notices.no}]]</td>
+                            <td>[[${notices.cate}]]</td>
                             <td>
                                 <a href="./view.html">[안내] 해외결제 사칭 문자 주의</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>[[${notices.hit}]]</td>
+                            <td>[[${notices.rdate}]]</td>
                             <td>
                                 <a href="#">[삭제]</a>
                                 <a href="#">[수정]</a>
                             </td>
                         </tr>
                         </th:block>
-                        <th:block th:if="${cate} eq null">
-                        <tr>
+                        <th:block th:if="${cate} ne null">
+                        <tr th:each="cates : ${cates}">
                             <td>
                                 <label>
                                     <input type="checkbox" name="all">
                                 </label>
                             </td>
-                            <td>100</td>
-                            <td>고객서비스</td>
+                            <td>[[${cates.no}]]</td>
+                            <td>[[${cates.cate}]]</td>
                             <td>
-                                <a href="./view.html">[안내] 해외결제 사칭 문자 주의</a>
+                                <a href="./view.html">[[${cates.title}]]</a>
                             </td>
-                            <td>120</td>
-                            <td>2023.02.10</td>
+                            <td>[[${cates.hit}]]</td>
+                            <td>[[${cates.rdate}]]</td>
                             <td>
                                 <a href="#">[삭제]</a>
                                 <a href="#">[수정]</a>

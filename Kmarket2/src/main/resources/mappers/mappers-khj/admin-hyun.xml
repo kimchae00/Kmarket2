@@ -4,19 +4,56 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.kmarket2.dao.AdminCsDAO">
 	
+	<!-- 답변 쓰기 -->
+	<insert id="insertReply">
+		insert into `km_article` set `uid`=#{uid}, `content`=#{content}, `parent`=#{num}, `regip`=#{regip}, `rdate`=NOW();
+	</insert>
+	
+	<!-- c2Name cate2로 변환 -->
+	<select id="selectCate2" resultType="String">
+		SELECT cate2 FROM `km_article_cate` WHERE `c2Name`=#{c2Name};
+	</select>
+	
 	<!-- notice 공지 쓰기 -->
 	<insert id="insertNotice">
 		insert into `km_article` set `group`='notice', `uid`=#{uid}, `cate`=#{cate}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW();
 	</insert>
 	
-	<!-- notice 공지 보기 -->
-	<select id="selectArticle" resultType="kr.co.kmarket2.vo.ArticleVO">
-		SELECT * FROM `km_article` where `no`=#{no};
+	<!-- parent 존재 여부 확인 -->
+	<select id="selectCountParent" resultType="Integer">
+		SELECT COUNT(`parent`) FROM `km_article` WHERE `parent`=#{no};
 	</select>
 	
-	<!-- notice 공지 쓰기 -->
+	<!-- notice 공지 보기 -->
+	<select id="selectArticle" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT a.*,b.c2Name,b.cName FROM `km_article` AS a 
+		JOIN `km_article_cate` AS b
+		ON a.cate2=b.cate2
+		where `no`=#{no};
+	</select>
+	
+	<!-- notice 공지 답변 보기 -->
+	<select id="selectResponse" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT * FROM `km_article` WHERE `parent`=#{parent};
+	</select>
+	
+	<!-- notice 공지 수정 -->
 	<update id="updateNotice">
 		update `km_article` set `group`='notice', `uid`=#{uid}, `cate`=#{cate}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW() where `no`=#{no};
 	</update>
 	
+	<!-- notice 리스트 cate 없을때(전체) -->
+	<select id="selectNoticeAll" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT * FROM `km_article` WHERE `group`='notice';
+	</select>
+	
+	<!-- notice 리스트 cate 있을때 -->
+	<select id="selectNotices" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT * FROM `km_article` WHERE `group`='notice' and `cate`=#{cate};
+	</select>
+	
+	<!-- faq 수정 -->
+	<update id="updateFaq">
+		update `km_article` set `group`='faq', `uid`=#{uid}, `cate`=#{cate}, `cate2`=#{cate2}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW() where `no`=#{no};
+	</update>
 </mapper>

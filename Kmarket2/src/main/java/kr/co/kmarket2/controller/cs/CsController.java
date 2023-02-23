@@ -30,10 +30,13 @@ public class CsController {
 	
 	@GetMapping(value= {"/cs", "/cs/index"})
 	public String index(Model model) {
+		
 		List<ArticleVO> notices = service.selectIndexNotice();
 		List<ArticleVO> qna = service.selectIndexQna();
+		
 		model.addAttribute("notices", notices);
 		model.addAttribute("qna", qna);
+		
 		return "cs/index";
 	}
 	
@@ -64,8 +67,7 @@ public class CsController {
 	}
 	
 	@GetMapping("/cs/notice/list")
-
- public String noticeList(Model model, String group, String cate, String pg) {
+	public String noticeList(Model model, String group, String cate, String pg) {
     	
     	//페이징 
     	int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호
