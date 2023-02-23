@@ -7,6 +7,9 @@
 		var keyword = urlParams.get('keyword');
 		$('.group > h3 > strong').text(keyword);
 		
+		if(result==0){
+			$('.search > .searchResult').hide();
+		}
 	});
 
 </script>
@@ -22,7 +25,7 @@
                     </p>
                 </nav>
                 <div class="group">
-		            <h3><strong></strong>검색결과 <em>(총&nbsp;:&nbsp;<span></span>&nbsp;건)</em></h3>
+		            <h3><strong></strong>검색결과 <em>(총&nbsp;:&nbsp;<span>[[${result}]]</span>&nbsp;건)</em></h3>
 		            <form action="#">
 		              <input type="text" name="search"/>
 		              <input type="submit" value="검색"/>
@@ -50,32 +53,33 @@
 
                 
           <!-- 검색목록 -->
-          <table border="0">                  
-            <tr>
+          <table border="0" class="searchResult">                  
+            <tr th:each="product, i:${products}">
               <td><a href="#" class="thumb"><img src="https://via.placeholder.com/120x120" alt="상품이미지"/></a></td>
               <td>
-                <h3 class="name">상품명</h3>
-                <a href="#" class="desc">상품 설명</a>
+                <h3 class="name">[[${product.prodName}]]</h3>
+                <a href="#" class="desc">[[${product.descript}]]</</a>
               </td>
               <td>
                 <ul>
-                  <li><ins class="dis-price">27,000</ins></li>
+                  <li><ins class="dis-price">[[${product.disprice}]]</</ins></li>
                   <li>
-                    <del class="org-price">30,000</del>
-                    <span class="discount">10%</span>
+                    <del class="org-price">[[${product.price}]]</</del>
+                    <span class="discount">[[${product.discount}]]</</span>
                   </li>
                   <li><span class="free-delivery">무료배송</span></li>
                 </ul>
               </td>
               <td>
-                <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자</h4>
+                <h4 class="seller"><i class="fas fa-home"></i>&nbsp;[[${product.seller}]]</h4>
                 <h5 class="badge power great">판매자등급</h5>
                 <h6 class="rating star3">상품평</h6>
               </td>
             </tr>
+            <tr:block th:if="${#lists.isEmpty(products)}">검색한 상품이 없습니다.</tr:block>
             
           </table>
-
+			
           <!-- 상품목록 페이지번호 -->
           <div class="paging">
             <span class="prev">

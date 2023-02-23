@@ -58,19 +58,7 @@ public class MainController {
 		return "index";
 	}
 	
-	@ResponseBody
-	@PostMapping(value = {"", "index"})
-	public Map<String, List<ProductVO>> index(Model model, @RequestParam("search") String search, HttpSession sess, HttpServletResponse resp) throws IOException {
-		Map<String, List<ProductVO>> map = new HashMap<>();
-		List<ProductVO> products = service.searchProduct(search);
-		map.put("products", products);
-		
-		if(!products.isEmpty()) {
-			sess.setAttribute("products", products);
-		}
-		
-		return map;
-	}
+
 	
 	
 }
