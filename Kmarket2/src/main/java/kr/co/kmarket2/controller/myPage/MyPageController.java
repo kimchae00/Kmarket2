@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import kr.co.kmarket2.service.MyPageService;
 import kr.co.kmarket2.vo.ArticleVO;
 import kr.co.kmarket2.vo.MemberVO;
+import kr.co.kmarket2.vo.OrderVO;
+import kr.co.kmarket2.vo.ReviewVO;
 
 @Controller
 public class MyPageController {
@@ -22,12 +24,14 @@ public class MyPageController {
 	private String home(Principal Principal, Model model) {
 		
 		String uid = Principal.getName();
+		
 		MemberVO info = service.selectUserInfo(uid);
-		List<ArticleVO> vo = service.selectQna(uid);
-
+		List<ArticleVO> qna = service.selectQna(uid);
+		List<ReviewVO> review = service.selectReview(uid);
 		
 		model.addAttribute("info", info);
-		model.addAttribute("vo", vo);
+		model.addAttribute("qna", qna);
+		model.addAttribute("review", review);
 
 		
 		return "/myPage/home";
@@ -53,7 +57,17 @@ public class MyPageController {
 	}
 	
 	@GetMapping("myPage/ordered")
-	private String ordered() {
+	private String ordered(Principal Principal, Model model) {
+		String uid = Principal.getName();
+		String ordUid = Principal.getName();
+
+		System.out.println("ordUid : " + ordUid);
+
+		
+		List<OrderVO> order = service.selectOrderMore(ordUid);
+		
+		model.addAttribute("order", order);
+		
 		
 		return "/myPage/ordered";
 		
@@ -96,7 +110,24 @@ public class MyPageController {
 	
 	
 	@GetMapping("myPage/review")
-	private String review() {
+	private String review(Principal principal, Model model, String pg) {
+		String uid = principal.getName();
+		int currentPage = service.getCurrentPage(pg);
+		int start = service.getLimitStart(currentPage);
+		
+		int total = service.selectCountReview(uid);
+		int lastPageNum = service.getLastPageNum(total);
+		int pageStartNum = service.getPageStartNum(total, start);
+		int groups[] = service.getPageGroup(currentPage, lastPageNum);
+		List<ReviewVO> vo = service.selectReviewMore(uid, start);
+		
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("lastPageNum", lastPageNum);
+		model.addAttribute("pageStartNum", pageStartNum);
+		model.addAttribute("groups", groups);
+		
 		
 		return "/myPage/review";
 		

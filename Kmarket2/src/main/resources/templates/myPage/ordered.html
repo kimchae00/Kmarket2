@@ -51,17 +51,18 @@
                                     <th>상태</th>
                                     <th>확인/신청</th>
                                 </tr>
-                                <tr>
-                                    <td>2022-12-13</td>
+                                <tr th:each="order : ${order}">
+                                    <td>[[${order.ordDate}]]</td>
                                     <td>
                                         <a href="#">
-                                            <img src="/Kmarket2 HTML/myPage/img/80x80.png" alt="">
+                                            <img src="#" alt="썸네일">
                                         </a>
                                         <ul>
-                                            <li>상호명</li>
-                                            <li>상품명</li>
-                                            <li>수량 <span>1</span>개/ 주문번호 <span>1012211341</span></li>
-                                            <li><span>34,000</span>원</li>
+                                            <li>주문번호 : <span>[[${order.ordNo}]]</span></li>
+                                            <li>[[${order.company}]]</li>
+                                            <li>[[${order.prodName}]]</li>
+                                            <li>수량 <span>[[${order.ordCount}]]</span></li>
+                                            <li><span>[[${order.ordPrice}]]</span>원</li>
                                         </ul>
                                     </td>
                                     <td>
@@ -73,76 +74,7 @@
                                         <a href="#" class="refund">반품신청</a>
                                         <a href="#" class="exchange">교환신청</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>2022-12-13</td>
-                                    <td>
-                                        <a href="#">
-                                            <img src="/Kmarket2 HTML/myPage/img/80x80.png" alt="">
-                                        </a>
-                                        <ul>
-                                            <li>상호명</li>
-                                            <li>상품명</li>
-                                            <li>수량 <span>1</span>개/ 주문번호 <span>1012211341</span></li>
-                                            <li><span>34,000</span>원</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        배송완료
-                                    </td>
-                                    <td>
-                                        <a href="#" class="receive">수취확인</a>
-                                        <a href="#" class="review">상품평쓰기</a>
-                                        <a href="#" class="refund">반품신청</a>
-                                        <a href="#" class="exchange">교환신청</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2022-12-13</td>
-                                    <td>
-                                        <a href="#">
-                                            <img src="/Kmarket2 HTML/myPage/img/80x80.png" alt="">
-                                        </a>
-                                        <ul>
-                                            <li>상호명</li>
-                                            <li>상품명</li>
-                                            <li>수량 <span>1</span>개/ 주문번호 <span>1012211341</span></li>
-                                            <li><span>34,000</span>원</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        배송완료
-                                    </td>
-                                    <td>
-                                        <a href="#" class="receive">수취확인</a>
-                                        <a href="#" class="review">상품평쓰기</a>
-                                        <a href="#" class="refund">반품신청</a>
-                                        <a href="#" class="exchange">교환신청</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2022-12-13</td>
-                                    <td>
-                                        <a href="#">
-                                            <img src="/Kmarket2 HTML/myPage/img/80x80.png" alt="">
-                                        </a>
-                                        <ul>
-                                            <li>상호명</li>
-                                            <li>상품명</li>
-                                            <li>수량 <span>1</span>개/ 주문번호 <span>1012211341</span></li>
-                                            <li><span>34,000</span>원</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        배송완료
-                                    </td>
-                                    <td>
-                                        <a href="#" class="receive">수취확인</a>
-                                        <a href="#" class="review">상품평쓰기</a>
-                                        <a href="#" class="refund">반품신청</a>
-                                        <a href="#" class="exchange">교환신청</a>
-                                    </td>
-                                </tr>
+                                </tr> 
                             </tbody>
                         </table>
                         <p class="page">

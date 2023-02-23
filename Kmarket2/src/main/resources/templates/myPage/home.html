@@ -16,7 +16,7 @@
                                     <th>확인/신청</th>
                                 </tr>
                                 <tr>
-                                    <td>2022-12-13</td>
+                                    <td>상품번호</td>
                                     <td>
                                         <a href="#">
                                             <img src="/Kmarket2 HTML/myPage/img/80x80.png" alt="">
@@ -67,7 +67,7 @@
                     </article>
                     <article class="review">
                         <h3>상품평</h3>
-                        <a href="#"> 더보기+</a>
+                        <a th:href="@{/myPage/review}"> 더보기+</a>
                         <table>
                             <tbody>
                                 <tr>
@@ -77,41 +77,13 @@
                                     <th>평점</th>
                                     <th>작성일</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>상품평</td>
-                                    <td>배송이빠릅니다 잘 사용하겠습니다.</td>
-                                    <td><span class="rating star1">상품리뷰</span></td>
-                                    <td>2022-12-20</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>상품평</td>
-                                    <td>배송이빠릅니다 잘 사용하겠습니다.</td>
-                                    <td><span class="rating star2">상품리뷰</span></td>
-                                    <td>2022-12-20</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>상품평</td>
-                                    <td>배송이빠릅니다 잘 사용하겠습니다.</td>
-                                    <td><span class="rating star3">상품리뷰</span></td>
-                                    <td>2022-12-20</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>상품평</td>
-                                    <td>배송이빠릅니다 잘 사용하겠습니다.</td>
-                                    <td><span class="rating star4">상품리뷰</span></td>
-                                    <td>2022-12-20</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>상품평</td>
-                                    <td>배송이빠릅니다 잘 사용하겠습니다.</td>
-                                    <td><span class="rating star5">상품리뷰</span></td>
-                                    <td>2022-12-20</td>
-                                </tr>
+                               <tr th:each="review : ${review}">
+	                               	<td th:text="${reviewStat.size - reviewStat.index}"></td>
+				                     <td>[[${review.prodName}]]</td>
+	                                <td>[[${review.content}]]</td>
+	                                <td class="ratingVal"><span class="rating" th:classappend="star+${review.rating}"></span></td>
+	                                <td>[[${review.rdate}]]</td>
+               					</tr> 
                             </tbody>
                         </table>
                     </article>
@@ -128,7 +100,7 @@
                                     <th>작성일</th>
                                     <th>상태</th>
                                 </tr>
-                                  <tr th:each="qna : ${vo}">
+                                 <tr th:each="qna : ${qna}">
                                 	<td>[[${qna.no}]]</td>
 				                     <td>고객센터</td>
 	                                <td>[[${qna.group}]]</td>

@@ -13,4 +13,5 @@ public class ReviewVO {
 	private String rdate;
 	private String prodName;
 
+	
 }
