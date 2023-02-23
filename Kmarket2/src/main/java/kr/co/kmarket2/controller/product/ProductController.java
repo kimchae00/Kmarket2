@@ -1,6 +1,7 @@
 package kr.co.kmarket2.controller.product;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,6 +31,8 @@ import kr.co.kmarket2.security.SecurityUserService;
 import kr.co.kmarket2.service.ProductService;
 import kr.co.kmarket2.vo.CartVO;
 import kr.co.kmarket2.vo.MemberVO;
+import kr.co.kmarket2.vo.OrderItemVO;
+import kr.co.kmarket2.vo.OrderVO;
 import kr.co.kmarket2.vo.ProdCate1VO;
 import kr.co.kmarket2.vo.ProdCate2VO;
 import kr.co.kmarket2.vo.ProductVO;
@@ -153,17 +157,17 @@ public class ProductController {
 	
 	@ResponseBody
 	@PostMapping("product/cart")
-	public Map<String, Integer> cart(Principal principal, @RequestParam("chks") List<String> chks) {
+	public Map<String, Integer> cart(Principal principal, @Param("cartNo") int cartNo) {
 		Map<String, Integer> map = new HashMap<>();
 		
-		int result = service.deleteCart(chks);
+		int result = service.deleteCartByCartNo(cartNo);
 		map.put("result", result);
 		
 		return map;
 	}
 	
 	@GetMapping("product/order")
-	public String order(Model model, Principal principal, @RequestParam(value="cartNo", required=false) List<String> cartNo, @RequestParam(value="prodNo", required=false)  String prodNo, @RequestParam(value="count", required=false) String count) {
+	public String order(Model model, Principal principal, @RequestParam(value="cartNo", required=false) ArrayList<String> cartNo, @RequestParam(value="prodNo", required=false)  String prodNo, @RequestParam(value="count", required=false) Integer count) {
 		List<ProdCate1VO> cate1s = service.selectCate1();
 		List<ProdCate2VO> cate2s = service.selectCate2();
 		
@@ -188,14 +192,15 @@ public class ProductController {
 		
 		return "product/order";
 	}
-	@GetMapping("product/complete")
-	public String complete(Model model) {
-		List<ProdCate1VO> cate1s = service.selectCate1();
-		List<ProdCate2VO> cate2s = service.selectCate2();
+	
+	@PostMapping(value="product/order", consumes="application/x-www-form-urlencoded")
+	@ResponseBody
+	public Map<String, Integer> order(@RequestBody OrderVO order){
+		int result = service.insertOrder(order);
 		
-		model.addAttribute("cate1s", cate1s);
-		model.addAttribute("cate2s", cate2s);
-		return "product/complete";
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", result);
+		return map;
 	}
 
 }

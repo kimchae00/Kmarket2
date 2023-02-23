@@ -12,7 +12,7 @@
 			$('.increase').on('click', function(){
 				let quantity = $(this).parent("div").find("input").val();
 				$(this).parent("div").find("input").val(++quantity);
-				let count = parseInt($('input[name=num]').val());
+				let count = $('input[name=num]').val();
 				let totalPrice = count * Math.round(price*(100-discount)/100) + delivery;
 				$('.total > span').text(totalPrice.toLocaleString());
 			});
@@ -22,7 +22,7 @@
 				if(quantity > 1){
 					$(this).parent("div").find("input").val(--quantity);		
 				}
-				let count = parseInt($('input[name=num]').val());
+				let count = $('input[name=num]').val();
 				let totalPrice = count * Math.round(price*(100-discount)/100) + delivery;
 				$('.total > span').text(totalPrice.toLocaleString());
 			});
@@ -171,7 +171,7 @@
                         
                         <div class="count">
                             <button class="decrease">-</button>
-                            <input type="text" name="num" value="1">
+                            <input type="text" name="num" th:value="1">
                             <button class="increase">+</button>
                         </div>
                         
