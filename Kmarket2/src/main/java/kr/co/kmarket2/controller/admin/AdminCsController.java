@@ -27,16 +27,33 @@ public class AdminCsController {
 	private AdminCsService service;
 	
 	@GetMapping("/admin/cs/notice/list")
-	@ResponseBody
-	public String noticelist(Model model, @RequestParam(value="cate") String cate) {
-		List<ArticleVO> notices = service.selectNoticeAll();
+	public String noticelist(Model model, String group, String cate, String pg) {
+		
+		//페이징 
+    	int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호
+		int total = 0;
+		
+		total = service.selectCountTotal(group);
+		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호
+		int[] result = service.getPageGroup(currentPage, lastPageNum); // 페이지 그룹 번호
+		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작 번호
+		int start = service.getLimitStart(currentPage); // 시작 인덱스
+		// 페이징용
+		int groups[] = service.getPageGroup(currentPage, lastPageNum);
+		
+		model.addAttribute("lastPageNum", lastPageNum);		
+		model.addAttribute("currentPage", currentPage);		
+		model.addAttribute("pageGroupStart", result[0]);
+		model.addAttribute("pageGroupEnd", result[1]);
+		model.addAttribute("pageStartNum", pageStartNum+1);
+		model.addAttribute("groups", groups);
+		model.addAttribute("cate", cate);
+		
+		List<ArticleVO> notices = service.selectNoticeAll(group, start);
 		model.addAttribute("notices", notices);
 		
-		List<ArticleVO> cates = service.selectNotices(cate);
-		model.addAttribute("cates", cates);
 		
-		
-		return "/admin/cs/notice/list";
+		return "admin/cs/notice/list";
 	}
 
 	@GetMapping("/admin/cs/notice/view")
@@ -97,12 +114,51 @@ public class AdminCsController {
 		map.put("result", result);
 		return map;
 	}
-	
+	/*
+	@PostMapping("/admin/cs/notice/delete")
+	@ResponseBody
+	public int deleteNotice(@RequestParam(value = "chbox[]") List<String> chArr, ArticleVO article) {
+		int result = 0;
+		int no = 0;
+		
+		for(String i : chArr) {   
+			   no = Integer.parseInt(i);
+			   article.setNo(no);
+			   service.deleteNotice(no);
+			  }   
+	}
+	*/
 	
 	/* faq 리스트 */
 	@GetMapping("/admin/cs/faq/list")
-	public String faqlist() {
-		return "/admin/cs/faq/list";
+	public String faqlist(Model model, String group, String cate, String cate2, String pg) {
+		
+		//페이징 
+    	int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호
+		int total = 0;
+		
+		total = service.selectCountTotal(group);
+		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호
+		int[] result = service.getPageGroup(currentPage, lastPageNum); // 페이지 그룹 번호
+		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작 번호
+		int start = service.getLimitStart(currentPage); // 시작 인덱스
+		// 페이징용
+		int groups[] = service.getPageGroup(currentPage, lastPageNum);
+		
+		model.addAttribute("lastPageNum", lastPageNum);		
+		model.addAttribute("currentPage", currentPage);		
+		model.addAttribute("pageGroupStart", result[0]);
+		model.addAttribute("pageGroupEnd", result[1]);
+		model.addAttribute("pageStartNum", pageStartNum+1);
+		model.addAttribute("groups", groups);
+		model.addAttribute("cate", cate);
+		model.addAttribute("cate2", cate2);
+		
+		List<ArticleVO> faqs = service.selectFaqQna(group, start);
+		model.addAttribute("faqs", faqs);
+		
+		
+		return "admin/cs/faq/list";
 	}
 	
 	/* faq view*/
@@ -149,8 +205,34 @@ public class AdminCsController {
 	
 	/* qna 리스트 */
 	@GetMapping("/admin/cs/qna/list")
-	public String qnalist() {
-		return "/admin/cs/qna/list";
+	public String qnalist(Model model, String group, String cate, String cate2, String pg) {
+		
+		//페이징 
+    	int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호
+		int total = 0;
+		
+		total = service.selectCountTotal(group);
+		int lastPageNum = service.getLastPageNum(total);// 마지막 페이지 번호
+		int[] result = service.getPageGroup(currentPage, lastPageNum); // 페이지 그룹 번호
+		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작 번호
+		int start = service.getLimitStart(currentPage); // 시작 인덱스
+		// 페이징용
+		int groups[] = service.getPageGroup(currentPage, lastPageNum);
+		
+		model.addAttribute("lastPageNum", lastPageNum);		
+		model.addAttribute("currentPage", currentPage);		
+		model.addAttribute("pageGroupStart", result[0]);
+		model.addAttribute("pageGroupEnd", result[1]);
+		model.addAttribute("pageStartNum", pageStartNum+1);
+		model.addAttribute("groups", groups);
+		model.addAttribute("cate", cate);
+		model.addAttribute("cate2", cate2);
+		
+		List<ArticleVO> qnas = service.selectFaqQna(group, start);
+		model.addAttribute("qnas", qnas);
+		
+		
+		return "admin/cs/qna/list";
 	}
 	
 	/* qna view */

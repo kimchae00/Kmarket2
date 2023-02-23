@@ -49,7 +49,15 @@
 	
 	<!-- notice 리스트 cate 없을때(전체) -->
 	<select id="selectNoticeAll" resultType="kr.co.kmarket2.vo.ArticleVO">
-		SELECT * FROM `km_article` WHERE `group`='notice';
+		SELECT * FROM `km_article` WHERE `group`=#{group} ORDER BY `no` DESC LIMIT #{start},10;
+	</select>
+	
+	<!-- notice 리스트 cate 없을때(전체) -->
+	<select id="selectFaqQna" resultType="kr.co.kmarket2.vo.ArticleVO">
+		SELECT a.*,b.cName,b.c2Name FROM `km_article` AS a
+		JOIN `km_article_cate` AS b
+		ON a.cate2=b.cate2
+		WHERE `group`=#{group} ORDER BY `no` DESC LIMIT #{start},10;
 	</select>
 	
 	<!-- notice 리스트 cate 있을때 -->
@@ -61,4 +69,15 @@
 	<update id="updateFaq">
 		update `km_article` set `group`='faq', `uid`=#{uid}, `cate`=#{cate}, `cate2`=#{cate2}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW() where `no`=#{no};
 	</update>
+	
+	<!-- 페이징을 위해 그룹의 게시물 총 갯수 -->
+	<select id="selectCountTotal" resultType="int">
+		select count(`no`) from `km_article` where `group`=#{group};
+	</select>
+	
+	<!-- 선택 삭제(notice) -->
+	<delete id="deleteNotice">
+	 delete `km_article` where no = #{no};
+	</delete>
+	
 </mapper>

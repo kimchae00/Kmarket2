@@ -42,8 +42,12 @@ public class AdminCsService {
 		return dao.selectCountNoticeAll();
 	}
 	
-	public List<ArticleVO> selectNoticeAll() {
-		return dao.selectNoticeAll();
+	public List<ArticleVO> selectNoticeAll(String group, int start) {
+		return dao.selectNoticeAll(group, start);
+	}
+	
+	public List<ArticleVO> selectFaqQna(String group, int start){
+		return dao.selectFaqQna(group, start);
 	}
 	
 	public int selectCountNotice(String cate) {
@@ -67,7 +71,12 @@ public class AdminCsService {
 	}
 	
 	
-	/**/
+	/* 페이징을 위해 그룹의 게시물 총 갯수 */
+	public int selectCountTotal(String group) {
+		return dao.selectCountTotal(group);
+	}
+	
+	
 	/* 현재 페이지 번호 */
 	public int getCurrentPage(String pg) {
 		

@@ -36,7 +36,10 @@ public interface AdminCsDAO {
 	public int selectCountNoticeAll();
 	
 	// notice 전체 들고오기
-	public List<ArticleVO> selectNoticeAll();
+	public List<ArticleVO> selectNoticeAll(String group, int start);
+	
+	// faq, qna 전체 들고오기
+	public List<ArticleVO> selectFaqQna(String group, int start);
 	
 	// notice 카테별 게시글 갯수
 	public int selectCountNotice(String cate);
@@ -49,5 +52,8 @@ public interface AdminCsDAO {
 	
 	// faq 수정
 	public int updateFaq(String uid, String cate, String cate2, String title, String content, String regip, int no);
+	
+	// paging용 전체 갯수
+	public int selectCountTotal(String group);
 }
 
