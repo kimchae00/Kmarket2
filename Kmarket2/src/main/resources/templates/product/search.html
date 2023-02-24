@@ -1,4 +1,5 @@
 <th:block th:include="@{product/_header.html}"/>
+
 <script>
 	$(function(){
 		
@@ -7,9 +8,10 @@
 		var keyword = urlParams.get('keyword');
 		$('.group > h3 > strong').text(keyword);
 		
-		if(result==0){
-			$('.search > .searchResult').hide();
-		}
+		
+		
+		
+	
 	});
 
 </script>
@@ -54,7 +56,7 @@
                 
           <!-- 검색목록 -->
           <table border="0" class="searchResult">                  
-            <tr th:each="product, i:${products}">
+            <tr  th:if="${result>0}" th:each="product, i:${products}">
               <td><a href="#" class="thumb"><img src="https://via.placeholder.com/120x120" alt="상품이미지"/></a></td>
               <td>
                 <h3 class="name">[[${product.prodName}]]</h3>
@@ -76,28 +78,27 @@
                 <h6 class="rating star3">상품평</h6>
               </td>
             </tr>
-            <tr:block th:if="${#lists.isEmpty(products)}">검색한 상품이 없습니다.</tr:block>
-            
+       		<tr th:unless="${result>0}" class="none">검색된 상품이 없습니다.</tr>
+       		
           </table>
+          
+         
+          
 			
           <!-- 상품목록 페이지번호 -->
-          <div class="paging">
-            <span class="prev">
-              <a href="#"><&nbsp;이전</a>
-            </span>
-            <span class="num">
-              <a href="#" class="on">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">6</a>
-              <a href="#">7</a>
-            </span>
-            <span class="next">
-              <a href="#">다음&nbsp;></a>
-            </span>
-          </div>
+         <div class="paging">
+             <th:block th:if="${groups[0]>1}">
+                 <span class="prev"><a th:href="@{/product/search(keyword=${keyword},pg=${groups[0]-1})}"><&nbsp;이전</a></span>
+             </th:block>
+             <th:block th:if="${groups[1] != 0}">
+             <th:block th:each="num:${#numbers.sequence(groups[0],groups[1])}">
+                 <span class="num"><a th:href="@{/product/search(keyword=${keyword},pg=${num})}" th:class="${num == currentPage?'num current':'num'}">[[${num}]]</a></span>
+             </th:block>
+             </th:block>
+             <th:block th:if="${groups[1]<lastPageNum}">
+                 <span class="next"><a th:href="@{/product/search(keyword=${keyword},pg=${groups[1] + 1})}">다음&nbsp;></a></span>
+             </th:block>
+                </div>
           
         </section>
         <!-- 상품검색 화면 끝 -->

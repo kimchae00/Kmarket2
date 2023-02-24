@@ -57,10 +57,44 @@ public class SearchController {
 		List<ProductVO> products = (List<ProductVO>) sess.getAttribute("products");
 		int result = service.searchProductTotal(keyword);
 		
+		
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("products", products);
 		model.addAttribute("result", result);
 		
 		
+		// 페이징 처리
+		int currentPage = 1;
+		int start = (currentPage - 1) * 10;
+
+        int total = result;
+        int lastPageNum = service.getLastPageNum(total);
+        int pageStartNum = service.getpageStartNum(total, start);
+        int[] groups = service.getPageGroup(currentPage, lastPageNum);
+
+        model.addAttribute("groups", groups);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("start", start);
+        model.addAttribute("total", total);
+        model.addAttribute("lastPageNum", lastPageNum);
+        
+		
 		return "product/search";
 	}
+	
+	@ResponseBody
+	@PostMapping(value = {"product/search"})
+	public Map<String, List<ProductVO>> search(Model model, @RequestParam("search") String search, HttpSession sess, HttpServletResponse resp) throws IOException {
+		Map<String, List<ProductVO>> map = new HashMap<>();
+		List<ProductVO> products = MainService.searchProduct(search);
+		map.put("products", products);
+		
+		if(!products.isEmpty()) {
+			sess.setAttribute("products", products);
+		}
+		
+		return map;
+	}
+	
+	
 }

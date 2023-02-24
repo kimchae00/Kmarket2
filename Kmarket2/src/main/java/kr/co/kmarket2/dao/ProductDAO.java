@@ -47,5 +47,8 @@ public interface ProductDAO {
 	
 	// search
 	public List<ProductVO> searchProduct(String keyword);
+	public List<ProductVO> searchProductPriceD(String keyword);
 	public int searchProductTotal(String keyword);
+	
+	
 }
