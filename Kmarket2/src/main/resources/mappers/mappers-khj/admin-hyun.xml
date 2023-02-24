@@ -9,6 +9,11 @@
 		insert into `km_article` set `uid`=#{uid}, `content`=#{content}, `parent`=#{num}, `regip`=#{regip}, `rdate`=NOW();
 	</insert>
 	
+	<!-- Faq 쓰기 -->
+	<insert id="insertFaq">
+		insert into `km_article` set `group`='faq', `uid`=#{uid}, `cate`=#{cate}, `cate2`=#{cate2}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW();
+	</insert>
+	
 	<!-- c2Name cate2로 변환 -->
 	<select id="selectCate2" resultType="String">
 		SELECT cate2 FROM `km_article_cate` WHERE `c2Name`=#{c2Name};

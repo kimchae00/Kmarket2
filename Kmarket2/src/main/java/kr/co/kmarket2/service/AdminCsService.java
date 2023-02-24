@@ -22,6 +22,10 @@ public class AdminCsService {
 		return dao.insertNotice(uid, cate, title, content, regip);
 	}
 	
+	public int insertFaq(String uid, String cate, String cate2, String title, String content, String regip) {
+		return dao.insertFaq(uid, cate, cate2, title, content, regip);
+	}
+	
 	public String selectCate2(String c2Name) {
 		return dao.selectCate2(c2Name);
 	}

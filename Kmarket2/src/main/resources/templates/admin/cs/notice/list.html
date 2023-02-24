@@ -1,7 +1,7 @@
 <th:block th:include="@{admin/_header.html}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
  <script>
- /*
+ 
  $(function(){
 		$("#allCheck").click(function(){
 			var chk = $("#allCheck").prop("checked");
@@ -14,27 +14,41 @@
 		$(".chBox").click(function(){
 			$("#allCheck").prop("checked", false);
 		});
-		
-		$(".del").click(function(){
-			var confirm_val = confirm("정말 삭제하시겠습니까?");
-		  
-		  	if(confirm_val) {
-		   		var checkArr = new Array();
-		   
-		   	$("input[class='chBox']:checked").each(function(){
-		    	checkArr.push($(this).attr("data-no"));
-		   	});
-		    
-		   	$.ajax({
-		    	url : "/admin/cs/notice/delete",
-		    	type : "post",
-		    	data : { chbox : checkArr },
-		    	success : function(){
-		     				location.href = "/admin/cs/notice/list?group=notice";
-		    			}
-		   		});
-		  	} 
-		 });
+ });
+/*		
+		$('.del').click(function(){
+    		let chk = [];
+    		let checkArr = $("input[name=chkNotice]:checked").length;
+    		 $('input[name=chkNotice]:checked').each(function(){
+    		      chk.push($(this).val());
+    		    });
+    		 console.log(chk);
+    		 if(checkArr == 0) {
+    				
+    				//리스트에 값이 존재하지 않음
+    				alert("선택한 글이 존재하지 않습니다");
+    			}else if(
+    				confirm("선택한 글을 삭제하시겠습니까?")){
+    				$('input[name=chkNotice]:checked').parents('tr').remove();
+    					$.ajax({
+    						url : '/Kmarket2/admin/cs/notice/list/deleteNotice',
+    						type : 'POST',
+    						traditional: true,
+    						data : {'chk': chk},
+    						dataType : 'json',
+    						success : function(data){
+    							if(data.result > 0){
+    								alert('삭제가 완료되었습니다');
+    								location.reload();
+    							}else{
+    								return;
+    							}
+    						}
+    					});
+    				}
+    			
+    		 
+    	});
  });
  */	
 </script>
@@ -74,13 +88,18 @@
                         <tr th:each="notices : ${notices}">
                             <td>
                                 <label>
-                                    <input type="checkbox" name="chBox" class="chBox" data-no="${notices.no}">
+                                    <input type="checkbox" name="chkNotice" class="chBox" data-no="${notices.no}">
                                     <input type="hidden" class="group" th:value="${notices.group}">
                                     <input type="hidden" class="cate" th:value="${notices.cate}">
                                 </label>
                             </td>
                             <td>[[${notices.no}]]</td>
-                            <td>[[${notices.cate}]]</td>
+                            <th:block>
+	                            <td th:if="${notices.cate} == customerService">고객서비스</td>
+	                            <td th:if="${notices.cate} == safeTrade">안전거래</td>
+	                            <td th:if="${notices.cate} == hazardousProduct">위해상품</td>
+	                            <td th:if="${notices.cate} == winningEvent">이벤트당첨</td>
+                            </th:block>
                             <td>
                                 <a th:href="@{/admin/cs/notice/view(group=${notices.group},no=${notices.no},cate=${notices.cate})}">[[${notices.title}]]</a>
                             </td>
@@ -88,7 +107,7 @@
                             <td>[[${notices.rdate}]]</td>
                             <td>
                                 <a class="del">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a th:href="@{/admin/cs/notice/modify(group=${notices.group},no=${notices.no},cate=${notices.cate})}">[수정]</a>
                             </td>
                         </tr>
                     </table>

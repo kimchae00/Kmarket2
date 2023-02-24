@@ -28,7 +28,7 @@ public class CsController {
 	@Autowired
 	public CsService service;
 	
-	@GetMapping(value= {"/cs", "/cs/index"})
+	@GetMapping(value= {"cs", "cs/index"})
 	public String index(Model model) {
 		
 		List<ArticleVO> notices = service.selectIndexNotice();
@@ -40,7 +40,7 @@ public class CsController {
 		return "cs/index";
 	}
 	
-	@GetMapping("/cs/faq/list")
+	@GetMapping("cs/faq/list")
 	public String faqlist(Model model, String group, String cate) {
 		
 		// 각각의 cate공간(반복용)
@@ -56,7 +56,7 @@ public class CsController {
 		return "cs/faq/list";
 	}
 	
-	@GetMapping("/cs/faq/view")
+	@GetMapping("cs/faq/view")
 	public String faqview(Model model, int no, String group, String cate) {
 		
 		ArticleVO faq = service.selectArticle(no);
@@ -66,7 +66,7 @@ public class CsController {
 		return "cs/faq/view";
 	}
 	
-	@GetMapping("/cs/notice/list")
+	@GetMapping("cs/notice/list")
 	public String noticeList(Model model, String group, String cate, String pg) {
     	
     	//페이징 
@@ -108,7 +108,7 @@ public class CsController {
 		return "cs/notice/list";
 	}
 	
-	@GetMapping("/cs/notice/view")
+	@GetMapping("cs/notice/view")
 	public String noticeview(Model model, int no) {
 		
 		ArticleVO article = service.selectArticle(no);
@@ -117,7 +117,7 @@ public class CsController {
 		return "cs/notice/view";
 	}
 	
-	@GetMapping("/cs/qna/list")
+	@GetMapping("cs/qna/list")
 	public String qnalist(Model model, String group, String cate, String pg) {
 
     	//페이징 
@@ -150,7 +150,7 @@ public class CsController {
 		return "cs/qna/list";
 	}
 	
-	@GetMapping("/cs/qna/view")
+	@GetMapping("cs/qna/view")
 	public String qnaview(Model model, int no, String cate) {
 		
 		// 본문
@@ -169,13 +169,13 @@ public class CsController {
 		return "cs/qna/view";
 	}
 	
-	@GetMapping("/cs/qna/write")
+	@GetMapping("cs/qna/write")
 	public String qnawrite() {
 		return "cs/qna/write";
 	}
 	
 	
-	@PostMapping("/cs/qna/write")
+	@PostMapping("cs/qna/write")
 	@ResponseBody
 	public Map<String, Integer> qnawrite(Principal principal, @RequestParam("cate") String cate, @RequestParam("c2Name") String c2Name, @RequestParam("title") String title, @RequestParam("content") String content) {
 		System.out.println("cate : " + cate);
