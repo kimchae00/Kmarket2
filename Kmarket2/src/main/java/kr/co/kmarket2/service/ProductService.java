@@ -116,9 +116,21 @@ public class ProductService {
 	public List<ProductVO> searchProduct(String keyword){
 		return dao.searchProduct(keyword);
 	}
+	
+	public List<ProductVO> seatchProduct(String keyword){
+		return dao.searchProductPriceD(keyword);
+	}
+	
+	
+	
 	public int searchProductTotal(String keyword) {
 		return dao.searchProductTotal(keyword);
 	}
+	
+	
+	
+	
+	
 	
 	/////// list 페이징 처리
 	// 현재 페이지 번호
