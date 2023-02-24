@@ -52,7 +52,7 @@
                     <ol>
                     <th:block th:each="sold : ${solds}">
                         <li>
-                            <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${sold.prodNo})}">
+                            <a th:href="@{/product/view(prodCate1=${sold.prodCate1},prodCate2=${sold.prodCate2},prodNo=${sold.prodNo})}">
                                 <div class="thumb">
                                     <i>1</i>
                                     <img th:src="${sold.thumb1}" alt="item1">
@@ -92,7 +92,7 @@
                     <h3><span>히트상품</span></h3>
                     <th:block th:each="hit : ${hits}">
                     <article>
-                        <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${hit.prodNo})}">
+                        <a th:href="@{/product/view(prodCate1=${hit.prodCate1},prodCate2=${hit.prodCate2},prodNo=${hit.prodNo})}">
                             <div class="thumb"><img th:src="${hit.thumb1}" alt="t1"></div>
                             <h2>[[${hit.prodName}]]</h2>
                             <p>[[${hit.descript}]]</p>
@@ -124,7 +124,7 @@
                     <h3><span>추천상품</span></h3>
                      <th:block th:each="score : ${scores}">
                     <article>
-                        <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${score.prodNo})}">
+                        <a th:href="@{/product/view(prodCate1=${score.prodCate1},prodCate2=${score.prodCate2},prodNo=${score.prodNo})}">
                             <div class="thumb"><img th:src="${score.thumb1}" alt="t1"></div>
                             <h2>[[${score.prodName}]]</h2>
                             <p>[[${score.descript}]]</p>
@@ -156,7 +156,7 @@
                     <h3><span>최신상품</span></h3>
                     <th:block th:each="late : ${lates}">
                     <article>
-                        <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${late.prodNo})}">
+                        <a th:href="@{/product/view(prodCate1=${late.prodCate1},prodCate2=${late.prodCate2},prodNo=${late.prodNo})}">
                             <div class="thumb"><img th:src="${late.thumb1}" alt="t1"></div>
                             <h2>[[${late.prodName}]]</h2>
                             <p>[[${late.descript}]]</p>
@@ -188,7 +188,7 @@
                     <h3><span>할인상품</span></h3>
                     <th:block th:each="discount : ${discounts}">
                     <article>
-                        <a th:href="@{/product/view(prodCate1=${prodCate1},prodCate2=${prodCate2},prodNo=${discount.prodNo})}">
+                        <a th:href="@{/product/view(prodCate1=${discount.prodCate1},prodCate2=${discount.prodCate2},prodNo=${discount.prodNo})}">
                             <div class="thumb"><img th:src="${discount.thumb1}" alt="t1"></div>
                             <h2>[[${discount.prodName}]]</h2>
                             <p>[[${discount.descript}]]</p>

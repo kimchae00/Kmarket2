@@ -34,7 +34,7 @@ public class MyPageController {
 		model.addAttribute("review", review);
 
 		
-		return "/myPage/home";
+		return "myPage/home";
 		
 	}
 
@@ -52,7 +52,7 @@ public class MyPageController {
 		model.addAttribute("info", info);
 		
 		
-		return "/myPage/info";
+		return "myPage/info";
 		
 	}
 	
@@ -69,14 +69,14 @@ public class MyPageController {
 		model.addAttribute("order", order);
 		
 		
-		return "/myPage/ordered";
+		return "myPage/ordered";
 		
 	}
 	
 	@GetMapping("myPage/point")
 	private String point() {
 		
-		return "/myPage/point";
+		return "myPage/point";
 		
 	}
 	
@@ -104,7 +104,7 @@ public class MyPageController {
 		
 		
 	
-		return "/myPage/qna";
+		return "myPage/qna";
 		
 	}
 	
@@ -129,14 +129,14 @@ public class MyPageController {
 		model.addAttribute("groups", groups);
 		
 		
-		return "/myPage/review";
+		return "myPage/review";
 		
 	}
 	
 	@GetMapping("myPage/coupon")
 	private String coupon() {
 		
-		return "/myPage/coupon";
+		return "myPage/coupon";
 		
 	}
 }
