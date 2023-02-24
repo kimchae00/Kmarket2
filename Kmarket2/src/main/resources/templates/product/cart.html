@@ -144,7 +144,7 @@
                         <thead>
                             <tr>
                                 <th><input type="checkbox" name="all" class="allCheck"></th>
-                                <th style="width: 65%">상품명</th>
+                                <th style="width:70%;">상품명</th>
                                 <th>총수량</th>
                                 <th>판매가</th>
                                 <th>할인</th>
@@ -170,7 +170,7 @@
 			                	<input type="hidden" name="total" th:value="${cart.total}">
                             <td>
                                 <article>
-                                    <a th:href="@{/product/view(prodCate1=${cart.prodCate1},prodCate2=${cart.prodCate2},prodNo=${cart.prodNo})}"><img th:src="${cart.thumb1}"></a>
+                                    <a th:href="@{/product/view(prodCate1=${cart.prodCate1},prodCate2=${cart.prodCate2},prodNo=${cart.prodNo})}"><img style="width:50px;" th:src="${cart.thumb1}"></a>
                                     <div>
                                         <h2><a th:href="@{/product/view(prodCate1=${cart.prodCate1},prodCate2=${cart.prodCate2},prodNo=${cart.prodNo})}">[[${cart.prodName}]]</a></h2>
                                         <p>[[${cart.descript}]]</p>

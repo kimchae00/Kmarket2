@@ -56,7 +56,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 65%">상품명</th>
+                                <th>상품명</th>
                                 <th>총수량</th>
                                 <th>판매가</th>
                                 <th>할인</th>
@@ -70,7 +70,7 @@
                             <td>
                                 <article>
                                 <input type="hidden" name="prodNo" th:value="${product.prodNo}">
-                                    <a th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}"><img class="thm" th:src="${product.thumb1}"></a>
+                                    <a th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}"><img style="width:40px;" class="thm" th:src="${product.thumb1}"></a>
                                     <div>
                                         <h2><a class="prdN" th:href="@{/product/view(prodCate1=${product.prodCate1},prodCate2=${product.prodCate2},prodNo=${product.prodNo})}">[[${product.prodName}]]</a></h2>
                                         <p class="dsc">[[${product.descript}]]</p>

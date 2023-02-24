@@ -33,7 +33,7 @@ public class MainController {
 	private MainService service;
 	
 	@GetMapping(value = {"", "index"})
-	public String index(Principal principal, Model model) {
+	public String index(Principal principal, Model model, String prodCate1, String prodCate2) {
 		// 카테 출력
 		List<ProdCate1VO> cate1s = service.selectCate1();
 		List<ProdCate2VO> cate2s = service.selectCate2();
