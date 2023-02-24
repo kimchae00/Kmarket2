@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.kmarket2.dao.CsDAO">
 	
 	<insert id="insertQna">
-		insert into `km_article` set `group`=qna, `uid`=#{uid}, `cate`=#{cate}, `cate2`=#{cate2}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW();
+		insert into `km_article` set `group`='qna', `uid`=#{uid}, `cate`=#{cate}, `cate2`=#{cate2}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW();
 	</insert>
 	
 	<select id="selectCate2" resultType="String">

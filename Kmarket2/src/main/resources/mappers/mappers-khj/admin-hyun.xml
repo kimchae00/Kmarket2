@@ -9,6 +9,11 @@
 		insert into `km_article` set `uid`=#{uid}, `content`=#{content}, `parent`=#{num}, `regip`=#{regip}, `rdate`=NOW();
 	</insert>
 	
+	<!-- Faq 쓰기 -->
+	<insert id="insertFaq">
+		insert into `km_article` set `group`='faq', `uid`=#{uid}, `cate`=#{cate}, `cate2`=#{cate2}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW();
+	</insert>
+	
 	<!-- c2Name cate2로 변환 -->
 	<select id="selectCate2" resultType="String">
 		SELECT cate2 FROM `km_article_cate` WHERE `c2Name`=#{c2Name};
@@ -68,6 +73,11 @@
 	<!-- faq 수정 -->
 	<update id="updateFaq">
 		update `km_article` set `group`='faq', `uid`=#{uid}, `cate`=#{cate}, `cate2`=#{cate2}, `title`=#{title}, `content`=#{content}, `regip`=#{regip}, `rdate`=NOW() where `no`=#{no};
+	</update>
+	
+	<!-- 답변 작성시 comment +1 -->
+	<update id="updateQna">
+		update `km_article` set `comment`=1 where `no`=#{num}
 	</update>
 	
 	<!-- 페이징을 위해 그룹의 게시물 총 갯수 -->

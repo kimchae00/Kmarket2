@@ -14,6 +14,12 @@ public interface AdminCsDAO {
 	// 답변 쓰기
 	public int insertReply(String uid, String content, int num, String regip);
 	
+	// 답변 작성시 comment +1
+	public int updateQna(int num);
+	
+	// Faq 쓰기
+	public int insertFaq(String uid, String cate, String cate2, String title, String content, String regip);
+	
 	// c2Name cate2로 변환
 	public String selectCate2(String c2Name);
 	

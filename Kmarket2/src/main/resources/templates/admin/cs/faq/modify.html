@@ -108,7 +108,7 @@
                         </tr>
                     </table>
                     <a class="btnSubmit">수정하기</a>
-                    <a th:href="@{/admin/cs/faq/view?group=faq}">취소하기</a>
+                    <a th:href="@{/admin/cs/faq/view(group=${modify.group},no=${modify.no},cate=${modify.cate})}">취소하기</a>
                 </section>
             </section>
         </main>

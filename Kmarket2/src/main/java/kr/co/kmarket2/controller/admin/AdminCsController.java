@@ -26,7 +26,7 @@ public class AdminCsController {
 	@Autowired
 	private AdminCsService service;
 	
-	@GetMapping("/admin/cs/notice/list")
+	@GetMapping("admin/cs/notice/list")
 	public String noticelist(Model model, String group, String cate, String pg) {
 		
 		//페이징 
@@ -56,7 +56,7 @@ public class AdminCsController {
 		return "admin/cs/notice/list";
 	}
 
-	@GetMapping("/admin/cs/notice/view")
+	@GetMapping("admin/cs/notice/view")
 	public String noticeview(Model model, int no, String group, String cate) {
 		
 		ArticleVO notice = service.selectNotice(no);
@@ -64,15 +64,15 @@ public class AdminCsController {
 		model.addAttribute("notice", notice);
 		model.addAttribute("cate", cate);
 		
-		return "/admin/cs/notice/view";
+		return "admin/cs/notice/view";
 	}
 	
-	@GetMapping("/admin/cs/notice/write")
+	@GetMapping("admin/cs/notice/write")
 	public String noticewrite() {
-		return "/admin/cs/notice/write";
+		return "admin/cs/notice/write";
 	}
 	
-	@PostMapping("/admin/cs/notice/write")
+	@PostMapping("admin/cs/notice/write")
 	@ResponseBody
 	public Map<String, Integer> noticewrite(Principal principal, @RequestParam("cate") String cate, @RequestParam("title") String title, @RequestParam("content") String content) {
 		String uid = principal.getName();
@@ -88,7 +88,7 @@ public class AdminCsController {
 		return map;
 	}
 	
-	@GetMapping("/admin/cs/notice/modify")
+	@GetMapping("admin/cs/notice/modify")
 	public String noticemodify(Model model, int no, String group, String cate) {
 		
 		ArticleVO article = service.selectNotice(no);
@@ -96,10 +96,10 @@ public class AdminCsController {
 		model.addAttribute("article", article);
 		model.addAttribute("cate", cate);
 		
-		return "/admin/cs/notice/modify";
+		return "admin/cs/notice/modify";
 	}
 	
-	@PostMapping("/admin/cs/notice/modify")
+	@PostMapping("admin/cs/notice/modify")
 	@ResponseBody
 	public Map<String, Integer> noticemodify(Principal principal, @RequestParam("cate") String cate, @RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("no") Integer no) {
 		String uid = principal.getName();
@@ -115,22 +115,21 @@ public class AdminCsController {
 		return map;
 	}
 	/*
-	@PostMapping("/admin/cs/notice/delete")
+	@PostMapping("admin/cs/notice/list/deleteNotice")
 	@ResponseBody
-	public int deleteNotice(@RequestParam(value = "chbox[]") List<String> chArr, ArticleVO article) {
-		int result = 0;
-		int no = 0;
+	public Map<String, Integer> deleteNotice(@RequestParam("chks") List<Integer> chks, String no) {
+		int num = Integer.parseInt(no);
+		for(chk : chks) {
+		   int result = service.delectNotice(no);
+		}
 		
-		for(String i : chArr) {   
-			   no = Integer.parseInt(i);
-			   article.setNo(no);
-			   service.deleteNotice(no);
-			  }   
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", result);
+		return map;
 	}
 	*/
-	
 	/* faq 리스트 */
-	@GetMapping("/admin/cs/faq/list")
+	@GetMapping("admin/cs/faq/list")
 	public String faqlist(Model model, String group, String cate, String cate2, String pg) {
 		
 		//페이징 
@@ -162,25 +161,57 @@ public class AdminCsController {
 	}
 	
 	/* faq view*/
-	@GetMapping("/admin/cs/faq/view")
+	@GetMapping("admin/cs/faq/view")
 	public String faqview(Model model, int no, String cate, String cate2) {
 		ArticleVO faq = service.selectArticle(no);
 		model.addAttribute("faq",faq);
 		
-		return "/admin/cs/faq/view";
+		return "admin/cs/faq/view";
 	}
 	
+	/* faq write*/
+	@GetMapping("admin/cs/faq/write")
+	public String faqwrite() {
+		return "admin/cs/faq/write";
+	}
+	
+	@PostMapping("admin/cs/faq/write")
+	@ResponseBody
+	public Map<String, Integer> qnawrite(Principal principal, @RequestParam("cate") String cate, @RequestParam("c2Name") String c2Name, @RequestParam("title") String title, @RequestParam("content") String content) {
+		System.out.println("cate : " + cate);
+		String uid = principal.getName();
+		System.out.println("uid : " + uid);
+		
+		
+		String cate2 = service.selectCate2(c2Name);
+		System.out.println("cate2 : " + cate2);
+		
+		
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String regip 	= req.getRemoteAddr();
+		
+		int result = service.insertFaq(uid, cate, cate2, title, content, regip);
+		
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", result);
+		return map;
+	}
+	
+	
+	
+	
 	/* faq modify*/
-	@GetMapping("/admin/cs/faq/modify")
+	@GetMapping("admin/cs/faq/modify")
 	public String faqmodify(Model model, int no, String cate, String cate2) {
 		ArticleVO modify = service.selectArticle(no);
 		model.addAttribute("modify",modify);
 		
-		return "/admin/cs/faq/modify";
+		return "admin/cs/faq/modify";
 	}
 	
 	/* faq modify post*/
-	@PostMapping("/admin/cs/faq/modify")
+	@PostMapping("admin/cs/faq/modify")
 	@ResponseBody
 	public Map<String, Integer> faqmodify(Principal principal, @RequestParam("cate") String cate, @RequestParam("c2Name") String c2Name, @RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("no") Integer no) {
 		System.out.println("cate : " + cate);
@@ -204,7 +235,7 @@ public class AdminCsController {
 	}
 	
 	/* qna 리스트 */
-	@GetMapping("/admin/cs/qna/list")
+	@GetMapping("admin/cs/qna/list")
 	public String qnalist(Model model, String group, String cate, String cate2, String pg) {
 		
 		//페이징 
@@ -236,7 +267,7 @@ public class AdminCsController {
 	}
 	
 	/* qna view */
-	@GetMapping("/admin/cs/qna/view")
+	@GetMapping("admin/cs/qna/view")
 	public String qnaview(Model model, int no, String cate, String cate2) {
 		ArticleVO qna = service.selectArticle(no);
 		int on = service.selectCountParent(no);
@@ -250,23 +281,22 @@ public class AdminCsController {
 		
 		model.addAttribute("cate", cate);
 		model.addAttribute("cate2", cate2);
-		return "/admin/cs/qna/view";
+		return "admin/cs/qna/view";
 	}
 	
 	/* qna reply */
-	@GetMapping("/admin/cs/qna/reply")
+	@GetMapping("admin/cs/qna/reply")
 	public String qnareply(Model model, int no, String cate, String cate2) {
 		ArticleVO qna = service.selectArticle(no);
 		
 		model.addAttribute("qna", qna);
-		
 		model.addAttribute("cate", cate);
 		model.addAttribute("cate2", cate2);
-		return "/admin/cs/qna/reply";
+		return "admin/cs/qna/reply";
 	}
 	
 	/* qna reply 답변 등록 */
-	@PostMapping("/admin/cs/qna/reply")
+	@PostMapping("admin/cs/qna/reply")
 	@ResponseBody
 	public Map<String, Integer> qnawrite(Principal principal, @RequestParam("content") String content, @RequestParam("no") String no) {
 		String uid = principal.getName();
@@ -277,6 +307,7 @@ public class AdminCsController {
 		String regip 	= req.getRemoteAddr();
 		
 		int result = service.insertReply(uid, content, num, regip);
+		service.updateQna(num);
 		
 		
 		Map<String, Integer> map = new HashMap<>();

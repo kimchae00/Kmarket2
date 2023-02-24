@@ -49,10 +49,10 @@
                             <td>
                                 <div>
                                     <select name="search">
-                                        <option value="search1">고객서비스</option>
-                                        <option value="search1">안전거래</option>
-                                        <option value="search1">위해상품</option>
-                                        <option value="search1">이벤트 당첨</option>
+                                        <option value="customerService">고객서비스</option>
+                                        <option value="safeTrade">안전거래</option>
+                                        <option value="hazardousProduct">위해상품</option>
+                                        <option value="winningEvent">이벤트 당첨</option>
                                     </select>
                                 </div>
                             </td>
@@ -71,7 +71,7 @@
                         </tr>
                     </table>
                     <a class="btnModify">수정하기</a>
-                    <a href="./list.html">취소하기</a>
+                    <a th:href="@{/admin/cs/notice/view(group=${article.group},no=${article.no},cate=${article.cate})}">취소하기</a>
                 </section>
             </section>
         </main>
