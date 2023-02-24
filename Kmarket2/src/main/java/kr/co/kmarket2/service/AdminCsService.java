@@ -74,6 +74,10 @@ public class AdminCsService {
 		return dao.updateFaq(uid, cate, cate2,title, content, regip, no);
 	}
 	
+	public int updateQna(int num) {
+		return dao.updateQna(num);
+	}
+	
 	
 	/* 페이징을 위해 그룹의 게시물 총 갯수 */
 	public int selectCountTotal(String group) {

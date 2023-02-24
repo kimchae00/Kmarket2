@@ -290,7 +290,6 @@ public class AdminCsController {
 		ArticleVO qna = service.selectArticle(no);
 		
 		model.addAttribute("qna", qna);
-		
 		model.addAttribute("cate", cate);
 		model.addAttribute("cate2", cate2);
 		return "admin/cs/qna/reply";
@@ -308,6 +307,7 @@ public class AdminCsController {
 		String regip 	= req.getRemoteAddr();
 		
 		int result = service.insertReply(uid, content, num, regip);
+		service.updateQna(num);
 		
 		
 		Map<String, Integer> map = new HashMap<>();

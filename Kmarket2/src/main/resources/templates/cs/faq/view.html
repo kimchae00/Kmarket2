@@ -81,7 +81,7 @@
                                 [[${faq.content}]]
                             </p>
                         </div>
-                        <a th:href="@{list.html}" class="btnList">목록보기</a>
+                        <a th:href="@{/cs/faq/list(group=faq,cate=${faq.cate})}" class="btnList">목록보기</a>
                     </article>
                 </section>
             </div>

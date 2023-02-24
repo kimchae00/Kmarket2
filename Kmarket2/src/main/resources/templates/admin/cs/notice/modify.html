@@ -71,7 +71,7 @@
                         </tr>
                     </table>
                     <a class="btnModify">수정하기</a>
-                    <a href="./list.html">취소하기</a>
+                    <a th:href="@{/admin/cs/notice/view(group=${article.group},no=${article.no},cate=${article.cate})}">취소하기</a>
                 </section>
             </section>
         </main>
