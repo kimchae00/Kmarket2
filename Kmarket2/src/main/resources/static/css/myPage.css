@@ -148,16 +148,16 @@ footer > div:nth-child(2) > p > strong {
 }
 
 .home > nav > div > ul > li:nth-child(1){
-    background-image: url("/Kmarket2 HTML/myPage/img/ico_delivery.png");
+    background-image: url("/Kmarket2/img/ico_delivery.png");
 }
 .home > nav > div > ul > li:nth-child(2){
-    background-image: url("/Kmarket2 HTML/myPage/img/ico_coupon.jpg");
+    background-image: url("/Kmarket2/img/ico_coupon.jpg");
 }
 .home > nav > div > ul > li:nth-child(3){
-    background-image: url("/Kmarket2 HTML/myPage/img/ico_point.jpg");
+    background-image: url("/Kmarket2/img/ico_point.jpg");
 }
 .home > nav > div > ul > li:nth-child(4){
-    background-image: url("/Kmarket2 HTML/myPage/img/ico_qna.png");
+    background-image: url("/Kmarket2/img/ico_qna.png");
 }
 
 
@@ -216,7 +216,7 @@ footer > div:nth-child(2) > p > strong {
     top: -2px;
     width: 8px;
     height: 13px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     background-position: -160px -50px;
 }
 
@@ -318,7 +318,7 @@ footer > div:nth-child(2) > p > strong {
     display: block;
     width: 90px;
     height: 19px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     font-size: 0;
     background-position: -369px -179px;
 }
@@ -327,7 +327,7 @@ footer > div:nth-child(2) > p > strong {
     display: block;
     width: 90px;
     height: 19px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     font-size: 0;
     background-position: -369px -202px;
 }
@@ -336,7 +336,7 @@ footer > div:nth-child(2) > p > strong {
     display: block;
     width: 90px;
     height: 19px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     background-position: -500px -399px;
     font-size: 11px;
     text-indent: 5px;
@@ -348,7 +348,7 @@ footer > div:nth-child(2) > p > strong {
     display: block;
     width: 90px;
     height: 19px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     background-position: -500px -399px;
     font-size: 11px;
     text-indent: 5px;
@@ -391,7 +391,7 @@ footer > div:nth-child(2) > p > strong {
 .myinfo > h3{
     width: 96px;
     height: 15px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     background-position: -144px -281px;
     font-size: 0;
 }
@@ -416,7 +416,7 @@ footer > div:nth-child(2) > p > strong {
     width: 33px;
     height: 11px;
     margin-left: 10px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     background-position: -423px -822px;
     font-size: 0;
 }
@@ -452,7 +452,7 @@ footer > div:nth-child(2) > p > strong {
     width: 165px;
     height: 29px;
     background-position: -485px -908px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
 
 }
 
@@ -463,7 +463,7 @@ footer > div:nth-child(2) > p > strong {
 }
 
 .oredered > div > .date_3ea li a:hover{
-    background: url("/Kmarket2 HTML/myPage/img/my_sprites.png") no-repeat -377px -908px;
+    background: url("/Kmarket2/img/my_sprites.png") no-repeat -377px -908px;
     color: rgb(255, 255, 255);
 }
 
@@ -476,7 +476,7 @@ footer > div:nth-child(2) > p > strong {
 }
 
 .oredered > div > .date_3ea li a.on{
-    background: url("/Kmarket2 HTML/myPage/img/my_sprites.png") no-repeat -377px -908px;
+    background: url("/Kmarket2/img/my_sprites.png") no-repeat -377px -908px;
     color: rgb(255, 255, 255);
 }
 
@@ -485,7 +485,7 @@ footer > div:nth-child(2) > p > strong {
     width: 273px;
     height: 29px;
     background-position: -377px -937px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
 
 }
 
@@ -504,7 +504,7 @@ footer > div:nth-child(2) > p > strong {
 }
 
 .oredered > div > .date_5ea li a:hover{
-    background: url("/Kmarket2 HTML/myPage/img/my_sprites.png") no-repeat -377px -908px;
+    background: url("/Kmarket2/img/my_sprites.png") no-repeat -377px -908px;
     color: rgb(255, 255, 255);
 }
 
@@ -512,7 +512,7 @@ footer > div:nth-child(2) > p > strong {
 .oredered > div > p {
     width: 190px;
     height: 29px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     background-position: -461px -879px;
     padding: 5px;
     box-sizing: border-box;
@@ -528,7 +528,7 @@ footer > div:nth-child(2) > p > strong {
     height: 27px;
     border: none;
     font-size: 0;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites.png");
+    background-image: url("/Kmarket2/img/my_sprites.png");
     background-position: -491px -80px;
 
 }
@@ -552,7 +552,7 @@ footer > div:nth-child(2) > p > strong {
     position: relative;
     width: 100%;
     height: 209px;
-    background-image: url("/Kmarket2 HTML/myPage/img/my_coupon_bg.gif");
+    background-image: url("/Kmarket2/img/my_coupon_bg.gif");
     background-size: contain;
     border: 0;
 }
@@ -627,14 +627,14 @@ footer > div:nth-child(2) > p > strong {
 }
 
 .page > .prev{
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites2.png");
+    background-image: url("/Kmarket2/img/my_sprites2.png");
     background-position: 0 -300px;
     font-size: 0;
 }
 
 
 .page > .next{
-    background-image: url("/Kmarket2 HTML/myPage/img/my_sprites2.png");
+    background-image: url("/Kmarket2/img/my_sprites2.png");
     background-position: -120px -300px;
     font-size: 0;
 }
@@ -715,4 +715,33 @@ footer > div:nth-child(2) > p > strong {
 
 .btn:hover{
     background-color: #0056cd;
+}
+
+
+
+/* 팦업창 */
+/* 팦업 헤더*/
+.modal-header{
+	background-color: #4291e9;
+	padding: 10px;
+}
+
+.modal-header > h1{
+	color : #fff;
+}
+
+/* 팦업 메인*/
+.modal-body{
+	min-height: 300px;
+	padding: 10px
+}
+
+/* 팦업 푸터*/
+.btn-secondary{
+	width: 100px;
+	height: 30px;
+}
+.btn-primary{
+	width: 100px;
+	height: 30px;
 }
